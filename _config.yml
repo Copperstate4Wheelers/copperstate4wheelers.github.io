@@ -1,0 +1,27 @@
+
+title: Copperstate4Wheelers
+email: lyman.brad3211@gmail.com # TODO: replace with official copperstate
+description: >-
+  An unofficial demo for the revised Copperstate4Wheelers club website!
+baseurl: "copperstate4wheelers" # the subpath of your site, e.g. /blog
+url: "bradleylyman.github.io"
+github_username:  BradleyLyman
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
