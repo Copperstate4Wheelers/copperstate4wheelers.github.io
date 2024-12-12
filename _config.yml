@@ -1,5 +1,6 @@
 
 title: Copperstate4Wheelers
+subtitle: Since 1972
 email: lyman.brad3211@gmail.com # TODO: replace with official copperstate
 description: >-
   An unofficial demo for the revised Copperstate4Wheelers club website!
@@ -7,10 +8,38 @@ baseurl: "/copperstate4wheelers" # the subpath of your site, e.g. /blog
 url: "bradleylyman.github.io"
 github_username:  BradleyLyman
 
+locale: en
+future: true
+
 # Build settings
-theme: minima
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "dirt"
 plugins:
   - jekyll-feed
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      read_time: false
+      comments: false
+      share: false
+      related: false
+      author_profile: false
+
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      read_time: false
+      comments: false
+      share: false
+      related: false
+      author_profile: false
 
 # Exclude from processing.
 #
