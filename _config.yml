@@ -3,7 +3,7 @@ title: Copperstate4Wheelers
 email: lyman.brad3211@gmail.com # TODO: replace with official copperstate
 description: >-
   An unofficial demo for the revised Copperstate4Wheelers club website!
-baseurl: "copperstate4wheelers" # the subpath of your site, e.g. /blog
+baseurl: "/copperstate4wheelers" # the subpath of your site, e.g. /blog
 url: "bradleylyman.github.io"
 github_username:  BradleyLyman
 
