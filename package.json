@@ -16,7 +16,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource/noto-sans": "^5.1.0",
+    "@fontsource/roboto": "^5.1.0",
     "@mdx-js/react": "^3.1.0",
+    "bulma": "^1.0.2",
     "gatsby": "^5.14.0",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",

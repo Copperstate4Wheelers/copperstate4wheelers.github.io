@@ -1,9 +1,10 @@
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
+  pathPrefix: "copperstate4wheelers",
   siteMetadata: {
     title: `Copperstate4Wheelers`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://bradleylyman.github.io`,
   },
   graphqlTypegen: true,
   plugins: [
