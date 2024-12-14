@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
+import Navbar from "../components/site_navbar";
 
 import "@fontsource/noto-sans";
 import "../styles/index.scss";
@@ -8,17 +9,23 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <header>
-        <p>Something in the header</p>
+        <Navbar></Navbar>
       </header>
-      <main>
-        <h1 className="title is-1">Title</h1>
-        <div className="container">
-          <div className="notification is-primary">Some content</div>
-        </div>
-        <p>main content area</p>
+      <main className="container is-fluid">
+        <section className="section">
+          <h1 className="title is-3">Welcome</h1>
+          <p>main content area</p>
+          <p>Some information about the club.</p>
+        </section>
+
+        <section className="section">
+          <h1 className="title is-3">Upcoming Events</h1>
+        </section>
       </main>
-      <footer>
-        <p>something in the footer</p>
+      <footer className="footer">
+        <div className="content has-text-centered">
+          <p>Copyright &copy; 2024, Copperstate4Wheelers</p>
+        </div>
       </footer>
     </>
   );
@@ -28,7 +35,8 @@ export default IndexPage;
 
 export const Head: HeadFC = () => (
   <>
-    <title>Hello World Page</title>
-    <meta name="description" content="Hello World Description" />
+    <html lang="en" data-theme="light" />
+    <title>Copperstate4Wheelers</title>
+    <meta name="description" content="Something" />
   </>
 );
