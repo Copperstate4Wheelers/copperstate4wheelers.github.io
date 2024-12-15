@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import { getCollection, render } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const events = await getCollection("events");
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}) satisfies GetStaticPaths;
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<h1>Event??</h1>
+<Content />

@@ -1,0 +1,35 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const pageTitle = "About Me";
+const color = "navy";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <style define:vars={{ color }}>
+      a {
+        color: var(--color);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <Navigation />
+    </header>
+    <main>
+      <h1>About</h1>
+      <p>Some information about things</p>
+    </main>
+    <Footer />
+
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
+</html>
