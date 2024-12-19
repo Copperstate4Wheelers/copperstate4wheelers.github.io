@@ -5,6 +5,8 @@ import "@fontsource/arvo";
 import "@fontsource/lato";
 import "normalize.css";
 import "../styles/global.scss";
+import copperstate_logo from "../images/copperstate_logo.png";
+import { getImage } from "astro:assets";
 
 interface Props {
   pageTitle?: string;
@@ -13,12 +15,28 @@ interface Props {
 const { pageTitle: title }: Props = Astro.props;
 const pageTitle =
   title == undefined ? "Copperstate4Wheelers" : `CS4W - ${title}`;
+
+const og_image = await getImage({ src: copperstate_logo, format: "webp" });
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    <!-- social tags -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content={og_image.src} />
+    <meta property="og:url" content="https://copperstate4wheelers.github.io" />
+    <meta name="twitter:card" content={og_image.src} />
+
+    <!-- Non-Essential Recommended Tags -->
+    <meta property="og:description" content="Copperstate4Wheelers Website." />
+    <meta property="og:site_name" content="Copperstate4Wheelers" />
+    <meta name="twitter:image:alt" content="Copperstate4Wheelers Logo" />
+
     <title>{pageTitle}</title>
   </head>
   <body class="page-layout">

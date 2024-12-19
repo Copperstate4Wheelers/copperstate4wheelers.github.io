@@ -10,7 +10,7 @@ const { pageTitle }: Props = Astro.props;
 ---
 
 <header>
-  <h1 class="visibly-hidden">{pageTitle}</h1>
+  <h1 class="visually-hidden">{pageTitle}</h1>
   <div class="navbar">
     <div class="brand">
       <a href="/">Copperstate4Wheelers</a>
@@ -31,7 +31,7 @@ const { pageTitle }: Props = Astro.props;
           width="1em"
           height="1em"
         />
-        <span class="visibly-hidden">Navigation Menu</span>
+        <span class="visually-hidden">Navigation Menu</span>
       </button>
     </div>
     <nav id="navbar-menu" class="menu">
@@ -66,10 +66,10 @@ const { pageTitle }: Props = Astro.props;
 
 <style>
   header {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     container: header / inline-size;
-    border-bottom: solid 1px hsl(from var(--primary) h s l / 0.35);
+    border-bottom: 0.1rem solid var(--highlight-200);
   }
 
   .navbar {
@@ -89,7 +89,6 @@ const { pageTitle }: Props = Astro.props;
 
       background: transparent;
       border: none;
-      color: var(--primary);
       cursor: pointer;
 
       &[aria-expanded="false"] {
@@ -129,13 +128,14 @@ const { pageTitle }: Props = Astro.props;
 
     &.expanded {
       display: block;
+      padding-top: 1rem;
 
       & ul {
         list-style: none;
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
       }
 
       & a {

@@ -46,6 +46,11 @@ $highlight-orange: #F7701B;
   --highlight: #{meta.inspect($highlight-orange)};
 }
 
+// Computed colors
+:root {
+  --highlight-200: hsl(from var(--highlight) h s l / 0.35);
+}
+
 body {
   color: var(--primary);
   background-color: var(--secondary);
@@ -60,9 +65,26 @@ h4 {
   margin: 0;
 }
 
+p {
+  font-size: var(--fs-400);
+  line-height: var(--fs-500);
+}
+
 a {
   color: var(--primary);
   text-decoration: underline var(--highlight) dotted 0.1em;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--highlight);
+  }
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
 
   &:hover,
   &:focus-visible {
@@ -100,12 +122,21 @@ a {
   }
 }
 
+.section {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.section + .section {
+  border-top: 0.1rem solid var(--highlight-200);
+}
+
 
 /*****************************************************************************
  * Utility Classes
  *****************************************************************************/
 
-.visibly-hidden {
+.visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
