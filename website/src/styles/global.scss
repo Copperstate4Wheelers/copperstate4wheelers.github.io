@@ -1,0 +1,116 @@
+@use "sass:meta";
+
+/*****************************************************************************
+ * Typography
+ *****************************************************************************/
+
+:root {
+  --font-primary: "lato", sans-serif;
+  --font-title: "arvo", serif;
+
+  --fs-200: 0.5rem;
+  --fs-400: 1rem;
+  --fs-500: 1.3rem;
+  --fs-600: 1.6rem;
+  --fs-700: 2rem;
+  --fs-900: 4rem;
+}
+
+/*****************************************************************************
+ * Color Scheme
+ *****************************************************************************/
+
+$primary: #F9FCEE;
+$secondary: #271001;
+$highlight-blue: #1A4AE8;
+$highlight-orange: #F7701B;
+
+// default to dark-mode colors to avoid bright flash
+:root {
+  --primary: #{meta.inspect($primary)};
+  --secondary: #{meta.inspect($secondary)};
+  --highlight: #{meta.inspect($highlight-orange)};
+}
+
+// swap to light mode
+:root[data-theme="light"] {
+  --primary: #{meta.inspect($secondary)};
+  --secondary: #{meta.inspect($primary)};
+  --highlight: #{meta.inspect($highlight-blue)};
+}
+
+// explicitly swap to dark mode
+:root[data-theme="dark"] {
+  --primary: #{meta.inspect($primary)};
+  --secondary: #{meta.inspect($secondary)};
+  --highlight: #{meta.inspect($highlight-orange)};
+}
+
+body {
+  color: var(--primary);
+  background-color: var(--secondary);
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  margin: 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: underline var(--highlight) dotted 0.1em;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--highlight);
+  }
+}
+
+
+/*****************************************************************************
+ * Page Layout / Grid System
+ *****************************************************************************/
+
+:root {
+  --content-width: 90ch;
+}
+
+.page-layout {
+  --padding: 1rem;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--padding), 1fr)
+    [content-start]
+    min(var(--content-width), 100% - calc(var(--padding) * 2))
+    [content-end]
+    minmax(var(--padding), 1fr);
+
+  & > * {
+    grid-column: content;
+  }
+
+  & > .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/*****************************************************************************
+ * Utility Classes
+ *****************************************************************************/
+
+.visibly-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}

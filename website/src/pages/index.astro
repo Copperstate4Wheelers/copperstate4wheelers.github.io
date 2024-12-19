@@ -1,0 +1,59 @@
+---
+import { TZDate } from "@date-fns/tz";
+import { format } from "date-fns";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { getCollection } from "astro:content";
+const events = await getCollection("events");
+events.sort((a, b) => {
+  return a.data.date.valueOf() - b.data.date.valueOf();
+});
+
+/// Transforms a native date object to the correct value in the local timezone.
+/// This is needed because Zod parses dates in frontmatter in the UTC timezone.
+function local_date(date: Date): TZDate {
+  return new TZDate(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    "America/Phoenix"
+  );
+}
+
+function humanized_date(date: TZDate): string {
+  return format(date, "eeee, MMM do");
+}
+---
+
+<BaseLayout>
+  <section>
+    <h2>Welcome</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porta
+      dapibus purus, nec consequat tellus luctus sagittis. Morbi aliquet nulla
+      a orci placerat, id commodo turpis tincidunt. Phasellus sed felis est.
+      Aenean suscipit sem est, at sagittis orci pellentesque in. Proin
+      consectetur tellus at orci varius lacinia sit amet quis mauris.
+      Suspendisse potenti. Proin viverra orci eu scelerisque dictum. Mauris
+      hendrerit vestibulum sem, quis feugiat sem molestie at. Morbi blandit
+      leo vel sem feugiat, ut dapibus massa congue. Nunc eu magna eget magna
+      efficitur dictum. Nunc quis pharetra augue.
+    </p>
+  </section>
+
+  <section>
+    <h2>Upcoming Events</h2>
+    <ul>
+      {
+        events.map((event) => (
+          <li>
+            <a href={`events/${event.id}`} data-astro-prefetch>
+              {event.data.title} | {humanized_date(local_date(event.data.date))}{" "}
+              | {event.data.time}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

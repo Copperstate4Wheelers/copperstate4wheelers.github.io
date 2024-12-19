@@ -1,0 +1,151 @@
+---
+import { Icon } from "astro-icon/components";
+import DarkModeToggle from "./DarkModeToggle.astro";
+
+interface Props {
+  pageTitle?: string;
+}
+
+const { pageTitle }: Props = Astro.props;
+---
+
+<header>
+  <h1 class="visibly-hidden">{pageTitle}</h1>
+  <div class="navbar">
+    <div class="brand">
+      <a href="/">Copperstate4Wheelers</a>
+      <button
+        aria-expanded="false"
+        aria-controls="navbar-menu"
+        id="navbar-button"
+      >
+        <Icon
+          class="open-menu"
+          name="material-symbols:menu-rounded"
+          width="1em"
+          height="1em"
+        />
+        <Icon
+          class="close-menu"
+          name="material-symbols:close-rounded"
+          width="1em"
+          height="1em"
+        />
+        <span class="visibly-hidden">Navigation Menu</span>
+      </button>
+    </div>
+    <nav id="navbar-menu" class="menu">
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/events">Events</a></li>
+        <li><DarkModeToggle /></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  /**
+   * Setup the navbar menu button toggle.
+   **/
+  const button = document.getElementById("navbar-button")!;
+  const menu = document.getElementById("navbar-menu")!;
+
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded")!;
+    if (expanded == "true") {
+      button.setAttribute("aria-expanded", "false");
+      menu.classList.remove("expanded");
+    } else {
+      button.setAttribute("aria-expanded", "true");
+      menu.classList.add("expanded");
+    }
+  });
+</script>
+
+<style>
+  header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    container: header / inline-size;
+    border-bottom: solid 1px hsl(from var(--primary) h s l / 0.35);
+  }
+
+  .navbar {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-700);
+
+    & button {
+      display: flex;
+      align-items: center;
+
+      background: transparent;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+
+      &[aria-expanded="false"] {
+        .open-menu {
+          display: inline-block;
+        }
+
+        .close-menu {
+          display: none;
+        }
+      }
+
+      &[aria-expanded="true"] {
+        .open-menu {
+          display: none;
+        }
+
+        .close-menu {
+          display: inline-block;
+        }
+      }
+    }
+
+    & a {
+      flex-shrink: 1;
+      font-family: var(--font-title);
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--primary);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .menu {
+    display: none;
+
+    &.expanded {
+      display: block;
+
+      & ul {
+        list-style: none;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      & a {
+        display: block;
+        padding: 0.75em;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: var(--fs-500);
+        font-family: var(--font-title);
+      }
+    }
+  }
+</style>
