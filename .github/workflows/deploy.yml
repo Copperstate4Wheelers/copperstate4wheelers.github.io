@@ -7,6 +7,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
+  # Automatically rebuild the site once a day
+  schedule:
+    - cron: '33 1 * * *'
+
 # Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
