@@ -1,5 +1,3 @@
-# Copperstate 4 Wheelers Website
-
 <img src="./website/src/images/copperstate_logo.png" width="250px" height="250px" />
 
 ## How To Add A Run 
