@@ -47,7 +47,7 @@ function humanized_date(date: TZDate): string {
       {
         events.map((event) => (
           <li>
-            <a href={`events/${event.id}`} data-astro-prefetch>
+            <a href={`events/${event.id}`}>
               {event.data.title} | {humanized_date(local_date(event.data.date))}{" "}
               | {event.data.time}
             </a>
