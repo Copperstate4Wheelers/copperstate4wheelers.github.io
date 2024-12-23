@@ -4,25 +4,54 @@ import { format } from "date-fns";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { getCollection } from "astro:content";
-const events = await getCollection("events");
-events.sort((a, b) => {
-  return a.data.date.valueOf() - b.data.date.valueOf();
-});
+import { Icon } from "astro-icon/components";
+
+interface Event {
+  id: string;
+  data: {
+    title: string;
+    date: Date;
+    time: string;
+    description: string;
+    invite: string;
+  };
+}
 
 /// Transforms a native date object to the correct value in the local timezone.
 /// This is needed because Zod parses dates in frontmatter in the UTC timezone.
-function local_date(date: Date): TZDate {
+function local_date(event: Event): TZDate {
   return new TZDate(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
+    event.data.date.getUTCFullYear(),
+    event.data.date.getUTCMonth(),
+    event.data.date.getUTCDate(),
     "America/Phoenix"
   );
 }
 
-function humanized_date(date: TZDate): string {
-  return format(date, "eeee, MMM do");
+function humanized_date(event: Event): string {
+  return format(local_date(event), "eeee, MMM do");
 }
+
+const now = new Date();
+const today = new TZDate(
+  now.getUTCFullYear(),
+  now.getUTCMonth(),
+  now.getUTCDate(),
+  "America/Phoenix"
+);
+
+let events: Event[] = await getCollection("events");
+events.sort((a, b) => {
+  return local_date(a).valueOf() - local_date(b).valueOf();
+});
+events = events.filter((event) => {
+  if (local_date(event) < today) {
+    return undefined;
+  } else {
+    return event;
+  }
+});
+events = events.slice(0, 4);
 ---
 
 <BaseLayout>
@@ -47,13 +76,75 @@ function humanized_date(date: TZDate): string {
       {
         events.map((event) => (
           <li>
-            <a href={`events/${event.id}`}>
-              {event.data.title} | {humanized_date(local_date(event.data.date))}{" "}
-              | {event.data.time}
-            </a>
+            <h3>
+              <a href={`events/${event.id}`}>{event.data.title}</a>
+            </h3>
+            <div class="date-and-time">
+              <Icon
+                class="calendar-icon"
+                name="material-symbols:calendar-month"
+              />
+              <p>{humanized_date(event)}</p>
+              <p>|</p>
+              <p>{event.data.time}</p>
+              <p>|</p>
+              <p>{event.data.invite}</p>
+            </div>
+            <p>{event.data.description}</p>
           </li>
         ))
       }
     </ul>
   </section>
 </BaseLayout>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  li {
+    & p {
+      line-height: 1.25em;
+      padding: 0em;
+      margin: 0em;
+    }
+  }
+
+  li + li {
+    padding-top: 2rem;
+  }
+
+  h3 {
+    padding: 0em;
+    padding-bottom: 0.15em;
+    margin: 0em;
+  }
+
+  h3 a {
+    text-decoration: none;
+    color: var(--highlight);
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline dashed 0.1em;
+    }
+  }
+
+  .date-and-time {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+
+    .calendar-icon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+</style>
