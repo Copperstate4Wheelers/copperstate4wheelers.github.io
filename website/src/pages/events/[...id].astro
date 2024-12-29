@@ -1,4 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
+import { TZDate } from "@date-fns/tz";
+import { format } from "date-fns";
 import type { GetStaticPaths } from "astro";
 
 import { getCollection, render } from "astro:content";
@@ -14,9 +17,76 @@ export const getStaticPaths = (async () => {
 
 const { event } = Astro.props;
 const { Content } = await render(event);
+
+interface Event {
+  id: string;
+  data: {
+    title: string;
+    date: Date;
+    time: string;
+    description: string;
+    invite: string;
+  };
+}
+
+const page_event: Event = event;
+
+/// Transforms a native date object to the correct value in the local timezone.
+/// This is needed because Zod parses dates in frontmatter in the UTC timezone.
+function local_date(event: Event): TZDate {
+  return new TZDate(
+    event.data.date.getUTCFullYear(),
+    event.data.date.getUTCMonth(),
+    event.data.date.getUTCDate(),
+    "America/Phoenix",
+  );
+}
+
+function humanized_date(event: Event): string {
+  return format(local_date(event), "eeee, MMM do");
+}
 ---
 
-<BaseLayout>
-  <h1>Event??</h1>
-  <Content />
+<BaseLayout
+  pageTitle={event.data.title}
+  description={event.data.description}
+>
+  <section class="section">
+    <h2>{event.data.title}</h2>
+    <div class="date-and-time">
+      <Icon
+        class="calendar-icon"
+        name="material-symbols:calendar-month"
+      />
+      <p>{humanized_date(event)}</p>
+      <p>|</p>
+      <p>{event.data.time}</p>
+      <p>|</p>
+      <p>{event.data.invite}</p>
+    </div>
+    <div class="flow">
+      <Content />
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .date-and-time {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+
+    .calendar-icon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+  .flow {
+    iframe {
+      width: 100%;
+    }
+  }
+</style>

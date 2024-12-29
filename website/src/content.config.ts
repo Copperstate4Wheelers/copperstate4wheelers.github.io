@@ -16,6 +16,7 @@ const events = defineCollection({
       .optional()
       .default("Join the Copperstate4Wheelers on a run!"),
     invite: z.string().optional().default("open to visitors"),
+    contact: z.string().optional().default("copperstate4wheelers@yahoo.com"),
   }),
 });
 

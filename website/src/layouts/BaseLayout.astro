@@ -10,13 +10,21 @@ import { getImage } from "astro:assets";
 
 interface Props {
   pageTitle?: string;
+  description?: string;
 }
 
 const { pageTitle: title }: Props = Astro.props;
 const pageTitle =
-  title == undefined ? "Copperstate4Wheelers" : `CS4W - ${title}`;
+  Astro.props.pageTitle == undefined
+    ? "Copperstate4Wheelers"
+    : `CS4W - ${title}`;
+const description =
+  Astro.props.description ?? "Copperstate4Wheelers Website";
 
-const og_image = await getImage({ src: copperstate_logo, format: "webp" });
+const og_image = await getImage({
+  src: copperstate_logo,
+  format: "webp",
+});
 ---
 
 <html lang="en">
@@ -29,13 +37,19 @@ const og_image = await getImage({ src: copperstate_logo, format: "webp" });
     <meta property="og:title" content={pageTitle} />
     <meta property="og:type" content="article" />
     <meta property="og:image" content={og_image.src} />
-    <meta property="og:url" content="https://copperstate4wheelers.github.io" />
+    <meta property="og:url" content={Astro.url} />
     <meta name="twitter:card" content={og_image.src} />
 
     <!-- Non-Essential Recommended Tags -->
-    <meta property="og:description" content="Copperstate4Wheelers Website." />
-    <meta property="og:site_name" content="Copperstate4Wheelers" />
-    <meta name="twitter:image:alt" content="Copperstate4Wheelers Logo" />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:site_name"
+      content="Copperstate4Wheelers"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Copperstate4Wheelers Logo"
+    />
 
     <title>{pageTitle}</title>
   </head>

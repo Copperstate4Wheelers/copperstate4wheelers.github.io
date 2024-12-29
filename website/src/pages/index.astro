@@ -24,7 +24,7 @@ function local_date(event: Event): TZDate {
     event.data.date.getUTCFullYear(),
     event.data.date.getUTCMonth(),
     event.data.date.getUTCDate(),
-    "America/Phoenix"
+    "America/Phoenix",
   );
 }
 
@@ -37,7 +37,7 @@ const today = new TZDate(
   now.getUTCFullYear(),
   now.getUTCMonth(),
   now.getUTCDate(),
-  "America/Phoenix"
+  "America/Phoenix",
 );
 
 let events: Event[] = await getCollection("events");
@@ -58,15 +58,17 @@ events = events.slice(0, 4);
   <section class="section">
     <h2>Welcome</h2>
     <p>
-      Copperstate4Wheelers (CS4W) is a family friendly 4x4 club based in
-      Phoenix, AZ. We try to get offroad about two times each month and have a
-      monthly club meeting. CS4W does a variety of offroading including
-      beginner-friendly runs all the way up to expert-only rock crawling and
-      everything in between!
+      Copperstate4Wheelers (CS4W) is a family friendly 4x4
+      club based in Phoenix, AZ. We try to get offroad about
+      two times each month and have a monthly club meeting.
+      CS4W does a variety of offroading including
+      beginner-friendly runs all the way up to expert-only
+      rock crawling and everything in between!
     </p>
     <p>
-      Want to learn more? Check out some of our upcoming events. Most are open
-      to the public and visitors are always welcome!
+      Want to learn more? Check out some of our upcoming
+      events. Most are open to the public and visitors are
+      always welcome!
     </p>
   </section>
 
@@ -77,7 +79,9 @@ events = events.slice(0, 4);
         events.map((event) => (
           <li>
             <h3>
-              <a href={`events/${event.id}`}>{event.data.title}</a>
+              <a href={`events/${event.id}`}>
+                {event.data.title}
+              </a>
             </h3>
             <div class="date-and-time">
               <Icon

@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { enUS } from "date-fns/locale";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+import {
+  Event,
+  local_date,
+  humanized_date,
+} from "../event";
+
+// Get all events
+let events: Event[] = await getCollection("events");
+events.sort((a, b) => {
+  return local_date(b).valueOf() - local_date(a).valueOf();
+});
+
+// Organize events into years and months.
+type Month = Event[];
+type Year = Map<number, Month>;
+type AllEvents = Map<number, Year>;
+let ordered_events: AllEvents = new Map<number, Year>();
+for (let event of events) {
+  let date = local_date(event);
+  let year = date.getUTCFullYear();
+  let month = date.getUTCMonth();
+
+  if (!ordered_events.has(year)) {
+    ordered_events.set(year, new Map<number, Month>());
+  }
+
+  if (!ordered_events.get(year)!.has(month)) {
+    ordered_events.get(year)!.set(month, []);
+  }
+
+  ordered_events.get(year)!.get(month)!.push(event);
+}
+---
+
+<BaseLayout
+  pageTitle="Events"
+  description="All past and future runs and club events."
+>
+  {
+    Array.from(ordered_events).map(([year, months]) => {
+      return (
+        <section class="section">
+          <h2>{year}</h2>
+          <ul>
+            {Array.from(months).map(([month, events]) => {
+              return (
+                <li>
+                  <h3>{enUS.localize.month(month)}</h3>
+                  <ul>
+                    {events.map((event) => {
+                      return <p>{event.data.title}</p>;
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      );
+    })
+  }
+</BaseLayout>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  li {
+    & p {
+      line-height: 1.25em;
+      padding: 0em;
+      margin: 0em;
+    }
+  }
+
+  li + li {
+    padding-top: 2rem;
+  }
+
+  h3 {
+    padding: 0em;
+    padding-bottom: 0.15em;
+    margin: 0em;
+  }
+
+  h3 a {
+    text-decoration: none;
+    color: var(--highlight);
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline dashed 0.1em;
+    }
+  }
+
+  .date-and-time {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+
+    .calendar-icon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+</style>
