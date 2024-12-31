@@ -1,0 +1,77 @@
+---
+import type { Event } from "../event";
+import { humanized_date } from "../event";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  event: Event;
+}
+
+const { event }: Props = Astro.props;
+---
+
+<div class="event-preview">
+  <p class="event-title">
+    <a href={`events/${event.id}`}>
+      {event.data.title}
+    </a>
+  </p>
+  <div class="date-and-time">
+    <Icon
+      class="calendar-icon"
+      name="material-symbols:calendar-month"
+    />
+    <p>{humanized_date(event)}</p>
+    <p>{event.data.time}</p>
+    <p>{event.data.invite}</p>
+  </div>
+  <p>{event.data.description}</p>
+</div>
+
+<style>
+  p {
+    padding: 0em;
+    margin: 0em;
+  }
+
+  .event-title {
+    padding: 0em 0em;
+    margin: 0em;
+    font-weight: 800;
+    font-size: var(--fs-500);
+    font-family: var(--font-title);
+  }
+
+  .event-title a {
+    text-decoration: none;
+    color: var(--highlight);
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline dashed 0.1em;
+    }
+  }
+
+  .date-and-time {
+    font-style: italic;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5em 0em;
+
+    .calendar-icon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+
+    p {
+      padding-left: 1ch;
+      padding-right: 1ch;
+    }
+
+    p + p {
+      border-left: 0.2ch solid var(--primary);
+    }
+  }
+</style>

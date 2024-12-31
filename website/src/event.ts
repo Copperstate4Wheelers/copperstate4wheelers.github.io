@@ -24,5 +24,5 @@ export function local_date(event: Event): TZDate {
 }
 
 export function humanized_date(event: Event): string {
-  return format(local_date(event), "eeee, MMM do");
+  return format(local_date(event), "MMM do");
 }

@@ -7,5 +7,8 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://copperstate4wheelers.github.io",
   integrations: [icon()],
+  ssr: {
+    noExternal: ['normalize.css'],
+  }
 });
 

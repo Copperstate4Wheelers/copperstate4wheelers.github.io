@@ -1,36 +1,10 @@
 ---
 import { TZDate } from "@date-fns/tz";
-import { format } from "date-fns";
-import BaseLayout from "../layouts/BaseLayout.astro";
-
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
-
-interface Event {
-  id: string;
-  data: {
-    title: string;
-    date: Date;
-    time: string;
-    description: string;
-    invite: string;
-  };
-}
-
-/// Transforms a native date object to the correct value in the local timezone.
-/// This is needed because Zod parses dates in frontmatter in the UTC timezone.
-function local_date(event: Event): TZDate {
-  return new TZDate(
-    event.data.date.getUTCFullYear(),
-    event.data.date.getUTCMonth(),
-    event.data.date.getUTCDate(),
-    "America/Phoenix",
-  );
-}
-
-function humanized_date(event: Event): string {
-  return format(local_date(event), "eeee, MMM do");
-}
+import type { Event } from "../event";
+import { local_date } from "../event";
+import EventPreview from "../components/EventPreview.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const now = new Date();
 const today = new TZDate(
@@ -78,23 +52,7 @@ events = events.slice(0, 4);
       {
         events.map((event) => (
           <li>
-            <h3>
-              <a href={`events/${event.id}`}>
-                {event.data.title}
-              </a>
-            </h3>
-            <div class="date-and-time">
-              <Icon
-                class="calendar-icon"
-                name="material-symbols:calendar-month"
-              />
-              <p>{humanized_date(event)}</p>
-              <p>|</p>
-              <p>{event.data.time}</p>
-              <p>|</p>
-              <p>{event.data.invite}</p>
-            </div>
-            <p>{event.data.description}</p>
+            <EventPreview event={event} />
           </li>
         ))
       }
@@ -111,44 +69,7 @@ events = events.slice(0, 4);
     padding-bottom: 2rem;
   }
 
-  li {
-    & p {
-      line-height: 1.25em;
-      padding: 0em;
-      margin: 0em;
-    }
-  }
-
   li + li {
     padding-top: 2rem;
-  }
-
-  h3 {
-    padding: 0em;
-    padding-bottom: 0.15em;
-    margin: 0em;
-  }
-
-  h3 a {
-    text-decoration: none;
-    color: var(--highlight);
-
-    &:hover,
-    &:focus-visible {
-      text-decoration: underline dashed 0.1em;
-    }
-  }
-
-  .date-and-time {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.5em;
-
-    .calendar-icon {
-      width: 1.5em;
-      height: 1.5em;
-    }
   }
 </style>

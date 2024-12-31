@@ -57,6 +57,18 @@ body {
   font-family: var(--font-primary);
 }
 
+h1 {
+  font-size: var(--fs-900);
+}
+
+h2 {
+  font-size: var(--fs-700);
+}
+
+h3, h4 {
+  font-size: var(--fs-600);
+}
+
 h1,
 h2,
 h3,
