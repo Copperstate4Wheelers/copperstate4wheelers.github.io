@@ -36,9 +36,15 @@ const og_image = await getImage({
     <!-- social tags -->
     <meta property="og:title" content={pageTitle} />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content={og_image.src} />
+    <meta
+      property="og:image"
+      content={new URL(og_image.src, Astro.url)}
+    />
     <meta property="og:url" content={Astro.url} />
-    <meta name="twitter:card" content={og_image.src} />
+    <meta
+      name="twitter:card"
+      content={new URL(og_image.src, Astro.url)}
+    />
 
     <!-- Non-Essential Recommended Tags -->
     <meta property="og:description" content={description} />

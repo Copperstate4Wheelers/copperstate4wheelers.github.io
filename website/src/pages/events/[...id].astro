@@ -1,9 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import { TZDate } from "@date-fns/tz";
-import { format } from "date-fns";
 import type { GetStaticPaths } from "astro";
-
+import { humanized_date } from "../../event";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -17,34 +15,6 @@ export const getStaticPaths = (async () => {
 
 const { event } = Astro.props;
 const { Content } = await render(event);
-
-interface Event {
-  id: string;
-  data: {
-    title: string;
-    date: Date;
-    time: string;
-    description: string;
-    invite: string;
-  };
-}
-
-const page_event: Event = event;
-
-/// Transforms a native date object to the correct value in the local timezone.
-/// This is needed because Zod parses dates in frontmatter in the UTC timezone.
-function local_date(event: Event): TZDate {
-  return new TZDate(
-    event.data.date.getUTCFullYear(),
-    event.data.date.getUTCMonth(),
-    event.data.date.getUTCDate(),
-    "America/Phoenix",
-  );
-}
-
-function humanized_date(event: Event): string {
-  return format(local_date(event), "eeee, MMM do");
-}
 ---
 
 <BaseLayout

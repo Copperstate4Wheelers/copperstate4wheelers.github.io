@@ -134,12 +134,12 @@ button {
   }
 }
 
-.section {
+section {
   padding-top: 2rem;
   padding-bottom: 1rem;
 }
 
-.section + .section {
+section + section {
   border-top: 0.1rem solid var(--highlight-200);
 }
 
