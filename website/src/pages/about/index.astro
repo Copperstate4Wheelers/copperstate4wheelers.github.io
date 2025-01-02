@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import copperstate_logo from "../../images/copperstate_logo.png";
+import adopt_a_trail from "../../images/adopt-a-trail.jpg";
+import bulldog_canyon from "../../images/bulldog-canyon.jpg";
 ---
 
 <BaseLayout
@@ -60,7 +62,28 @@ import copperstate_logo from "../../images/copperstate_logo.png";
       <a href="/about/current-members">Current Members</a>
       <a href="/about/in-memory-of">In Memory Of</a>
     </div>
+  </section>
 
+  <section>
+    <h2>Bulldog Canyon</h2>
+
+    <img
+      class="adopt-a-trail"
+      src={adopt_a_trail.src}
+      alt="Adopt a trail logo"
+    />
+    <p>
+      Our club is very proud to announce we have adopted the
+      Bulldog Canyon OHV area and periodically visit the
+      area through the year often working with TRAL or the
+      Tonto National Forest.
+    </p>
+
+    <img
+      class="bulldog-canyon-map"
+      src={bulldog_canyon.src}
+      alt="Bulldog Canyon map"
+    />
   </section>
 </BaseLayout>
 
@@ -69,6 +92,20 @@ import copperstate_logo from "../../images/copperstate_logo.png";
     width: 30ch;
     float: right;
     border-radius: 0.5rem;
+  }
+
+  .adopt-a-trail {
+    float: right;
+    width: 25ch;
+    border-radius: 0.5rem;
+  }
+
+  .bulldog-canyon-map {
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem 0rem;
+    margin: 0rem;
+    display: block;
   }
 
   .current-and-past-members {
