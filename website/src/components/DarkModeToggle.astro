@@ -23,7 +23,10 @@ import { Icon } from "astro-icon/components";
       return "dark";
     }
 
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+    ) {
       return "dark";
     } else {
       return "light";
@@ -33,9 +36,12 @@ import { Icon } from "astro-icon/components";
   const root = document.documentElement;
 
   root.dataset.theme =
-    localStorage.getItem("theme") ?? GetSystemPreferredTheme();
+    localStorage.getItem("theme") ??
+    GetSystemPreferredTheme();
 
-  const dark_mode_toggle = document.getElementById("dark-mode-toggle");
+  const dark_mode_toggle = document.getElementById(
+    "dark-mode-toggle"
+  );
   dark_mode_toggle?.addEventListener("click", () => {
     let theme = root.dataset.theme ?? "dark";
     if (theme == "light") {

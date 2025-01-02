@@ -57,6 +57,11 @@ events = events.slice(0, 4);
         ))
       }
     </ul>
+
+    <div class="more-events">
+      <a href="/events/">All Events -></a>
+    </div>
+
   </section>
 </BaseLayout>
 
@@ -71,5 +76,20 @@ events = events.slice(0, 4);
 
   li + li {
     padding-top: 2rem;
+  }
+
+  .more-events {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+
+    a {
+      text-decoration: none;
+      color: var(--highlight);
+      font-weight: 500;
+      font-size: var(--fs-500);
+      font-family: var(--font-title);
+    }
   }
 </style>
