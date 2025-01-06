@@ -10,20 +10,37 @@
 
   --fs-200: 0.5rem;
   --fs-400: 1rem;
-  --fs-500: 1.3rem;
-  --fs-600: 1.6rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.75rem;
   --fs-700: 2rem;
-  --fs-900: 4rem;
+  --fs-900: 2.5rem;
+}
+
+@media (width < 512px) {
+  :root {
+    --fs-900: 2rem;
+  }
+}
+
+@media (width > 1024px) {
+  :root {
+    --fs-200: 0.7rem;
+    --fs-400: 1.25rem;
+    --fs-500: 1.5rem;
+    --fs-600: 2rem;
+    --fs-700: 2.5rem;
+    --fs-900: 3rem;
+  }
 }
 
 /*****************************************************************************
  * Color Scheme
  *****************************************************************************/
 
-$primary: #F9FCEE;
+$primary: #f9fcee;
 $secondary: #271001;
-$highlight-blue: #1A4AE8;
-$highlight-orange: #F7701B;
+$highlight-blue: #1a4ae8;
+$highlight-orange: #f7701b;
 
 // default to dark-mode colors to avoid bright flash
 :root {
@@ -65,7 +82,8 @@ h2 {
   font-size: var(--fs-700);
 }
 
-h3, h4 {
+h3,
+h4 {
   font-size: var(--fs-600);
 }
 
@@ -80,6 +98,8 @@ h4 {
 p {
   font-size: var(--fs-400);
   line-height: var(--fs-500);
+  text-wrap: balance;
+  max-width: 75ch;
 }
 
 a {
@@ -104,6 +124,15 @@ button {
   }
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+}
 
 /*****************************************************************************
  * Page Layout / Grid System
@@ -121,7 +150,10 @@ button {
   grid-template-columns:
     minmax(var(--padding), 1fr)
     [content-start]
-    min(var(--content-width), 100% - calc(var(--padding) * 2))
+    min(
+      var(--content-width),
+      100% - calc(var(--padding) * 2)
+    )
     [content-end]
     minmax(var(--padding), 1fr);
 
@@ -143,7 +175,6 @@ section + section {
   border-top: 0.1rem solid var(--highlight-200);
 }
 
-
 /*****************************************************************************
  * Utility Classes
  *****************************************************************************/
@@ -157,4 +188,3 @@ section + section {
   position: absolute;
   white-space: nowrap;
 }
-

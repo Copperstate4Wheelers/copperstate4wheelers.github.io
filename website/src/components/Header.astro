@@ -81,13 +81,14 @@ const { pageTitle }: Props = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--fs-700);
+    font-size: var(--fs-900);
 
     & button {
       display: flex;
       align-items: center;
 
       background: transparent;
+      padding: 0rem 0rem 0rem 4rem;
       border: none;
       cursor: pointer;
 
@@ -143,8 +144,13 @@ const { pageTitle }: Props = Astro.props;
         padding: 0.75em;
         text-decoration: none;
         font-weight: 500;
-        font-size: var(--fs-500);
+        font-size: var(--fs-600);
         font-family: var(--font-title);
+
+        &:hover,
+        &:focus-visible {
+          font-weight: 600;
+        }
       }
     }
   }

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+import { Picture } from "astro:assets";
 import copperstate_logo from "../../images/copperstate_logo.png";
 import adopt_a_trail from "../../images/adopt-a-trail.jpg";
 import bulldog_canyon from "../../images/bulldog-canyon.jpg";
@@ -12,10 +13,11 @@ import bulldog_canyon from "../../images/bulldog-canyon.jpg";
 >
   <section>
     <h2>About Us</h2>
-    <img
-      class="logo"
-      src={copperstate_logo.src}
+    <Picture
+      src={copperstate_logo}
       alt="Copperstate4Wheelers Logo"
+      class="float-right"
+      widths={[512]}
     />
     <p>
       This club was formed and incorporated March 31, 1972
@@ -67,45 +69,42 @@ import bulldog_canyon from "../../images/bulldog-canyon.jpg";
   <section>
     <h2>Bulldog Canyon</h2>
 
-    <img
-      class="adopt-a-trail"
-      src={adopt_a_trail.src}
+    <Picture
+      src={adopt_a_trail}
       alt="Adopt a trail logo"
+      class="float-right logo"
     />
     <p>
-      Our club is very proud to announce we have adopted the
-      Bulldog Canyon OHV area and periodically visit the
-      area through the year often working with TRAL or the
-      Tonto National Forest.
+      Copperstate4Wheelers has adopted the Bulldog Canyon
+      OHV area and periodically visits the area for trash
+      cleanup and trail maintenence. We often work with TRAL
+      or the Tonto National Forest.
     </p>
 
-    <img
+    <Picture
       class="bulldog-canyon-map"
-      src={bulldog_canyon.src}
+      src={bulldog_canyon}
       alt="Bulldog Canyon map"
     />
   </section>
 </BaseLayout>
 
 <style>
-  .logo {
+  .float-right {
     width: 30ch;
     float: right;
     border-radius: 0.5rem;
   }
 
-  .adopt-a-trail {
-    float: right;
-    width: 25ch;
-    border-radius: 0.5rem;
+  .logo {
+    width: 10ch;
+    border-radius: 1rem;
+    margin-top: 1rem;
   }
 
   .bulldog-canyon-map {
-    width: 100%;
-    border-radius: 0.5rem;
     padding: 1rem 0rem;
-    margin: 0rem;
-    display: block;
+    border-radius: 0.5rem;
   }
 
   .current-and-past-members {
