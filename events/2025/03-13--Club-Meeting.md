@@ -1,5 +1,5 @@
 ---
-title: March Club Meeting
+title: Club Meeting
 date: 2025-03-13
 time: 6:30 pm
 description: We meet once a month to talk about upcoming runs and make plans.
