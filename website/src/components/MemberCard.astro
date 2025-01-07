@@ -1,0 +1,65 @@
+---
+import path from "node:path";
+import { Image } from "astro:assets";
+
+interface Props {
+  path: string;
+}
+
+const props = Astro.props;
+const member_images = import.meta.glob<{
+  default: ImageMetadata;
+}>("/src/images/members/*");
+
+const member_photo_path = path.posix.join(
+  "/src/images/members/",
+  path.parse(props.path).base
+);
+
+if (!member_images[member_photo_path]) {
+  let all_images = [];
+  for (let p in member_images) {
+    all_images.push(p);
+  }
+  throw new Error(
+    `Member photo at "${member_photo_path}" cannot be found in ${JSON.stringify(all_images, null, 2)}`
+  );
+}
+
+const member_image = (
+  await member_images[member_photo_path]()
+).default;
+
+const name = path
+  .parse(member_photo_path)
+  .name.replaceAll("_", " ")
+  .replaceAll(/\d+/g, "");
+---
+
+<div class="profile_card">
+  <p>{name}</p>
+  <Image
+    src={member_image}
+    alt={`Profile photo for ${name}`}
+    widths={[128, 256, 512, member_image.width]}
+    sizes="90ch"
+  />
+</div>
+
+<style>
+  .profile_card {
+    p {
+      position: relative;
+      font-size: var(--fs-500);
+      font-weight: 500;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    margin: 6rem 0rem;
+  }
+</style>

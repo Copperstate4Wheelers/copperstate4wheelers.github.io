@@ -1,5 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MemberCard from "../../components/MemberCard.astro";
+import fs from "node:fs";
+
+// relative to project root
+let member_images = fs.globSync("./src/images/members/*");
+member_images.toSorted();
 ---
 
 <BaseLayout
@@ -8,7 +14,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 >
   <section>
     <h2>Current Members</h2>
-    <p>TODO</p>
+
+    {
+      member_images.map((path) => (
+        <MemberCard path={path} />
+      ))
+    }
   </section>
 </BaseLayout>
 
