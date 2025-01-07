@@ -1,6 +1,6 @@
 <img src="./website/src/images/copperstate_logo.png" width="250px" height="250px" />
 
-## How To Add A Run 
+## How To Add An Event
 
 * TODO: link to a video tutorial / walkthrough
 * tl;dr
@@ -10,4 +10,3 @@
 
 [`/website`](./website)
 
-The website is built with [Astro](https://astro.build/).
