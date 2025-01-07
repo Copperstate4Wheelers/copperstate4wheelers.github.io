@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MemberCard from "../../components/MemberCard.astro";
-import fs from "node:fs";
+import { globSync } from "glob";
 
 // relative to project root
-let member_images = fs.globSync("./src/images/members/*");
-member_images.toSorted();
+let member_images = globSync(
+  "./src/images/members/*"
+).toSorted((a, b) => a.localeCompare(b));
 ---
 
 <BaseLayout
