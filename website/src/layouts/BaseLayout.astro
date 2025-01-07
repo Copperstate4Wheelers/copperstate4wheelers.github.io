@@ -8,6 +8,9 @@ import "../styles/global.scss";
 import copperstate_logo from "../images/copperstate_logo.png";
 import { getImage } from "astro:assets";
 
+import arvoWoff from "@fontsource/arvo/files/arvo-latin-400-normal.woff2?url";
+import latoWoff from "@fontsource/lato/files/lato-latin-400-normal.woff2?url";
+
 interface Props {
   pageTitle?: string;
   description?: string;
@@ -32,6 +35,20 @@ const og_image = await getImage({
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={arvoWoff}
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={latoWoff}
+      crossorigin="anonymous"
+    />
 
     <!-- social tags -->
     <meta property="og:title" content={pageTitle} />
