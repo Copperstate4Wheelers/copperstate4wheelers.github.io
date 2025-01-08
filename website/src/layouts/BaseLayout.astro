@@ -5,7 +5,7 @@ import "@fontsource/arvo";
 import "@fontsource/lato";
 import "normalize.css";
 import "../styles/global.scss";
-import copperstate_logo from "../images/copperstate_logo.png";
+import copperstate_logo_social from "../images/copperstate_logo_social.png";
 import { getImage } from "astro:assets";
 
 import arvoWoff from "@fontsource/arvo/files/arvo-latin-400-normal.woff2?url";
@@ -25,7 +25,7 @@ const description =
   Astro.props.description ?? "Copperstate4Wheelers Website";
 
 const og_image = await getImage({
-  src: copperstate_logo,
+  src: copperstate_logo_social,
   format: "webp",
 });
 ---
