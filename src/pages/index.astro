@@ -1,9 +1,15 @@
 ---
-import { getIndex } from "@lib/contentParser";
-import EntryLayout from "@components/home/EntryLayout.astro";
-import type { HomeEntry } from "@/types";
 
-const entry = (await getIndex("home")) as HomeEntry;
 ---
 
-<EntryLayout entry={entry} />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Copperstate4Wheelers</title>
+  </head>
+  <body>
+    <h1>aoeu</h1>
+  </body>
+</html>
