@@ -1,5 +1,6 @@
 ---
-
+import "modern-normalize/modern-normalize.css";
+import Navbar from "@components/Navbar.astro";
 ---
 
 <html lang="en">
@@ -10,6 +11,35 @@
     <title>Copperstate4Wheelers</title>
   </head>
   <body>
-    <h1>aoeu</h1>
+    <Navbar />
+
+    <div class="content"></div>
   </body>
 </html>
+
+<style>
+  /** global styles **/
+  :root {
+    --background: rgba(0, 214, 170, 0.75);
+    --text-primary: white;
+    --text-highlight: black;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /** Content style **/
+  .content {
+    min-height: 200vh;
+    background: #2d3038;
+    background: radial-gradient(
+      circle,
+      rgba(45, 48, 56, 1) 23%,
+      rgba(39, 60, 107, 1) 55%,
+      rgba(36, 87, 84, 1) 97%
+    );
+  }
+</style>
