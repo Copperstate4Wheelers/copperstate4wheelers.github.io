@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+
+import MontanaMountain from "@assets/pages/index/montana_mountain.jpg";
+---
+
+<div class="hero">
+  <Image
+    src={MontanaMountain}
+    alt="Copperstate4Wheelers on Montana Mountain."
+    decoding="async"
+    loading="lazy"
+    width="1920"
+    class="hero-image"
+  />
+  <div class="hero-content">
+    <h2>Copperstate4Wheelers</h2>
+    <p>Family friendly offroading since 1972</p>
+    <a href="#">Learn more!</a>
+  </div>
+</div>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-areas: "content";
+    place-items: center;
+    background: yellow;
+    min-height: calc(max(50vh, 30rem));
+  }
+
+  .hero * {
+    grid-area: content;
+  }
+
+  .hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    --title-size: 6rem;
+    font-size: var(--title-size);
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--text-primary);
+    border-radius: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  .hero-content h2 {
+    font-size: var(--title-size);
+    position: relative;
+    font-weight: 900;
+    margin: 0;
+  }
+
+  .hero-content p {
+    font-size: calc(var(--title-size) * 0.5);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .hero-content a {
+    font-size: calc(var(--title-size) * 0.3);
+    display: block;
+    text-decoration: none;
+    color: var(--text-primary);
+    width: fit-content;
+    margin: auto;
+    margin-top: 0.5em;
+    background-color: var(--background-primary);
+    border-radius: 0.5em;
+    padding: 0.3em 0.5em;
+  }
+
+  .hero-content a:hover,
+  .hero-content a:focus-visible {
+    color: var(--text-highlight);
+    background-color: var(--background-primary);
+  }
+
+  @media screen and (max-width: 900px) {
+    .hero-content {
+      --title-size: 3rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .hero-content {
+      --title-size: 2rem;
+    }
+  }
+</style>

@@ -1,45 +1,37 @@
 ---
+import "@fontsource/montserrat";
 import "modern-normalize/modern-normalize.css";
 import Navbar from "@components/Navbar.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import IndexClubHero from "@components/IndexClubHero.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Copperstate4Wheelers</title>
-  </head>
-  <body>
-    <Navbar />
+<BaseLayout title="Copperstate4Wheelers">
+  <Navbar />
+
+  <main>
+    <IndexClubHero />
 
     <div class="content"></div>
-  </body>
-</html>
+    <div class="content2"></div>
+  </main>
+
+  <footer>
+    <p>something in the footer</p>
+  </footer>
+</BaseLayout>
 
 <style>
-  /** global styles **/
-  :root {
-    --background: rgba(0, 214, 170, 0.75);
-    --text-primary: white;
-    --text-highlight: black;
+  main {
+    background-color: cornflowerblue;
   }
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /** Content style **/
   .content {
-    min-height: 200vh;
-    background: #2d3038;
-    background: radial-gradient(
-      circle,
-      rgba(45, 48, 56, 1) 23%,
-      rgba(39, 60, 107, 1) 55%,
-      rgba(36, 87, 84, 1) 97%
-    );
+    height: 50vh;
+    background-color: blue;
+  }
+  .content2 {
+    height: 50vh;
+    background-color: yellow;
   }
 </style>

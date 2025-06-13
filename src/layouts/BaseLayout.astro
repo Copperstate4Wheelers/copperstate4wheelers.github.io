@@ -1,0 +1,51 @@
+---
+/**
+ * The root page layout. This defines the HTML document structure, meta tags,
+ * and all root CSS rules.
+ */
+
+interface Props {
+  // The page title
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /** global styles **/
+  :root {
+    --background-primary: grey;
+    --text-primary: white;
+    --text-highlight: black;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .visually-hidden {
+    display: none;
+  }
+</style>
