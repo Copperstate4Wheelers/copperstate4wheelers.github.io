@@ -29,7 +29,7 @@
 
 <style>
   header {
-    --navbar-background: hsl(var(--blue-hsl));
+    --navbar-background: var(--blue);
     background: var(--navbar-background);
     text-align: center;
     position: fixed;
@@ -73,6 +73,7 @@
   }
 
   nav a {
+    font-weight: bold;
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: 0.05ch;
@@ -185,7 +186,7 @@
       content: "";
       height: 0.25em;
       border-radius: 0.2em;
-      background: hsl(var(--orange-hsl));
+      background: var(--orange);
       position: absolute;
       left: 0;
       right: 0;
