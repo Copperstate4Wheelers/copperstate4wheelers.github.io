@@ -27,9 +27,13 @@ const { title } = Astro.props;
 <style is:global>
   /** global styles **/
   :root {
-    --background-primary: grey;
-    --text-primary: white;
-    --text-highlight: black;
+    --orange-hsl: 15 100% 52%;
+    --tan-hsl: 26 40% 72%;
+    --black-hsl: 48 8% 12%;
+    --blue-hsl: 209 62% 64%;
+
+    --text-primary: hsl(var(--black-hsl));
+    --text-highlight: white;
   }
 
   *,

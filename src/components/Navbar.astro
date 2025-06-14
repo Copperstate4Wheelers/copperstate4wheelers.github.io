@@ -2,7 +2,7 @@
 /**
  * Navbar philosophy: mobile first and progressively enhance on wider screens.
  * CSS variables used:
- * --background-primary: background color
+ * --navbar-background: background color
  * --text-primary: primary text color
  * --text-highlight: text highlight color
  */
@@ -10,7 +10,8 @@
 
 <header>
   <a class="logo" href="#">
-    CS4W<span class="visually-hidden">Copperstate4Wheelers</span>
+    Copperstate4Wheelers
+    <span class="visually-hidden">Copperstate4Wheelers</span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" />
   <nav>
@@ -28,7 +29,8 @@
 
 <style>
   header {
-    background: var(--background-primary);
+    --navbar-background: hsl(var(--blue-hsl));
+    background: var(--navbar-background);
     text-align: center;
     position: fixed;
     top: 0;
@@ -40,14 +42,14 @@
   .logo {
     display: block;
     font-weight: 900;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 0.75em;
     text-decoration: none;
     color: var(--text-primary);
   }
 
   nav {
-    background: var(--background-primary);
+    background: var(--navbar-background);
     position: absolute; /* relative to the header due to pos: fixed */
     text-align: left;
     top: 100%;
@@ -148,10 +150,11 @@
 
     header {
       display: grid;
-      grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+      grid-template-columns: 1fr auto minmax(auto, 3fr) 1fr;
     }
 
     .logo {
+      font-size: 2.25rem;
       grid-column: 2 / span 1;
     }
 
@@ -182,7 +185,7 @@
       content: "";
       height: 0.25em;
       border-radius: 0.2em;
-      background: var(--text-highlight);
+      background: hsl(var(--orange-hsl));
       position: absolute;
       left: 0;
       right: 0;
