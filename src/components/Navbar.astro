@@ -31,7 +31,8 @@
 
 <style>
   header {
-    --navbar-background: var(--blue);
+    --navbar-background: var(--primary);
+    color: var(--secondary);
     background: var(--navbar-background);
     text-align: center;
     position: fixed;
@@ -42,9 +43,8 @@
   }
 
   .logo {
+    font-family: var(--title-font);
     display: block;
-    font-weight: 900;
-    font-size: 1.5rem;
     margin: 0;
     padding: 0;
   }
@@ -52,9 +52,10 @@
   .logo a {
     display: block;
     padding: 0;
-    margin: 0.5em;
+    font-size: 2.5rem;
+    margin: 0.25em;
     text-decoration: none;
-    color: var(--text-primary);
+    color: var(--accent);
   }
 
   nav {
@@ -83,7 +84,7 @@
 
   nav a {
     font-weight: bold;
-    color: var(--text-primary);
+    color: var(--secondary);
     text-decoration: none;
     letter-spacing: 0.05ch;
     font-size: 1.2rem;
@@ -92,8 +93,9 @@
     transition: opacity 150ms ease-in-out;
   }
 
-  nav a:hover {
-    color: var(--text-highlight);
+  nav a:hover,
+  nav a:focus-visible {
+    color: var(--accent);
   }
 
   .nav-toggle {
@@ -112,7 +114,7 @@
   }
 
   .nav-toggle:focus ~ .nav-toggle-label {
-    outline: 2px solid var(--text-primary);
+    outline: 2px solid var(--accent);
   }
 
   .nav-toggle-label {
@@ -131,7 +133,7 @@
   .nav-toggle-label span::after {
     --thickness: 0.25em;
     display: block;
-    background: var(--text-primary);
+    background: var(--secondary);
     height: var(--thickness);
     width: calc(2em);
     border-radius: 2px;
@@ -164,8 +166,11 @@
     }
 
     .logo {
-      font-size: 2.25rem;
       grid-column: 2 / span 1;
+    }
+
+    .logo a {
+      font-size: 4rem;
     }
 
     nav {
@@ -195,7 +200,7 @@
       content: "";
       height: 0.25em;
       border-radius: 0.2em;
-      background: var(--orange);
+      background: var(--accent);
       position: absolute;
       left: 0;
       right: 0;

@@ -1,6 +1,4 @@
 ---
-import "@fontsource/montserrat";
-import "modern-normalize/modern-normalize.css";
 import Navbar from "@components/Navbar.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import IndexClubHero from "@components/IndexClubHero.astro";
@@ -12,7 +10,16 @@ import IndexClubHero from "@components/IndexClubHero.astro";
   <main>
     <IndexClubHero />
 
-    <section class="content"></section>
+    <section class="content">
+      <h2>About Us</h2>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
+        eligendi esse est eveniet ipsa consequuntur eos, illum autem, ducimus
+        architecto earum eius impedit libero repellat tenetur id porro tempora
+        accusamus.
+      </p>
+      <p>image goes here</p>
+    </section>
     <section class="content2"></section>
   </main>
 
@@ -23,13 +30,16 @@ import IndexClubHero from "@components/IndexClubHero.astro";
 
 <style>
   main {
-    background-color: cornflowerblue;
+    background-color: var(--tan);
+    color: var(--black);
   }
 
-  .content {
-    height: 50vh;
-    background-color: blue;
+  section {
+    h2 {
+      font-size: 3rem;
+    }
   }
+
   .content2 {
     height: 50vh;
     background-color: yellow;
