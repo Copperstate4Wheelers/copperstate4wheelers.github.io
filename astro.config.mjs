@@ -5,6 +5,12 @@ import favicons from "astro-favicons";
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    experimentalLayout: "constrained",
+  },
+  experimental: {
+    responsiveImages: true,
+  },
   integrations: [
     favicons({
       name: "Copperstate4Wheelers",
@@ -15,4 +21,3 @@ export default defineConfig({
     }),
   ],
 });
-

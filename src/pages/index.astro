@@ -2,6 +2,8 @@
 import Navbar from "@components/Navbar.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import IndexClubHero from "@components/IndexClubHero.astro";
+import { Image } from "astro:assets";
+import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
@@ -11,16 +13,30 @@ import IndexClubHero from "@components/IndexClubHero.astro";
     <IndexClubHero />
 
     <section class="content">
-      <h2>About Us</h2>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-        eligendi esse est eveniet ipsa consequuntur eos, illum autem, ducimus
-        architecto earum eius impedit libero repellat tenetur id porro tempora
-        accusamus.
-      </p>
-      <p>image goes here</p>
+      <h2>- About Us -</h2>
+      <div class="grid">
+        <article>
+          <h3>Mission</h3>
+          <p>
+            We are a nonprofit club dedicated to promoting safe, enjoyable, and
+            family-friendly off-roading. Whether you're just getting started or
+            a long-time enthusiast, we're bound to have something planned that
+            you will enjoy!
+          </p>
+          <a class="button" href="#">Learn More!</a>
+        </article>
+        <Image
+          src={WalnutCanyon}
+          alt="The day we went to Walnut Canyon in April 2025."
+          title="Walnut Canyon, April 2025"
+          width="1920"
+        />
+      </div>
     </section>
-    <section class="content2"></section>
+
+    <section class="content">
+      <h2>- What We Do -</h2>
+    </section>
   </main>
 
   <footer>
@@ -30,14 +46,56 @@ import IndexClubHero from "@components/IndexClubHero.astro";
 
 <style>
   main {
-    background-color: var(--tan);
-    color: var(--black);
+    background-color: var(--secondary);
   }
 
-  section {
-    h2 {
-      font-size: 3rem;
-    }
+  section h2 {
+    font-size: 5rem;
+    padding: 0;
+    margin: 1rem;
+    text-align: center;
+  }
+
+  article h3 {
+    font-size: 3rem;
+    padding: 0;
+    margin: 1rem 0rem;
+  }
+
+  section article {
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 2rem;
+  }
+
+  section img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    padding: 2rem;
+  }
+
+  section .grid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
+    place-items: center;
+    margin: 1rem;
+  }
+
+  .button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--accent);
+    padding: 0.5em;
+    border-radius: 0.4em;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    background-color: hsl(from var(--accent) h s calc(l * 1.1));
   }
 
   .content2 {
