@@ -3,8 +3,7 @@
  * Navbar philosophy: mobile first and progressively enhance on wider screens.
  * CSS variables used:
  * --navbar-background: background color
- * --text-primary: primary text color
- * --text-highlight: text highlight color
+ * --navbar-text: the text color for links and text-like elements (menu etc..)
  */
 ---
 
@@ -31,8 +30,9 @@
 
 <style>
   header {
-    --navbar-background: var(--primary);
+    --navbar-background: var(--primary-700);
     --navbar-text: var(--secondary);
+
     color: var(--navbar-text);
     background: var(--navbar-background);
     text-align: center;

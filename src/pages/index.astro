@@ -1,8 +1,12 @@
 ---
-import Navbar from "@components/Navbar.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
-import IndexClubHero from "@components/IndexClubHero.astro";
 import { Image } from "astro:assets";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+import Navbar from "@components/Navbar.astro";
+import IndexClubHero from "@components/IndexClubHero.astro";
+import LinkButton from "@components/LinkButton.astro";
+
 import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
 ---
 
@@ -12,9 +16,9 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
   <main>
     <IndexClubHero />
 
-    <section class="content">
+    <section>
       <h2>- About Us -</h2>
-      <div class="grid">
+      <div class="autogrid">
         <article>
           <h3>Mission</h3>
           <p>
@@ -23,8 +27,9 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
             a long-time enthusiast, we're bound to have something planned that
             you will enjoy!
           </p>
-          <a class="button" href="#">Learn More!</a>
+          <LinkButton href="#">Learn More!</LinkButton>
         </article>
+
         <Image
           src={WalnutCanyon}
           alt="The day we went to Walnut Canyon in April 2025."
@@ -34,8 +39,46 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
       </div>
     </section>
 
-    <section class="content">
+    <section>
       <h2>- What We Do -</h2>
+      <div class="autogrid">
+        <article>
+          <h3>Something</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
+            recusandae architecto ipsa amet ea natus, consequatur explicabo
+            repellendus reiciendis sed optio eos tenetur magnam.
+          </p>
+        </article>
+        <article>
+          <h3>Something</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
+            recusandae architecto ipsa amet ea natus, consequatur explicabo
+            repellendus reiciendis sed optio eos tenetur magnam.
+          </p>
+        </article>
+        <article>
+          <h3>Something</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
+            recusandae architecto ipsa amet ea natus, consequatur explicabo
+            repellendus reiciendis sed optio eos tenetur magnam.
+          </p>
+        </article>
+        <article>
+          <h3>Something</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
+            recusandae architecto ipsa amet ea natus, consequatur explicabo
+            repellendus reiciendis sed optio eos tenetur magnam.
+          </p>
+        </article>
+      </div>
     </section>
   </main>
 
@@ -49,10 +92,14 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
     background-color: var(--secondary);
   }
 
+  section {
+    margin: 0 2rem;
+  }
+
   section h2 {
     font-size: 5rem;
     padding: 0;
-    margin: 1rem;
+    margin: 4rem;
     text-align: center;
   }
 
@@ -65,41 +112,11 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
   section article {
     font-size: 1.5rem;
     text-align: left;
-    padding: 2rem;
   }
 
   section img {
     display: block;
     max-width: 100%;
     object-fit: cover;
-    padding: 2rem;
-  }
-
-  section .grid {
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
-    place-items: center;
-    margin: 1rem;
-  }
-
-  .button {
-    display: inline-block;
-    text-decoration: none;
-    background-color: var(--accent);
-    padding: 0.5em;
-    border-radius: 0.4em;
-    color: var(--primary);
-    font-weight: bold;
-  }
-
-  .button:hover,
-  .button:focus-visible {
-    background-color: hsl(from var(--accent) h s calc(l * 1.1));
-  }
-
-  .content2 {
-    height: 50vh;
-    background-color: yellow;
   }
 </style>

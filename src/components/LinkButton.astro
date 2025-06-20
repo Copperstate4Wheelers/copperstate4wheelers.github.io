@@ -1,0 +1,36 @@
+---
+/**
+ * The site-wide "Link Button" style. Basically, any time the site highlights
+ * a link to another bage as a call to action, this component should be a
+ * reasonable default.
+ **/
+
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className = "" } = Astro.props;
+---
+
+<a href={href} class={`button ${className}`}>
+  <slot />
+</a>
+
+<style>
+  .button {
+    color: var(--primary);
+    background-color: var(--accent);
+
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5em;
+    border-radius: 0.4em;
+    font-weight: bold;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    background-color: hsl(from var(--accent) h s calc(l * 0.9));
+  }
+</style>
