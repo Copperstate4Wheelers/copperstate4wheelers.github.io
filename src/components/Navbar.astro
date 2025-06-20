@@ -32,7 +32,8 @@
 <style>
   header {
     --navbar-background: var(--primary);
-    color: var(--secondary);
+    --navbar-text: var(--secondary);
+    color: var(--navbar-text);
     background: var(--navbar-background);
     text-align: center;
     position: fixed;
@@ -84,7 +85,7 @@
 
   nav a {
     font-weight: bold;
-    color: var(--secondary);
+    color: var(--navbar-text);
     text-decoration: none;
     letter-spacing: 0.05ch;
     font-size: 1.2rem;
@@ -133,7 +134,7 @@
   .nav-toggle-label span::after {
     --thickness: 0.25em;
     display: block;
-    background: var(--secondary);
+    background: var(--navbar-text);
     height: var(--thickness);
     width: calc(2em);
     border-radius: 2px;
