@@ -4,10 +4,11 @@ import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import Navbar from "@components/Navbar.astro";
-import IndexClubHero from "@components/IndexClubHero.astro";
 import LinkButton from "@components/LinkButton.astro";
+import IndexClubHero from "@components/index/Hero.astro";
 
 import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
+import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
@@ -35,42 +36,83 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
           alt="The day we went to Walnut Canyon in April 2025."
           title="Walnut Canyon, April 2025"
           width="1920"
+          class="about-us-img"
         />
       </div>
     </section>
 
     <section>
       <h2>- What We Do -</h2>
-      <div class="autogrid">
+      <div class="autogrid baseline">
         <article>
-          <h3>Something</h3>
+          <Image
+            src={DayTrip}
+            alt="A trail map snapshot for a recent day trip"
+            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            width="1920"
+          />
+          <h3>Day Trips</h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
-            recusandae architecto ipsa amet ea natus, consequatur explicabo
-            repellendus reiciendis sed optio eos tenetur magnam.
+            Day trips are the most common activity the Copperstate 4 Wheelers
+            do. A typical day unfolds like this: first, we meet at a familiar
+            location near the trailhead; next, we find the trail and air down;
+            finally, we run the trail, often finishing sometime in the afternoon
+            or evening.
+          </p>
+          <p>
+            Day trips are typically open to guests. Ultimately it's up to the
+            trip leader to decide, so always check the event listing!
           </p>
         </article>
         <article>
-          <h3>Something</h3>
+          <Image
+            src={DayTrip}
+            alt="A trail map snapshot for a recent day trip"
+            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            width="1920"
+          />
+          <h3>Overlanding</h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
-            recusandae architecto ipsa amet ea natus, consequatur explicabo
-            repellendus reiciendis sed optio eos tenetur magnam.
+            We usually fit in a few overlanding trips each year. These take more
+            preparation and planning and are always a blast. Many of our members
+            enjoy camping in trailers or full-sized RVs when possible, while
+            others prefer roughing it in tents.
+          </p>
+          <p>
+            Multi-day trips are typically members-only as we like to be familiar
+            with who we'll spend so much time with.
           </p>
         </article>
         <article>
-          <h3>Something</h3>
+          <Image
+            src={DayTrip}
+            alt="A trail map snapshot for a recent day trip"
+            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            width="1920"
+          />
+          <h3>Night Runs</h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
-            recusandae architecto ipsa amet ea natus, consequatur explicabo
-            repellendus reiciendis sed optio eos tenetur magnam.
+            Night runs are a rare alternative to day trips. When we do these,
+            it's usually in the summer as a way to beat the heat in the valley.
+            A night run usually starts around sunset and finishes well into the
+            night. We select runs that offer a good view of the city. It's
+            always a blast to overcome the challenge of navigating off-road in
+            the dark.
+          </p>
+          <p>
+            Similar do day trips, these are often open to guests. When in doubt,
+            check the event listing!
           </p>
         </article>
+
         <article>
-          <h3>Something</h3>
+          <Image
+            src={DayTrip}
+            alt="A trail map snapshot for a recent day trip"
+            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            width="1920"
+          />
+          <h3>Community Events</h3>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
@@ -99,7 +141,7 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
   section h2 {
     font-size: 5rem;
     padding: 0;
-    margin: 4rem;
+    margin: 1em;
     text-align: center;
   }
 
@@ -114,9 +156,13 @@ import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
     text-align: left;
   }
 
-  section img {
-    display: block;
-    max-width: 100%;
-    object-fit: cover;
+  .baseline {
+    align-items: baseline;
+  }
+
+  @media screen and (max-width: 768px) {
+    section h2 {
+      font-size: 4rem;
+    }
   }
 </style>
