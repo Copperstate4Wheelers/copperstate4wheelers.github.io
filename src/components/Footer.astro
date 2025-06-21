@@ -1,0 +1,25 @@
+---
+const now = new Date();
+---
+
+<footer>
+  <div class="container">
+    <p>Copyright &copy; Copperstate4Wheelers {now.getFullYear()}</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    background-color: var(--primary-700);
+    color: var(--secondary);
+    min-height: 10em;
+    align-items: center;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    padding: 0 3rem;
+    margin: auto;
+  }
+</style>

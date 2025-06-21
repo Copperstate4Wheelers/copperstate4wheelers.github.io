@@ -51,6 +51,9 @@ const { title } = Astro.props;
 
     --text-font: "Montserrat", sans-serif;
     --title-font: "Road Rage", sans-serif;
+
+    --min-column-size: 50ch;
+    --max-width: calc(var(--min-column-size) * 5);
   }
 
   *,
@@ -85,8 +88,12 @@ const { title } = Astro.props;
   .autogrid {
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min-column-size), 100%), 1fr)
+    );
     place-items: center;
-    margin: 1rem;
+    margin: 0 auto;
+    max-width: var(--max-width);
   }
 </style>

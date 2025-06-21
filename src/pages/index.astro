@@ -4,11 +4,15 @@ import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import IndexClubHero from "@components/index/Hero.astro";
 
-import WalnutCanyon from "@assets/pages/index/2025_04_Walnut_Canyon.jpg";
-import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
+import WalnutCanyon from "@assets/pages/index/2025_04__Walnut_Canyon.jpg";
+import DayTrip from "@assets/pages/index/2025_06__Pucker_Ridge.jpg";
+import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
+import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
+import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
@@ -41,13 +45,13 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
       </div>
     </section>
 
-    <section>
+    <section class="bg-white">
       <h2>- What We Do -</h2>
       <div class="autogrid baseline">
-        <article>
+        <article class="card">
           <Image
             src={DayTrip}
-            alt="A trail map snapshot for a recent day trip"
+            alt="A trail map snapshot for a recent day trip."
             title='Day Trip on Montana Mountain: "Pucker Ridge"'
             width="1920"
           />
@@ -64,11 +68,11 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
             trip leader to decide, so always check the event listing!
           </p>
         </article>
-        <article>
+        <article class="card">
           <Image
-            src={DayTrip}
-            alt="A trail map snapshot for a recent day trip"
-            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            src={Overland}
+            alt="Tents overlooking the mittens in Monument Valley, AZ."
+            title="Tent camping can yield unique and breathtaking views"
             width="1920"
           />
           <h3>Overlanding</h3>
@@ -83,11 +87,11 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
             with who we'll spend so much time with.
           </p>
         </article>
-        <article>
+        <article class="card">
           <Image
-            src={DayTrip}
-            alt="A trail map snapshot for a recent day trip"
-            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            src={NightRun}
+            alt="Staging at sunset for a night run."
+            title="Offroading after dark is a completely different experience"
             width="1920"
           />
           <h3>Night Runs</h3>
@@ -100,16 +104,16 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
             the dark.
           </p>
           <p>
-            Similar do day trips, these are often open to guests. When in doubt,
+            Similar to day trips, these are often open to guests. When in doubt,
             check the event listing!
           </p>
         </article>
 
-        <article>
+        <article class="card">
           <Image
-            src={DayTrip}
-            alt="A trail map snapshot for a recent day trip"
-            title='Day Trip on Montana Mountain: "Pucker Ridge"'
+            src={Community}
+            alt="Vehicles decorated for the Chandler Parade Of Lights 2024."
+            title="Decorating vehicles for the Chandler Parade of Lights 2024"
             width="1920"
           />
           <h3>Community Events</h3>
@@ -122,11 +126,18 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
         </article>
       </div>
     </section>
+
+    <section>
+      <h2>- Upcoming Events -</h2>
+      <div>
+        <article>
+          <p>-</p>
+        </article>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p>something in the footer</p>
-  </footer>
+  <Footer />
 </BaseLayout>
 
 <style>
@@ -135,18 +146,22 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
   }
 
   section {
-    margin: 0 2rem;
+    --title-size: 5rem;
+    --subtitle-size: 3rem;
+
+    padding: 0 var(--subtitle-size);
+    padding-bottom: calc(var(--title-size) * 2);
   }
 
   section h2 {
-    font-size: 5rem;
-    padding: 0;
-    margin: 1em;
+    font-size: var(--title-size);
+    padding: 1em 0em;
+    margin: 0;
     text-align: center;
   }
 
   article h3 {
-    font-size: 3rem;
+    font-size: var(--subtitle-size);
     padding: 0;
     margin: 1rem 0rem;
   }
@@ -156,13 +171,23 @@ import DayTrip from "@assets/pages/index/Day_Trip__Pucker_Ridge_June_2025.png";
     text-align: left;
   }
 
+  .card {
+    background-color: var(--secondary);
+    padding: 2rem;
+    border-radius: 0.4rem;
+  }
+
   .baseline {
     align-items: baseline;
   }
 
+  .bg-white {
+    background-color: white;
+  }
+
   @media screen and (max-width: 768px) {
-    section h2 {
-      font-size: 4rem;
+    section {
+      --title-size: 4rem;
     }
   }
 </style>
