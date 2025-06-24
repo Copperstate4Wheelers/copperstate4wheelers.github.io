@@ -12,9 +12,11 @@
     "@fontsource/arvo": "^5.2.6",
     "@fontsource/montserrat": "^5.2.6",
     "@fontsource/road-rage": "^5.2.6",
+    "@types/luxon": "^3.6.2",
     "astro": "^5.9.2",
     "astro-favicons": "^3.1.5",
     "autoprefixer": "^10.4.21",
+    "luxon": "^3.6.1",
     "modern-normalize": "^3.0.1"
   }
 }

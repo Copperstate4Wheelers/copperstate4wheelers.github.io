@@ -1,5 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { DateTime, Zone } from "luxon";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -13,6 +16,8 @@ import DayTrip from "@assets/pages/index/2025_06__Pucker_Ridge.jpg";
 import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
+
+const events: CollectionEntry<"event">[] = await getCollection("event");
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
@@ -57,15 +62,10 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
           />
           <h3>Day Trips</h3>
           <p>
-            Day trips are the most common activity the Copperstate 4 Wheelers
-            do. A typical day unfolds like this: first, we meet at a familiar
-            location near the trailhead; next, we find the trail and air down;
-            finally, we run the trail, often finishing sometime in the afternoon
-            or evening.
-          </p>
-          <p>
-            Day trips are typically open to guests. Ultimately it's up to the
-            trip leader to decide, so always check the event listing!
+            Our most frequent adventures, Day Trips offer a full day of
+            off-roading excitement. We gather, prepare our rigs, and hit the
+            trails, concluding by afternoon or evening. Guests are often
+            welcome, but always confirm details on our event listing!
           </p>
         </article>
         <article class="card">
@@ -77,14 +77,11 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
           />
           <h3>Overlanding</h3>
           <p>
-            We usually fit in a few overlanding trips each year. These take more
-            preparation and planning and are always a blast. Many of our members
-            enjoy camping in trailers or full-sized RVs when possible, while
-            others prefer roughing it in tents.
-          </p>
-          <p>
-            Multi-day trips are typically members-only as we like to be familiar
-            with who we'll spend so much time with.
+            Our Overlanding trips are multi-day expeditions, offering a deeper
+            dive into off-road exploration. They require more planning but
+            promise unforgettable memories, with members utilizing everything
+            from RVs to tents. Due to the extended duration, these enriching
+            experiences are typically members-only.
           </p>
         </article>
         <article class="card">
@@ -96,16 +93,10 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
           />
           <h3>Night Runs</h3>
           <p>
-            Night runs are a rare alternative to day trips. When we do these,
-            it's usually in the summer as a way to beat the heat in the valley.
-            A night run usually starts around sunset and finishes well into the
-            night. We select runs that offer a good view of the city. It's
-            always a blast to overcome the challenge of navigating off-road in
-            the dark.
-          </p>
-          <p>
-            Similar to day trips, these are often open to guests. When in doubt,
-            check the event listing!
+            When the sun sets, the adventure begins! Night Runs are a unique way
+            to conquer trails, especially during hot summer months. Kicking off
+            at dusk and lasting into the night, these trips offer an
+            exhilarating test of dark-trail navigation.
           </p>
         </article>
 
@@ -116,12 +107,11 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
             title="Decorating vehicles for the Chandler Parade of Lights 2024"
             width="1920"
           />
-          <h3>Community Events</h3>
+          <h3>Beyond The Trails</h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aspernatur, nostrum? Possimus blanditiis illum perferendis nihil
-            recusandae architecto ipsa amet ea natus, consequatur explicabo
-            repellendus reiciendis sed optio eos tenetur magnam.
+            Off the trails, we're still full throttle! Holiday celebrations,
+            club meetings, and conservation work are all part of how we stay
+            connected.
           </p>
         </article>
       </div>
@@ -131,7 +121,22 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
       <h2>- Upcoming Events -</h2>
       <div>
         <article>
-          <p>-</p>
+          {
+            events
+              .sort((a, b) => {
+                return a.data.date.getTime() - b.data.date.getTime();
+              })
+              .map((event) => {
+                let d = DateTime.fromJSDate(event.data.date).setZone("UTC");
+
+                return (
+                  <p>
+                    {d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} |{" "}
+                    {event.data.title}
+                  </p>
+                );
+              })
+          }
         </article>
       </div>
     </section>
@@ -188,6 +193,13 @@ import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
   @media screen and (max-width: 768px) {
     section {
       --title-size: 4rem;
+      padding: 0 1rem;
+      padding-bottom: calc(var(--title-size) * 2);
+    }
+
+    .card {
+      /* smaller padding on cards for smaller screens. */
+      padding: 1rem;
     }
   }
 </style>
