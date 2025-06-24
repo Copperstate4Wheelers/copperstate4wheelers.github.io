@@ -10,7 +10,8 @@
 <header>
   <h1 class="logo">
     <a href="#">
-      Copperstate4Wheelers
+      <span class="full-logo">Copperstate4Wheelers</span>
+      <span class="small-logo">CS4W</span>
       <span class="visually-hidden">Copperstate4Wheelers</span>
     </a>
   </h1>
@@ -57,6 +58,10 @@
     margin: 0;
     text-decoration: none;
     color: var(--accent);
+  }
+
+  .logo .full-logo {
+    display: none;
   }
 
   nav {
@@ -153,6 +158,16 @@
 
   .nav-toggle-label span::after {
     top: calc(var(--thickness) * 2);
+  }
+
+  @media screen and (min-width: 480px) {
+    /* show full logo on wide-enough screens */
+    .logo .full-logo {
+      display: inline;
+    }
+    .logo .small-logo {
+      display: none;
+    }
   }
 
   /* "desktop" styles */
