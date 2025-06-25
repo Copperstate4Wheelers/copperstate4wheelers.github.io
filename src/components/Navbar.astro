@@ -5,6 +5,15 @@
  * --navbar-background: background color
  * --navbar-text: the text color for links and text-like elements (menu etc..)
  */
+
+function classForLink(name: string) {
+  let path = Astro.url.pathname.split("/");
+  if (name == path[0]) {
+    return "active-nav";
+  } else {
+    return "inactive-nav";
+  }
+}
 ---
 
 <header>
@@ -18,10 +27,10 @@
   <input type="checkbox" id="nav-toggle" class="nav-toggle" />
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Members</a></li>
-      <li><a href="#">Events</a></li>
+      <li><a href="#" class={classForLink("")}>Home</a></li>
+      <li><a href="#" class={classForLink("about")}>About</a></li>
+      <li><a href="#" class={classForLink("members")}>Members</a></li>
+      <li><a href="#" class={classForLink("events")}>Events</a></li>
     </ul>
   </nav>
   <label for="nav-toggle" class="nav-toggle-label">
@@ -100,7 +109,8 @@
   }
 
   nav a:hover,
-  nav a:focus-visible {
+  nav a:focus-visible,
+  nav .active-nav {
     color: var(--accent);
   }
 
