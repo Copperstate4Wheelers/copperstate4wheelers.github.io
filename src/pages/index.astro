@@ -1,8 +1,9 @@
 ---
+import { DateTime } from "luxon";
+
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { DateTime } from "luxon";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -19,6 +20,16 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
+  <p>aoeu</p>
+</BaseLayout>
+
+<style>
+  p {
+    height: 150vh;
+  }
+</style>
+
+<!--
   <IndexClubHero />
 
   <section>
@@ -190,3 +201,4 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
     }
   }
 </style>
+-->

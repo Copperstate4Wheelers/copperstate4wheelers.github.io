@@ -2,9 +2,22 @@
 import { defineConfig } from "astro/config";
 
 import favicons from "astro-favicons";
+import { browserslistToTargets } from "lightningcss";
+import browserslist from "browserslist";
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    css: {
+      transformer: "lightningcss",
+      lightningcss: {
+        targets: browserslistToTargets(browserslist(">= 0.25%")),
+      },
+    },
+    build: {
+      cssMinify: "lightningcss",
+    },
+  },
   image: {
     experimentalLayout: "constrained",
   },
