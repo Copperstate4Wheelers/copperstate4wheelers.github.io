@@ -4,6 +4,8 @@ import "@fontsource/road-rage";
 import "modern-normalize/modern-normalize.css";
 
 import GoogleAnalytics from "@components/GoogleAnalytics.astro";
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
 
 /**
  * The root page layout. This defines the HTML document structure, meta tags,
@@ -28,7 +30,13 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
   </body>
 </html>
 
@@ -68,6 +76,10 @@ const { title } = Astro.props;
     font-style: normal;
     font-weight: 400;
     color: var(--primary);
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
   }
 
   h1,
@@ -102,5 +114,9 @@ const { title } = Astro.props;
       /* Smaller gap on smaller screens. */
       grid-gap: 0.5rem;
     }
+  }
+
+  main {
+    background-color: var(--secondary);
   }
 </style>

@@ -7,8 +7,10 @@
  */
 
 function classForLink(name: string) {
+  name = name.toLowerCase();
+
   let path = Astro.url.pathname.split("/");
-  if (name == path[0]) {
+  if (path.length >= 2 && name == path[1]) {
     return "active-nav";
   } else {
     return "inactive-nav";
@@ -27,8 +29,8 @@ function classForLink(name: string) {
   <input type="checkbox" id="nav-toggle" class="nav-toggle" />
   <nav>
     <ul>
-      <li><a href="#" class={classForLink("")}>Home</a></li>
-      <li><a href="#" class={classForLink("about")}>About</a></li>
+      <li><a href="/" class={classForLink("")}>Home</a></li>
+      <li><a href="/about" class={classForLink("about")}>About</a></li>
       <li><a href="#" class={classForLink("members")}>Members</a></li>
       <li><a href="#" class={classForLink("events")}>Events</a></li>
     </ul>
@@ -46,7 +48,7 @@ function classForLink(name: string) {
     color: var(--navbar-text);
     background: var(--navbar-background);
     text-align: center;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 999; /* always on top */
     width: 100%;

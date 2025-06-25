@@ -2,12 +2,10 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { DateTime, Zone } from "luxon";
+import { DateTime } from "luxon";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-import Navbar from "@components/Navbar.astro";
-import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import IndexClubHero from "@components/index/Hero.astro";
 
@@ -21,135 +19,124 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
-  <Navbar />
+  <IndexClubHero />
 
-  <main>
-    <IndexClubHero />
+  <section>
+    <h2>- About Us -</h2>
+    <div class="autogrid">
+      <article>
+        <h3>Mission</h3>
+        <p>
+          We are a nonprofit club dedicated to promoting safe, enjoyable, and
+          family-friendly off-roading. Whether you're just getting started or a
+          long-time enthusiast, we're bound to have something planned that you
+          will enjoy!
+        </p>
+        <LinkButton href="#">Learn More!</LinkButton>
+      </article>
 
-    <section>
-      <h2>- About Us -</h2>
-      <div class="autogrid">
-        <article>
-          <h3>Mission</h3>
-          <p>
-            We are a nonprofit club dedicated to promoting safe, enjoyable, and
-            family-friendly off-roading. Whether you're just getting started or
-            a long-time enthusiast, we're bound to have something planned that
-            you will enjoy!
-          </p>
-          <LinkButton href="#">Learn More!</LinkButton>
-        </article>
+      <Image
+        src={WalnutCanyon}
+        alt="The day we went to Walnut Canyon in April 2025."
+        title="Walnut Canyon, April 2025"
+        width="1920"
+        class="about-us-img"
+      />
+    </div>
+  </section>
 
+  <section class="bg-white">
+    <h2>- What We Do -</h2>
+    <div class="autogrid baseline">
+      <article class="card">
         <Image
-          src={WalnutCanyon}
-          alt="The day we went to Walnut Canyon in April 2025."
-          title="Walnut Canyon, April 2025"
+          src={DayTrip}
+          alt="A trail map snapshot for a recent day trip."
+          title='Day Trip on Montana Mountain: "Pucker Ridge"'
           width="1920"
-          class="about-us-img"
         />
-      </div>
-    </section>
+        <h3>Day Trips</h3>
+        <p>
+          Our most frequent adventures, Day Trips offer a full day of
+          off-roading excitement. We gather, prepare our rigs, and hit the
+          trails, concluding by afternoon or evening. Guests are often welcome,
+          but always confirm details on our event listing!
+        </p>
+      </article>
+      <article class="card">
+        <Image
+          src={Overland}
+          alt="Tents overlooking the mittens in Monument Valley, AZ."
+          title="Tent camping can yield unique and breathtaking views"
+          width="1920"
+        />
+        <h3>Overlanding</h3>
+        <p>
+          Our Overlanding trips are multi-day expeditions, offering a deeper
+          dive into off-road exploration. They require more planning but promise
+          unforgettable memories, with members utilizing everything from RVs to
+          tents. Due to the extended duration, these enriching experiences are
+          typically members-only.
+        </p>
+      </article>
+      <article class="card">
+        <Image
+          src={NightRun}
+          alt="Staging at sunset for a night run."
+          title="Offroading after dark is a completely different experience"
+          width="1920"
+        />
+        <h3>Night Runs</h3>
+        <p>
+          When the sun sets, the adventure begins! Night Runs are a unique way
+          to conquer trails, especially during hot summer months. Kicking off at
+          dusk and lasting into the night, these trips offer an exhilarating
+          test of dark-trail navigation.
+        </p>
+      </article>
 
-    <section class="bg-white">
-      <h2>- What We Do -</h2>
-      <div class="autogrid baseline">
-        <article class="card">
-          <Image
-            src={DayTrip}
-            alt="A trail map snapshot for a recent day trip."
-            title='Day Trip on Montana Mountain: "Pucker Ridge"'
-            width="1920"
-          />
-          <h3>Day Trips</h3>
-          <p>
-            Our most frequent adventures, Day Trips offer a full day of
-            off-roading excitement. We gather, prepare our rigs, and hit the
-            trails, concluding by afternoon or evening. Guests are often
-            welcome, but always confirm details on our event listing!
-          </p>
-        </article>
-        <article class="card">
-          <Image
-            src={Overland}
-            alt="Tents overlooking the mittens in Monument Valley, AZ."
-            title="Tent camping can yield unique and breathtaking views"
-            width="1920"
-          />
-          <h3>Overlanding</h3>
-          <p>
-            Our Overlanding trips are multi-day expeditions, offering a deeper
-            dive into off-road exploration. They require more planning but
-            promise unforgettable memories, with members utilizing everything
-            from RVs to tents. Due to the extended duration, these enriching
-            experiences are typically members-only.
-          </p>
-        </article>
-        <article class="card">
-          <Image
-            src={NightRun}
-            alt="Staging at sunset for a night run."
-            title="Offroading after dark is a completely different experience"
-            width="1920"
-          />
-          <h3>Night Runs</h3>
-          <p>
-            When the sun sets, the adventure begins! Night Runs are a unique way
-            to conquer trails, especially during hot summer months. Kicking off
-            at dusk and lasting into the night, these trips offer an
-            exhilarating test of dark-trail navigation.
-          </p>
-        </article>
+      <article class="card">
+        <Image
+          src={Community}
+          alt="Vehicles decorated for the Chandler Parade Of Lights 2024."
+          title="Decorating vehicles for the Chandler Parade of Lights 2024"
+          width="1920"
+        />
+        <h3>Beyond The Trails</h3>
+        <p>
+          Off the trails, we're still full throttle! Holiday celebrations, club
+          meetings, and conservation work are all part of how we stay connected.
+        </p>
+      </article>
+    </div>
+  </section>
 
-        <article class="card">
-          <Image
-            src={Community}
-            alt="Vehicles decorated for the Chandler Parade Of Lights 2024."
-            title="Decorating vehicles for the Chandler Parade of Lights 2024"
-            width="1920"
-          />
-          <h3>Beyond The Trails</h3>
-          <p>
-            Off the trails, we're still full throttle! Holiday celebrations,
-            club meetings, and conservation work are all part of how we stay
-            connected.
-          </p>
-        </article>
-      </div>
-    </section>
+  <section>
+    <h2>- Upcoming Events -</h2>
+    <div>
+      <article>
+        {
+          events
+            .sort((a, b) => {
+              return a.data.date.getTime() - b.data.date.getTime();
+            })
+            .map((event) => {
+              let d = DateTime.fromJSDate(event.data.date).setZone("UTC");
 
-    <section>
-      <h2>- Upcoming Events -</h2>
-      <div>
-        <article>
-          {
-            events
-              .sort((a, b) => {
-                return a.data.date.getTime() - b.data.date.getTime();
-              })
-              .map((event) => {
-                let d = DateTime.fromJSDate(event.data.date).setZone("UTC");
-
-                return (
-                  <p>
-                    {d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} |{" "}
-                    {event.data.title}
-                  </p>
-                );
-              })
-          }
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <Footer />
+              return (
+                <p>
+                  {d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} |{" "}
+                  {event.data.title}
+                </p>
+              );
+            })
+        }
+      </article>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  main {
-    background-color: var(--secondary);
-  }
-
   section {
     --title-size: 5rem;
     --subtitle-size: 3rem;
