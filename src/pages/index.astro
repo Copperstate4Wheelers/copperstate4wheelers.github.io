@@ -20,16 +20,6 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
-  <p>aoeu</p>
-</BaseLayout>
-
-<style>
-  p {
-    height: 150vh;
-  }
-</style>
-
-<!--
   <IndexClubHero />
 
   <section>
@@ -90,6 +80,7 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
           typically members-only.
         </p>
       </article>
+
       <article class="card">
         <Image
           src={NightRun}
@@ -119,6 +110,7 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
           meetings, and conservation work are all part of how we stay connected.
         </p>
       </article>
+
     </div>
   </section>
 
@@ -147,6 +139,7 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
   </section>
 </BaseLayout>
 
+
 <style>
   section {
     --title-size: 5rem;
@@ -156,19 +149,22 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
     padding-bottom: calc(var(--title-size) * 2);
   }
 
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   section h2 {
     font-size: var(--title-size);
     padding: 1em 0em;
     margin: 0;
     text-align: center;
   }
-
   article h3 {
     font-size: var(--subtitle-size);
     padding: 0;
     margin: 1rem 0rem;
   }
-
   section article {
     font-size: 1.5rem;
     text-align: left;
@@ -201,4 +197,3 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
     }
   }
 </style>
--->
