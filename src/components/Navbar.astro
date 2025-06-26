@@ -44,17 +44,14 @@ function classForLink(name: string) {
     --navbar-text: var(--secondary);
 
     /* Logo size scales based on the viewport, clamping at a max size. */
-    --logo-size: clamp(1.5rem, 5vw, 2.5rem);
+    --logo-size: clamp(2rem, 5vw, 2.5rem);
 
     /* hamburger width controls the button + the padding around the logo */
-    --hamburger-width: var(--logo-size);
+    --hamburger-width: 3.5rem;
 
     font-size: var(--logo-size);
-    position: sticky;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
+    line-height: 1;
+    position: relative;
     grid-template-columns: var(--hamburger-width) 1fr var(--hamburger-width);
 
     place-items: center;
@@ -80,7 +77,7 @@ function classForLink(name: string) {
    **/
   .logo {
     margin: 0;
-    padding: 0 calc(var(--hamburger-width) * 1.5);
+    padding: 0.1em calc(var(--hamburger-width) * 3);
     color: var(--accent);
     text-align: center;
 
@@ -94,11 +91,11 @@ function classForLink(name: string) {
    * menu appear and disappear. This is the "checkbox hack" for css-only menus.
    **/
   .nav-toggle-label {
-    --hamburger-thickness: 0.17em;
+    --hamburger-thickness: 0.4em;
 
     position: absolute; /* remove from flow, arrange relative to the header */
 
-    width: fit-content; /* because flex makes this act like block */
+    width: auto; /* because flex makes this act like block */
     height: 100%; /* click anywhere in the header to activate */
     top: 0;
     left: 0;
@@ -106,6 +103,7 @@ function classForLink(name: string) {
     align-items: center;
     cursor: pointer;
     margin-left: calc(var(--hamburger-width) * 0.5);
+    border-radius: 0.2em;
 
     /* create the hamburger via span pseudo elements */
     span,
@@ -218,13 +216,15 @@ function classForLink(name: string) {
 
     /* make the header into a flex display */
     header {
+      --logo-size: clamp(2rem, 5vw, 3rem);
+
       display: grid;
       grid-template-columns: auto 1fr auto;
       padding: 0 calc(var(--hamburger-width) * 1.5);
     }
 
     .logo {
-      padding: 0;
+      padding-inline: 0;
       grid-column: 1;
     }
 
@@ -249,6 +249,7 @@ function classForLink(name: string) {
 
       a {
         opacity: 100%;
+        font-weight: 600;
       }
     }
   }
