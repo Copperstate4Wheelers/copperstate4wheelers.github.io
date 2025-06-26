@@ -1,0 +1,26 @@
+---
+/* Calculate years based on the available event listings. */
+import * as events from "@lib/events";
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+
+export const getStaticPaths = (async () => {
+  const results: GetStaticPathsResult = [];
+  for (let year of await events.getAllYears()) {
+    results.push({ params: { year } });
+  }
+  return results;
+}) satisfies GetStaticPaths;
+
+/**
+ * What follows is the per-year page render.
+ */
+
+const { year } = Astro.params;
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+---
+
+<BaseLayout title={`CS4W: ${year}`}>
+  <p>Events for year {year}</p>
+</BaseLayout>
