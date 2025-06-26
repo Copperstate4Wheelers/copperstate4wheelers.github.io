@@ -15,62 +15,54 @@ import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
     decoding="async"
     loading="lazy"
     width="1920"
-    class="hero-image"
+    class="background"
   />
   <div class="overlay"></div>
-  <div class="hero-content">
+  <div class="content">
     <p>Family friendly offroading since 1972</p>
   </div>
 </div>
 
 <style>
   .hero {
-    font-size: 6rem;
+    --max-height: 70vh;
+
     display: grid;
-    grid-template-areas: "content";
+    grid-template-areas: "stack";
+
     place-items: center;
-    background: var(--secondary);
-    height: calc(max(50vh, 15em));
-    max-height: 90vh;
+    overflow: hidden;
+    background-color: var(--primary);
+
+    width: 100%;
+    height: var(--max-height);
+    max-height: var(--max-height);
+
+    * {
+      grid-area: stack;
+    }
   }
 
-  .hero * {
-    grid-area: content;
-  }
-
-  .hero-image {
+  .background {
     display: block;
     width: 100%;
     height: 100%;
+    max-height: var(--max-height);
     object-fit: cover;
+
+    background-color: blue;
   }
 
   .overlay {
-    display: block;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
-  .hero-content {
-    font-weight: 600;
-    color: white;
-    border-radius: 0.5em;
-    padding: 0.5em;
+  .content {
+    font-size: clamp(2rem, 5vw, 4rem);
     text-align: center;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-  }
-
-  @media screen and (max-width: 1000px) {
-    .hero-content {
-      font-size: 3rem;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    .hero-content {
-      font-size: 2rem;
-    }
+    color: white;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
   }
 </style>
