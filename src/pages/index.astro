@@ -22,7 +22,7 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
 <BaseLayout title="Copperstate4Wheelers">
   <IndexClubHero />
 
-  <section>
+  <section class="container">
     <h2>- About Us -</h2>
     <div class="autogrid">
       <article>
@@ -48,7 +48,7 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
 
   <section class="bg-white">
     <h2>- What We Do -</h2>
-    <div class="autogrid baseline">
+    <div class="autogrid baseline container">
       <article class="card">
         <Image
           src={DayTrip}
@@ -171,11 +171,22 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
   .card {
     background-color: var(--secondary);
     padding: 2rem;
-    border-radius: 0.4rem;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
+
+    img {
+      border-radius: inherit;
+      border: 2px solid var(--primary);
+    }
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.4);
+    }
   }
 
   .baseline {
-    align-items: baseline;
+    align-items: stretch;
   }
 
   .bg-white {
