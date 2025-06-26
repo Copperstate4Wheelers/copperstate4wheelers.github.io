@@ -22,11 +22,15 @@ const { href, class: className = "" } = Astro.props;
     color: var(--primary);
     background-color: var(--accent);
 
-    display: inline-block;
     text-decoration: none;
-    padding: 0.5em;
+    padding: 0.5em 1em;
     border-radius: 0.4em;
     font-weight: bold;
+
+    display: grid;
+    width: fit-content;
+    place-items: center;
+    place-content: center;
   }
 
   .button:hover,
