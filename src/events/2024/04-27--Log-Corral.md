@@ -1,8 +1,6 @@
 ---
 title: Log Corral
-date: 2024-04-27
 time: 9:00 am
-description: Let's do the Log Corral trail and see what it's like.
 invite: Members Only
 ---
 

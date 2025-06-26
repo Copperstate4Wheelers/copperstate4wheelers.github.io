@@ -1,0 +1,60 @@
+---
+/**
+ * An event listing is meant to provide a clickable preview card for an event,
+ * typically for placing on other non-event pages.
+ */
+
+import type { ParsedEvent } from "@lib/events";
+import { DateTime } from "luxon";
+
+interface Props {
+  event: ParsedEvent;
+  className?: string;
+}
+
+const { event, className } = Astro.props;
+---
+
+<a href={`/events/${event.id}`} class={`event-listing ${className}`}>
+  <p class="event-title">{event.data.title}</p>
+  <p class="event-info">
+    {event.dateTime.toLocaleString(DateTime.DATE_FULL)} - {event.data.invite}
+  </p>
+</a>
+
+<style>
+  .event-listing {
+    display: block;
+    padding: 2rem;
+    color: var(--primary);
+    background-color: var(--secondary-300);
+    text-decoration: none;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.7);
+    }
+
+    p {
+      display: block;
+      width: fit-content;
+      padding: 0;
+      margin: 0;
+    }
+
+    .event-title {
+      color: var(--primary-700);
+      line-height: 1.2;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .event-info {
+      line-height: 1.1;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+</style>

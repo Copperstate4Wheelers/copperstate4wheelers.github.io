@@ -1,0 +1,60 @@
+---
+interface Props {
+  event: ParsedEvent;
+}
+
+/**
+ * Get static paths.
+ **/
+import { getEventsCollection } from "@lib/events";
+import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+export const getStaticPaths = (async () => {
+  const events = await getEventsCollection();
+
+  const results: GetStaticPathsResult = [];
+
+  events.forEach((event) => {
+    results.push({
+      params: {
+        event: event.id,
+      },
+      props: { event },
+    });
+  });
+
+  console.log(results);
+
+  return results;
+}) satisfies GetStaticPaths;
+
+/**
+ * Per-Event page render.
+ **/
+
+import type { ParsedEvent } from "@lib/events";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { DateTime } from "luxon";
+import { render } from "astro:content";
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<BaseLayout title="something">
+  <h2>{event.data.title}</h2>
+  <p>{event.dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}</p>
+
+  <p>
+    <a href={`/events/${event.dateTime.year}`}>{event.dateTime.year}</a>
+  </p>
+
+  <hr />
+
+  <section>
+    <p>
+      {event.data.description}
+    </p>
+    <Content />
+  </section>
+</BaseLayout>

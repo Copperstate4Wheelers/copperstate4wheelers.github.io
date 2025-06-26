@@ -1,10 +1,7 @@
 ---
 title: Hieroglyphic Loop Night Run
-date: 2024-06-15
 time: 7:30 pm
-description: The Hieroglyphic Loop has a few challenging spots that are always
-    fun to cross in the dark!
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 No permits required.

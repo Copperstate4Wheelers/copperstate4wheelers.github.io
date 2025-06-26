@@ -1,9 +1,7 @@
 ---
 title: Four Peaks Cleanup Afternoon Run
-date: 2024-11-02
 time: 2:00 pm
-description: Let's do a run after the annual Four Peaks cleanup!
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 Let's do a run after the [15th annual Four Peaks Cleanup & Restoration Event.](https://www.eventbrite.com/e/15th-annual-four-peaks-cleanup-restoration-event-tickets-1039234096157)

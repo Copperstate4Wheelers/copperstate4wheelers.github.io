@@ -1,9 +1,7 @@
 ---
 title: Peck Mine Trail
-date: 2024-02-03
 time: 8:30 am
-description: Join the Copperstate4Wheelers on the Peck Mine Trail.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 No permits required.

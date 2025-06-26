@@ -1,10 +1,7 @@
 ---
 title: Overland - Colorado River/Peach Springs
-date: 2024-04-11
 time: 9:00 am
-description: Join Chad and the Copperstate4Wheelers on a multi-day overland
-    adventure starting at the Colorado River.
-invite: Invite and Members only
+invite: Invite Only
 ---
 
 We will need to purchase permits for the campsite on the Colorado River.

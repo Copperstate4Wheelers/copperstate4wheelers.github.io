@@ -7,6 +7,10 @@ import browserslist from "browserslist";
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    // Automatically redirect the top-level '/events' to the current event year
+    "/events": `/events/${new Date().getFullYear()}`,
+  },
   vite: {
     css: {
       transformer: "lightningcss",

@@ -1,9 +1,7 @@
 ---
 title: Rye To Pine Via Dirt
-date: 2024-03-30
 time: 8:00 am
-description: Let's blaze a trail from Rye to Pine on dirt the whole way.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 No permits required.

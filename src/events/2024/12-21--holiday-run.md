@@ -1,9 +1,7 @@
 ---
 title: Christmas Run - Trail 42
-date: 2024-12-21
 time: 8am
-invite: Visitors Welcome
-description: Join the Copperstate4Wheelers on the newely reopened Trail 42!
+invite: Guests Welcome
 ---
 
 Rated a 7/10 due to intimidation factor, the club has

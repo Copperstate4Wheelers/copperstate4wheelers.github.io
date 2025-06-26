@@ -1,10 +1,7 @@
 ---
 title: Chandler Tumbleweed Parade Of Lights
-date: 2024-12-07
 time: 3:00pm
-description: CS4W will participate in the Chandler Parade Of Lights again this
-    year!
-invite: Members and Invite only
+invite: Members Only
 ---
 
 We've participated in the Chandler Parade Of Lights in past years and it's

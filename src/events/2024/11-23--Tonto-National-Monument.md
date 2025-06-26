@@ -1,10 +1,7 @@
 ---
 title: Tonto National Monument
-date: 2024-11-23
 time: 8:00 am (breakfast), 9:00 am (trail run)
-description: The Apache Trail and Fish Creek Hill are finally open again! Let's
-    drive out and visit the Tonto National Monument.
-invite: Open
+invite: Guests Welcome
 ---
 
 We'll meet at the saloon at 8:00am to get breakfast and plan to hit the trail

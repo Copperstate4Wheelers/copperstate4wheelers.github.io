@@ -1,9 +1,7 @@
 ---
 title: Campout - Edge Of The World
-date: 2024-07-04
 time: TBA
-description: Let's camp at the Edge Of The World for the 4th of July!
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 This is a campout from July 4th through July 7th. We'll setup camp and do a few

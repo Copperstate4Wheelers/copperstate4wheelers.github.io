@@ -4,8 +4,7 @@ time: 6:30 pm
 invite: Guests Welcome
 ---
 
-## Meeting Location
-
+Location:
 > _Mesa Fire & Medical Department - Station 201_
 > _360 E 1st Street, Mesa, AZ, 85201_
 

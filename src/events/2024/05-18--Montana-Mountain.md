@@ -1,10 +1,7 @@
 ---
 title: Cancelled - Montana Mountain
-date: 2024-05-18
 time: 9:00 am
-description: Montana Montain is a fun drive located in the Superstition
-    Mountains.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 Meeting location: Chevron gas station on Goldfield and the US60.

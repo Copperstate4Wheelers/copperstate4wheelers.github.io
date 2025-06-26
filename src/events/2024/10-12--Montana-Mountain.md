@@ -1,10 +1,7 @@
 ---
 title: Montana Mountain
-date: 2024-10-12
 time: 8:00 am
-description: Montana Montain is a fun drive located in the Superstition
-    Mountains.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 State Trust land permit is required.

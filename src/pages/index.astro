@@ -15,8 +15,9 @@ import DayTrip from "@assets/pages/index/2025_06__Pucker_Ridge.jpg";
 import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
+import { getUpcomingEvents } from "@lib/events";
 
-const events: CollectionEntry<"event">[] = await getCollection("event");
+const upcomingEvents = await getUpcomingEvents(4);
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
@@ -118,20 +119,14 @@ const events: CollectionEntry<"event">[] = await getCollection("event");
     <div>
       <article>
         {
-          events
-            .sort((a, b) => {
-              return a.data.date.getTime() - b.data.date.getTime();
-            })
-            .map((event) => {
-              let d = DateTime.fromJSDate(event.data.date).setZone("UTC");
-
-              return (
-                <p>
-                  {d.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} |{" "}
-                  {event.data.title}
-                </p>
-              );
-            })
+          upcomingEvents.map((event) => {
+            return (
+              <p>
+                {event.dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}{" "}
+                | {event.data.title}
+              </p>
+            );
+          })
         }
       </article>
     </div>

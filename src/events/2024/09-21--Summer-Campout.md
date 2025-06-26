@@ -1,8 +1,6 @@
 ---
 title: Summer Campout
-date: 2024-09-21
 time: 9:30am
-description: The annual Copperstate4Wheelers Summer Campout!
 invite: Members Only
 ---
 

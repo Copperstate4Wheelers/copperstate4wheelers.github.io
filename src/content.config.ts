@@ -9,10 +9,8 @@ const event = defineCollection({
 
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
     time: z.string(),
-    description: z.string(),
-    invite: z.string(),
+    invite: z.enum(["Guests Welcome", "Members Only", "Invite Only"]),
   }),
 });
 

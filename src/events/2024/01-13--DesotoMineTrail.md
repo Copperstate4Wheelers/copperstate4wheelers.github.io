@@ -1,9 +1,7 @@
 ---
 title: Desoto Mine Trail
-date: 2024-01-13
 time: 8:30 am
-description: Desoto Mine Trail with Jake La Grander.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 No permits required.

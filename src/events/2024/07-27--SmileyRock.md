@@ -1,10 +1,7 @@
 ---
 title: Campout - Smiles For Moe
-date: 2024-07-27
 time: 9:00 am
-description: Smiles for Moe is an annual tradition for the Copperstate4Wheelers
-    where we run the Smiley Rock trail!
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 Campout information: Contact Jim for details. Some of us will camp on Friday

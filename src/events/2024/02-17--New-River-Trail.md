@@ -1,10 +1,7 @@
 ---
 title: New River Trail
-date: 2024-02-17
 time: 8:30am
-description: The new river trail with Chris Depoorter. Staging at the Love's
-    travel stop in Cordes Lakes.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 State Trust Land permit is required.

@@ -1,12 +1,11 @@
 ---
 title: Club Meeting
-date: 2025-03-13
 time: 6:30 pm
-description: We meet once a month to talk about upcoming runs and make plans.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
-Location:
+## Meeting Location
+
 > _Mesa Fire & Medical Department - Station 201_
 > _360 E 1st Street, Mesa, AZ, 85201_
 

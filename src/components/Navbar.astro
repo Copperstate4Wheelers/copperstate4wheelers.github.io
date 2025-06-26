@@ -20,7 +20,10 @@ function classForLink(name: string) {
 
 <header>
   <h1 class="logo">
-    <a href="#"> Copperstate 4 Wheelers </a>
+    <a href="#">
+      <span class="full-logo">Copperstate 4 Wheelers</span>
+      <span class="small-logo">CS4W</span>
+    </a>
   </h1>
 
   <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -83,6 +86,14 @@ function classForLink(name: string) {
 
     a {
       color: var(--accent);
+    }
+
+    .full-logo {
+      display: none;
+    }
+
+    .small-logo {
+      display: inline;
     }
   }
 
@@ -226,6 +237,13 @@ function classForLink(name: string) {
     .logo {
       padding-inline: 0;
       grid-column: 1;
+
+      .full-logo {
+        display: inline;
+      }
+      .small-logo {
+        display: none;
+      }
     }
 
     nav {

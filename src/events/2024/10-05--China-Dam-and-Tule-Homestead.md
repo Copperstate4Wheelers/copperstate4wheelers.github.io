@@ -1,11 +1,7 @@
 ---
 title: China Dam and Tule Homestead
-date: 2024-10-05
 time: 8:00 am
-description: A fairly easy run and a good option for beginners. The China Dam
-    and Tule Homestead are both fascinating historical sites and well worth the
-    drive.
-invite: Visitors Welcome
+invite: Guests Welcome
 ---
 
 State trust permit is required.
