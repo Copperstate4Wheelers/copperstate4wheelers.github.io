@@ -37,28 +37,36 @@ const eventsForYear = await events.getEventsForYear(year! as number);
 
 <BaseLayout title={`CS4W: ${year}`}>
   <div class="container events-page">
-    <h2>Club Events: {year}</h2>
-    {prev && <a href={prev}>&lt Previous Year</a>}
-    |
-    {next && <a href={next}>Next year &gt</a>}
+    <div class="events-page-header">
+      <h2>Club Events: {year}</h2>
+      <nav>
+        {prev && <a href={prev}>&lt Previous Year</a>}
+        |
+        {next && <a href={next}>Next year &gt</a>}
+      </nav>
+    </div>
 
-    <ul>
-      {
-        eventsForYear.map((event) => {
-          return (
-            <li>
-              <EventListing event={event} />
-            </li>
-          );
-        })
-      }
-    </ul>
+    {
+      eventsForYear.map((month) => {
+        const monthName = month[0].dateTime.monthLong;
+        return (
+          <section class="month" aria-labelledby={monthName}>
+            <h3 class="month-name">{monthName}</h3>
+            {month.map((event) => (
+              <EventListing event={event} class="month-event-card" />
+            ))}
+          </section>
+        );
+      })
+    }
   </div>
 </BaseLayout>
 
 <style>
   .container {
     padding: 1rem;
+    max-width: 60rem;
+    margin: auto;
   }
 
   h2 {
@@ -67,14 +75,46 @@ const eventsForYear = await events.getEventsForYear(year! as number);
     margin: 0;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  h3 {
+    font-size: 3.75rem;
   }
 
-  li {
-    padding: 0;
-    margin: 1rem 0rem;
+  .month-event-card {
+    margin: 1rem 0;
+  }
+
+  .events-page-header {
+    a {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (width > 1024px) {
+    .month {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 0 1rem;
+    }
+
+    .month-name {
+      grid-column: 1;
+      margin: 0;
+      text-align: right;
+      align-self: start;
+      justify-self: right;
+      position: sticky;
+      top: 1rem;
+    }
+
+    .month-event-card {
+      grid-column: 2;
+    }
+
+    .events-page-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
   }
 </style>

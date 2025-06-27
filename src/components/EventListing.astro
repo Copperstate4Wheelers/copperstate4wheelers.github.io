@@ -6,6 +6,7 @@
 
 import type { ParsedEvent } from "@lib/events";
 import Icon from "astro-iconify";
+import { DateTime } from "luxon";
 
 interface Props {
   event: ParsedEvent;
@@ -13,6 +14,14 @@ interface Props {
 }
 
 const { event, class: className = "", ...rest } = Astro.props;
+
+function isPast(): string {
+  const now = DateTime.local();
+  if (event.dateTime.toSeconds() < now.toSeconds()) {
+    return "is-past";
+  }
+  return "";
+}
 
 function inviteIconName(): string {
   const invite = event.data.invite.toUpperCase();
@@ -23,7 +32,11 @@ function inviteIconName(): string {
 }
 ---
 
-<a href={`/events/${event.id}`} class={`event-listing ${className}`} {...rest}>
+<a
+  href={`/events/${event.id}`}
+  class={`event-listing ${isPast()} ${className}`}
+  {...rest}
+>
   <div class="date">
     <span class="weekday">{event.dateTime.weekdayShort}</span>
     <span class="day">{event.dateTime.day}</span>
@@ -48,99 +61,104 @@ function inviteIconName(): string {
       <span>{event.data.invite}</span>
     </div>
   </div>
-
-  <style>
-    .event-listing {
-      display: grid;
-      grid-template-columns: 6rem 1fr;
-      text-decoration: none;
-      background-color: var(--secondary-300);
-      box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
-      align-items: center;
-
-      &:hover,
-      &:focus-visible {
-        box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.7);
-      }
-    }
-
-    .icon-text {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      width: fit-content;
-
-      span {
-        padding: 0;
-        margin: 0;
-        min-width: max-content;
-      }
-
-      svg {
-        height: 1.2em;
-      }
-    }
-
-    .event-details {
-      color: var(--primary);
-      padding: 1rem;
-
-      .title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        line-height: 1.1;
-        padding: 0;
-        margin: 0;
-        color: var(--primary-700);
-      }
-
-      .time {
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0.5rem 0;
-      }
-
-      .location {
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0.5rem 0;
-      }
-
-      .invite {
-        font-size: 1rem;
-        border-radius: 1rem;
-        padding: 0.25rem 1rem;
-
-        background-color: var(--primary);
-        color: var(--secondary);
-      }
-    }
-
-    .date {
-      min-height: 100%;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-
-      background-color: var(--accent);
-      color: var(--primary-700);
-
-      .weekday {
-        font-weight: 600;
-        font-size: 1.25rem;
-      }
-
-      .day {
-        font-weight: 700;
-        font-size: 1.5rem;
-      }
-
-      .month {
-        font-weight: 600;
-        font-size: 1.25rem;
-      }
-    }
-  </style>
 </a>
+
+<style>
+  .is-past {
+    opacity: 80%;
+  }
+
+  .event-listing {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    text-decoration: none;
+    background-color: var(--secondary-300);
+    box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+    align-items: center;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .icon-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: fit-content;
+
+    span {
+      padding: 0;
+      margin: 0;
+      min-width: max-content;
+    }
+
+    svg {
+      height: 1.2em;
+    }
+  }
+
+  .event-details {
+    color: var(--primary);
+    padding: 1rem;
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      padding: 0;
+      margin: 0;
+      color: var(--primary-700);
+      width: fit-content;
+    }
+
+    .time {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+
+    .location {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+
+    .invite {
+      font-size: 1rem;
+      border-radius: 1rem;
+      padding: 0.25rem 1rem;
+
+      background-color: var(--primary);
+      color: var(--secondary);
+    }
+  }
+
+  .date {
+    min-height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    background-color: var(--accent);
+    color: var(--primary-700);
+
+    .weekday {
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+
+    .day {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .month {
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+  }
+</style>

@@ -32,11 +32,19 @@ export const getEventsCollection = async (): Promise<ParsedEvent[]> => {
 };
 
 /**
- * Returns all of the events for the year, sorted by date.
+ * Returns all of the events for the year, sorted by date and bucketed by month.
+ *
+ * # Example
+ *
+ *   getEventsForYear(2025) may return [[e1, e2], [e3, e4]] where e1, and e2
+ *   are in the same month, while e3 and e4 are in a different month. Months
+ *   without events will simply not be present in the list. This way,
+ *   identifying the month means just inspecting the first event in each
+ *   sub-list.
  **/
 export const getEventsForYear = async (
   year: number,
-): Promise<ParsedEvent[]> => {
+): Promise<ParsedEvent[][]> => {
   const allEvents = await getEventsCollection();
   const thisYear: ParsedEvent[] = [];
 
@@ -45,12 +53,31 @@ export const getEventsForYear = async (
       thisYear.push(event);
     }
   });
-
   thisYear.sort((a, b) => {
     return a.dateTime.toSeconds() - b.dateTime.toSeconds();
   });
 
-  return thisYear;
+  const bucketedEvents: ParsedEvent[][] = [];
+  let month: ParsedEvent[] = [];
+
+  thisYear.forEach((event) => {
+    if (month.length == 0) {
+      // first event in the month
+      month.push(event);
+    } else if (month[0].dateTime.month == event.dateTime.month) {
+      // event matching current month
+      month.push(event);
+    } else {
+      // found the end of a month
+      bucketedEvents.push(month);
+      month = [event];
+    }
+  });
+
+  // last month has to be pushed after iteration completes
+  bucketedEvents.push(month);
+
+  return bucketedEvents;
 };
 
 /**
