@@ -10,10 +10,10 @@ interface Props {
   class?: string;
 }
 
-const { href, class: className = "" } = Astro.props;
+const { href, class: className = "", ...rest } = Astro.props;
 ---
 
-<a href={href} class={`button ${className}`}>
+<a href={href} class={`button ${className}`} {...rest}>
   <slot />
 </a>
 

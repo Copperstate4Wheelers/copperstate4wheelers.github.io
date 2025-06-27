@@ -16,6 +16,7 @@ import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
 import { getUpcomingEvents } from "@lib/events";
+import EventListing from "@components/EventListing.astro";
 
 const upcomingEvents = await getUpcomingEvents(4);
 ---
@@ -116,20 +117,13 @@ const upcomingEvents = await getUpcomingEvents(4);
 
   <section>
     <h2>- Upcoming Events -</h2>
-    <div>
-      <article>
-        {
-          upcomingEvents.map((event) => {
-            return (
-              <p>
-                {event.dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}{" "}
-                | {event.data.title}
-              </p>
-            );
-          })
-        }
-      </article>
-    </div>
+    {
+      upcomingEvents.map((event) => {
+        return <EventListing event={event} class="upcoming-event" />;
+      })
+    }
+
+    <LinkButton class="all-events" href="/events">See All Events</LinkButton>
   </section>
 </BaseLayout>
 
@@ -139,27 +133,31 @@ const upcomingEvents = await getUpcomingEvents(4);
     --subtitle-size: 3rem;
 
     padding: 0 var(--subtitle-size);
+
+    &:last-of-type {
+      margin-bottom: calc(var(--title-size) * 2);
+    }
+
+    h2 {
+      font-size: var(--title-size);
+      padding: 0em;
+      margin: 1em 0em;
+      text-align: center;
+    }
+    h3 {
+      font-size: var(--subtitle-size);
+      padding: 0;
+      margin: 1rem 0rem;
+    }
+    article {
+      font-size: 1.5rem;
+      text-align: left;
+    }
   }
 
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  section h2 {
-    font-size: var(--title-size);
-    padding: 1em 0em;
-    margin: 0;
-    text-align: center;
-  }
-  article h3 {
-    font-size: var(--subtitle-size);
-    padding: 0;
-    margin: 1rem 0rem;
-  }
-  section article {
-    font-size: 1.5rem;
-    text-align: left;
   }
 
   .card {
@@ -185,6 +183,15 @@ const upcomingEvents = await getUpcomingEvents(4);
 
   .bg-white {
     background-color: white;
+  }
+
+  .upcoming-event {
+    margin: 1rem;
+  }
+
+  .all-events {
+    font-size: 1.5rem;
+    margin: auto;
   }
 
   @media screen and (max-width: 768px) {

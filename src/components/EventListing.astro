@@ -9,10 +9,10 @@ import Icon from "astro-iconify";
 
 interface Props {
   event: ParsedEvent;
-  className?: string;
+  class?: string;
 }
 
-const { event, className = "" } = Astro.props;
+const { event, class: className = "", ...rest } = Astro.props;
 
 function inviteIconName(): string {
   const invite = event.data.invite.toUpperCase();
@@ -23,7 +23,7 @@ function inviteIconName(): string {
 }
 ---
 
-<a href={`/events/${event.id}`} class={`event-listing ${className}`}>
+<a href={`/events/${event.id}`} class={`event-listing ${className}`} {...rest}>
   <div class="date">
     <span class="weekday">{event.dateTime.weekdayShort}</span>
     <span class="day">{event.dateTime.day}</span>
@@ -107,6 +107,7 @@ function inviteIconName(): string {
       }
 
       .invite {
+        font-size: 1rem;
         border-radius: 1rem;
         padding: 0.25rem 1rem;
 
