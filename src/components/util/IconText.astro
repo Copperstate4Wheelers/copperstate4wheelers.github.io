@@ -1,0 +1,44 @@
+---
+/**
+ * Pairs an inline Icon with a line of text.
+ **/
+
+import Icon from "astro-iconify";
+
+interface Props {
+  icon: string;
+  class?: string;
+}
+
+const { icon, class: className = "", ...rest } = Astro.props;
+---
+
+<div class={`icon-text ${className}`} {...rest}>
+  <Icon name={icon} />
+  <span><slot /></span>
+</div>
+
+<style>
+  .icon-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: fit-content;
+    min-width: min-content;
+
+    span {
+      padding: 0;
+      margin: 0;
+      max-width: 100%;
+      min-width: min-content;
+      width: auto;
+    }
+
+    svg {
+      height: 1.2em;
+      width: 1.2em;
+      min-width: 1.2em;
+      min-height: 1.2em;
+    }
+  }
+</style>

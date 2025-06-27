@@ -31,11 +31,16 @@ export const getStaticPaths = (async () => {
  * Per-Event page render.
  **/
 
-import type { ParsedEvent } from "@lib/events";
-
 import BaseLayout from "@layouts/BaseLayout.astro";
+import EventTime from "@components/event/Time.astro";
+import EventLocation from "@components/event/Location.astro";
+import EventInvite from "@components/event/Invite.astro";
+import "pages/events/_event_style.css";
+
+import type { ParsedEvent } from "@lib/events";
 import { DateTime } from "luxon";
 import { render } from "astro:content";
+import IconText from "@components/util/IconText.astro";
 
 const { event } = Astro.props;
 const { Content } = await render(event);
@@ -44,16 +49,65 @@ const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
 <BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
-  <h2>{event.data.title}</h2>
-  <p>{event.dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}</p>
+  <div class="container">
+    <h2>{event.data.title}</h2>
 
-  <p>
-    <a href={`/events/${event.dateTime.year}`}>{event.dateTime.year}</a>
-  </p>
+    <div class="detail-group">
+      <IconText icon="mdi:calendar" class="date-time-detail">
+        {event.dateTime.toLocaleString(DateTime.DATE_HUGE)}
+      </IconText>
 
-  <hr />
+      <EventTime event={event} class="date-time-detail" />
+    </div>
 
-  <section>
-    <Content />
-  </section>
+    <EventLocation event={event} class="event-detail" />
+
+    <EventInvite event={event} class="invite-detail" />
+
+    <hr />
+
+    <section class="page">
+      <Content />
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  h2 {
+    margin: 0.5rem 0rem;
+    line-height: 0.9;
+  }
+
+  hr {
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .container {
+    max-width: 80ch;
+    padding: 0rem 1rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .event-detail {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .invite-detail {
+    margin: 1rem 0rem;
+  }
+
+  .detail-group {
+    display: flex;
+    gap: 0rem 1rem;
+    flex-flow: row wrap;
+  }
+
+  .date-time-detail {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0rem 0rem;
+  }
+</style>

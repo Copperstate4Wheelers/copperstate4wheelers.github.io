@@ -5,8 +5,10 @@
  */
 
 import type { ParsedEvent } from "@lib/events";
-import Icon from "astro-iconify";
 import { DateTime } from "luxon";
+import EventTime from "@components/event/Time.astro";
+import EventLocation from "@components/event/Location.astro";
+import EventInvite from "@components/event/Invite.astro";
 
 interface Props {
   event: ParsedEvent;
@@ -21,14 +23,6 @@ function isPast(): string {
     return "is-past";
   }
   return "";
-}
-
-function inviteIconName(): string {
-  const invite = event.data.invite.toUpperCase();
-  if (invite.includes("GUEST") || invite.includes("VISITOR")) {
-    return "mdi:invite";
-  }
-  return "tdesign:member-filled";
 }
 ---
 
@@ -45,21 +39,9 @@ function inviteIconName(): string {
 
   <div class="event-details">
     <p class="title">{event.data.title}</p>
-
-    <div class="time icon-text">
-      <Icon pack="mdi" name="clock-outline" />
-      <span>{event.data.time}</span>
-    </div>
-
-    <div class="location icon-text">
-      <Icon name="map:map-pin" />
-      <span>somewhere</span>
-    </div>
-
-    <div class="invite icon-text">
-      <Icon name={inviteIconName()} />
-      <span>{event.data.invite}</span>
-    </div>
+    <EventTime event={event} />
+    <EventLocation event={event} />
+    <EventInvite event={event} />
   </div>
 </a>
 
@@ -82,23 +64,6 @@ function inviteIconName(): string {
     }
   }
 
-  .icon-text {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    width: fit-content;
-
-    span {
-      padding: 0;
-      margin: 0;
-      min-width: max-content;
-    }
-
-    svg {
-      height: 1.2em;
-    }
-  }
-
   .event-details {
     color: var(--primary);
     padding: 1rem;
@@ -111,27 +76,6 @@ function inviteIconName(): string {
       margin: 0;
       color: var(--primary-700);
       width: fit-content;
-    }
-
-    .time {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-
-    .location {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0.5rem 0;
-    }
-
-    .invite {
-      font-size: 1rem;
-      border-radius: 1rem;
-      padding: 0.25rem 1rem;
-
-      background-color: var(--primary);
-      color: var(--secondary);
     }
   }
 

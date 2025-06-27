@@ -1,9 +1,5 @@
 ---
-import { DateTime } from "luxon";
-
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -16,7 +12,7 @@ import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
 import { getUpcomingEvents } from "@lib/events";
-import EventListing from "@components/EventListing.astro";
+import EventListing from "@components/event/Listing.astro";
 
 const upcomingEvents = await getUpcomingEvents(4);
 ---

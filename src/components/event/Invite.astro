@@ -1,0 +1,60 @@
+---
+/**
+ * The EventLocation is used by the Event listing and the actual event page.
+ **/
+
+import IconText from "@components/util/IconText.astro";
+import type { ParsedEvent } from "@lib/events";
+
+interface Props {
+  event: ParsedEvent;
+  class?: string;
+}
+
+const { event, class: className = "", ...rest } = Astro.props;
+
+function isGuest(): boolean {
+  const invite = event.data.invite.toUpperCase();
+  return invite.includes("GUEST") || invite.includes("VISITOR");
+}
+
+function inviteIconName(): string {
+  if (isGuest()) {
+    return "mdi:invite";
+  }
+  return "tdesign:member-filled";
+}
+
+function inviteStyle(): string {
+  if (isGuest()) {
+    return "";
+  } else {
+    return "member-invite-only";
+  }
+}
+---
+
+<IconText
+  icon={inviteIconName()}
+  class={`invite ${inviteStyle()} ${className}`}
+  {...rest}
+>
+  {event.data.invite}
+</IconText>
+
+<style>
+  .invite {
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 0.25rem 1rem;
+
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+
+  .member-invite-only {
+    background-color: var(--accent);
+    color: var(--primary);
+    font-weight: 600;
+  }
+</style>
