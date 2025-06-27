@@ -39,9 +39,11 @@ import { render } from "astro:content";
 
 const { event } = Astro.props;
 const { Content } = await render(event);
+
+const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
-<BaseLayout title="something">
+<BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
   <h2>{event.data.title}</h2>
   <p>{event.dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}</p>
 
@@ -52,9 +54,6 @@ const { Content } = await render(event);
   <hr />
 
   <section>
-    <p>
-      {event.data.description}
-    </p>
     <Content />
   </section>
 </BaseLayout>
