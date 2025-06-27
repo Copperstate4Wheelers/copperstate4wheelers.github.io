@@ -117,11 +117,13 @@ const upcomingEvents = await getUpcomingEvents(4);
 
   <section>
     <h2>- Upcoming Events -</h2>
-    {
-      upcomingEvents.map((event) => {
-        return <EventListing event={event} class="upcoming-event" />;
-      })
-    }
+    <div class="container">
+      {
+        upcomingEvents.map((event) => {
+          return <EventListing event={event} class="upcoming-event" />;
+        })
+      }
+    </div>
 
     <LinkButton class="all-events" href="/events">See All Events</LinkButton>
   </section>
