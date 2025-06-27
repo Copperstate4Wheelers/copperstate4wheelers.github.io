@@ -1,4 +1,6 @@
 ---
+import { DateTime } from "luxon";
+
 /**
  * Navbar philosophy: mobile first and progressively enhance on wider screens.
  * CSS variables used:
@@ -32,7 +34,12 @@ function classForLink(name: string) {
       <li><a href="/" class={classForLink("")}>Home</a></li>
       <li><a href="/about" class={classForLink("about")}>About</a></li>
       <li><a href="#" class={classForLink("members")}>Members</a></li>
-      <li><a href="/events" class={classForLink("events")}>Events</a></li>
+      <li>
+        <a
+          href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
+          class={classForLink("events")}>Events</a
+        >
+      </li>
     </ul>
   </nav>
 

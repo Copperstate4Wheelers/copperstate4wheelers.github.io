@@ -13,6 +13,7 @@ import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
 import { getUpcomingEvents } from "@lib/events";
 import EventListing from "@components/event/Listing.astro";
+import { DateTime } from "luxon";
 
 const upcomingEvents = await getUpcomingEvents(4);
 ---
@@ -121,7 +122,11 @@ const upcomingEvents = await getUpcomingEvents(4);
       }
     </div>
 
-    <LinkButton class="all-events" href="/events">See All Events</LinkButton>
+    <LinkButton
+      class="all-events"
+      href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
+      >See All Events</LinkButton
+    >
   </section>
 </BaseLayout>
 
