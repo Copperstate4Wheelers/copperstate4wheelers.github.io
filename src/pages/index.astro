@@ -194,11 +194,10 @@ const upcomingEvents = await getUpcomingEvents(4);
     margin: auto;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (width < 768px) {
     section {
       --title-size: 4rem;
       padding: 0 1rem;
-      padding-bottom: calc(var(--title-size) * 2);
     }
 
     .card {
