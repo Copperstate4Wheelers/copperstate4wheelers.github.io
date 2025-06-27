@@ -28,6 +28,7 @@ export default defineConfig({
   experimental: {
     responsiveImages: true,
   },
+
   integrations: [
     favicons({
       name: "Copperstate4Wheelers",
