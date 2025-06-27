@@ -29,7 +29,7 @@ export const getStaticPaths = (async () => {
   return results;
 }) satisfies GetStaticPaths;
 
-const { year } = Astro.params;
+const year = parseInt(Astro.params.year! as string);
 const { next, prev } = Astro.props;
 
 const eventsForYear = await events.getEventsForYear(year! as number);
@@ -37,23 +37,10 @@ const eventsForYear = await events.getEventsForYear(year! as number);
 
 <BaseLayout title={`CS4W: ${year}`}>
   <div class="container events-page">
-    <div class="title">
-      {
-        next && (
-          <a class="year-nav next" href={next}>
-            &lt&lt
-          </a>
-        )
-      }
-      <h2>Club Events: {year}</h2>
-      {
-        prev && (
-          <a class="year-nav prev" href={prev}>
-            &gt&gt
-          </a>
-        )
-      }
-    </div>
+    <h2>Club Events: {year}</h2>
+    {prev && <a href={prev}>&lt Previous Year</a>}
+    |
+    {next && <a href={next}>Next year &gt</a>}
 
     <ul>
       {
@@ -66,58 +53,28 @@ const eventsForYear = await events.getEventsForYear(year! as number);
         })
       }
     </ul>
-    {next && <a href={next}>Next Year</a>}
-    {prev && <a href={prev}>Previous Year</a>}
   </div>
 </BaseLayout>
 
 <style>
-  .title {
-    text-align: center;
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr auto 1fr;
-    grid-gap: 0.5rem;
-    margin: 4rem 0rem;
+  .container {
+    padding: 1rem;
+  }
 
-    h2 {
-      grid-column: 2;
-      display: inline;
-      font-size: 4rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    .next {
-      grid-column: 1;
-      text-align: right;
-    }
-
-    .prev {
-      grid-column: 3;
-      text-align: left;
-    }
-
-    .year-nav {
-      text-decoration: none;
-      color: var(--accent);
-      font-size: 1.5rem;
-      letter-spacing: -0.2ch;
-
-      &:visited {
-        color: var(--accent-700);
-      }
-    }
+  h2 {
+    font-size: 4rem;
+    padding: 0;
+    margin: 0;
   }
 
   ul {
     list-style: none;
     padding: 0;
-    margin: 0 2rem;
+    margin: 0;
   }
 
   li {
-    margin: 1rem 0;
     padding: 0;
+    margin: 1rem 0rem;
   }
 </style>

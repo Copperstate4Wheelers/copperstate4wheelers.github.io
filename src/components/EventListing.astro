@@ -5,56 +5,141 @@
  */
 
 import type { ParsedEvent } from "@lib/events";
-import { DateTime } from "luxon";
+import Icon from "astro-iconify";
 
 interface Props {
   event: ParsedEvent;
   className?: string;
 }
 
-const { event, className } = Astro.props;
+const { event, className = "" } = Astro.props;
+
+function inviteIconName(): string {
+  const invite = event.data.invite.toUpperCase();
+  if (invite.includes("GUEST") || invite.includes("VISITOR")) {
+    return "mdi:invite";
+  }
+  return "tdesign:member-filled";
+}
 ---
 
 <a href={`/events/${event.id}`} class={`event-listing ${className}`}>
-  <p class="event-title">{event.data.title}</p>
-  <p class="event-info">
-    {event.dateTime.toLocaleString(DateTime.DATE_FULL)} - {event.data.invite}
-  </p>
-</a>
+  <div class="date">
+    <span class="weekday">{event.dateTime.weekdayShort}</span>
+    <span class="day">{event.dateTime.day}</span>
+    <span class="month">{event.dateTime.monthShort}</span>
+  </div>
 
-<style>
-  .event-listing {
-    display: block;
-    padding: 2rem;
-    color: var(--primary);
-    background-color: var(--secondary-300);
-    text-decoration: none;
-    border-radius: 1rem;
-    box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+  <div class="event-details">
+    <p class="title">{event.data.title}</p>
 
-    &:hover,
-    &:focus-visible {
-      box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.7);
+    <div class="time icon-text">
+      <Icon pack="mdi" name="clock-outline" />
+      <span>{event.data.time}</span>
+    </div>
+
+    <div class="location icon-text">
+      <Icon name="map:map-pin" />
+      <span>somewhere</span>
+    </div>
+
+    <div class="invite icon-text">
+      <Icon name={inviteIconName()} />
+      <span>{event.data.invite}</span>
+    </div>
+  </div>
+
+  <style>
+    .event-listing {
+      display: grid;
+      grid-template-columns: 6rem 1fr;
+      text-decoration: none;
+      background-color: var(--secondary-300);
+      box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+      align-items: center;
+
+      &:hover,
+      &:focus-visible {
+        box-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.7);
+      }
     }
 
-    p {
-      display: block;
+    .icon-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
       width: fit-content;
-      padding: 0;
-      margin: 0;
+
+      span {
+        padding: 0;
+        margin: 0;
+        min-width: max-content;
+      }
+
+      svg {
+        height: 1.2em;
+      }
     }
 
-    .event-title {
+    .event-details {
+      color: var(--primary);
+      padding: 1rem;
+
+      .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        padding: 0;
+        margin: 0;
+        color: var(--primary-700);
+      }
+
+      .time {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+
+      .location {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0.5rem 0;
+      }
+
+      .invite {
+        border-radius: 1rem;
+        padding: 0.25rem 1rem;
+
+        background-color: var(--primary);
+        color: var(--secondary);
+      }
+    }
+
+    .date {
+      min-height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+
+      background-color: var(--accent);
       color: var(--primary-700);
-      line-height: 1.2;
-      font-size: 2rem;
-      font-weight: 600;
-    }
 
-    .event-info {
-      line-height: 1.1;
-      font-size: 1.5rem;
-      font-weight: 500;
+      .weekday {
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      .day {
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+
+      .month {
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
     }
-  }
-</style>
+  </style>
+</a>

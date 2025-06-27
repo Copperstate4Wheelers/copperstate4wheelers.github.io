@@ -1,6 +1,6 @@
 ---
 title: Apache Trail / Tonto National Monument
-time: 8:00am / 9:00am
+time: 8:00am for breakfast, 9:00am for trail start
 invite: Members Only
 ---
 
