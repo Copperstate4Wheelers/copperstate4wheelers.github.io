@@ -88,20 +88,21 @@ function classForLink(name: string) {
    **/
   .logo {
     margin: 0;
-    padding: 0.1em calc(var(--hamburger-width) * 3);
+    padding: 0.1em var(--hamburger-width);
+    padding-left: calc(var(--hamburger-width) * 3);
     color: var(--accent);
-    text-align: center;
+    text-align: right;
 
     a {
       color: var(--accent);
     }
 
     .full-logo {
-      display: none;
+      display: inline;
     }
 
     .small-logo {
-      display: inline;
+      display: none;
       line-height: 1.25;
     }
   }
@@ -244,6 +245,7 @@ function classForLink(name: string) {
     }
 
     .logo {
+      text-align: left;
       padding-inline: 0;
       grid-column: 1;
 
