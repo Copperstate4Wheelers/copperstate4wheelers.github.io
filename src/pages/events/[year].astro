@@ -7,7 +7,7 @@ interface Props {
   prev?: string;
 }
 
-import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentPageLayout from "@layouts/ContentPageLayout.astro";
 import EventListing from "@components/event/Listing.astro";
 
 /* Calculate years based on the available event listings. */
@@ -35,40 +35,32 @@ const { next, prev } = Astro.props;
 const eventsForYear = await events.getEventsForYear(year! as number);
 ---
 
-<BaseLayout title={`CS4W: Events ${year}`}>
-  <div class="container events-page">
-    <div class="events-page-header">
-      <h2>Club Events: {year}</h2>
-      <nav>
-        {prev && <a href={prev}>&lt Previous Year</a>}
-        |
-        {next && <a href={next}>Next year &gt</a>}
-      </nav>
-    </div>
-
-    {
-      eventsForYear.map((month) => {
-        const monthName = month[0].dateTime.monthLong;
-        return (
-          <section class="month" aria-labelledby={monthName}>
-            <h3 class="month-name">{monthName}</h3>
-            {month.map((event) => (
-              <EventListing event={event} class="month-event-card" />
-            ))}
-          </section>
-        );
-      })
-    }
+<ContentPageLayout title={`CS4W: Events ${year}`}>
+  <div class="events-page-header">
+    <h2>Club Events: {year}</h2>
+    <nav>
+      {prev && <a href={prev}>&lt Previous Year</a>}
+      |
+      {next && <a href={next}>Next year &gt</a>}
+    </nav>
   </div>
-</BaseLayout>
+
+  {
+    eventsForYear.map((month) => {
+      const monthName = month[0].dateTime.monthLong;
+      return (
+        <section class="month" aria-labelledby={monthName}>
+          <h3 class="month-name">{monthName}</h3>
+          {month.map((event) => (
+            <EventListing event={event} class="month-event-card" />
+          ))}
+        </section>
+      );
+    })
+  }
+</ContentPageLayout>
 
 <style>
-  .container {
-    padding: 1rem;
-    max-width: 60rem;
-    margin: auto;
-  }
-
   h2 {
     font-size: 4rem;
     padding: 0;

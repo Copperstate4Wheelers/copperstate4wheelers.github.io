@@ -1,0 +1,28 @@
+---
+/**
+ * Content pages do not feature a hero section and are instead focused primarily
+ * on written information. These are things like event pages, about pages, etc..
+ **/
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="container narrow">
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 80ch;
+    padding: 0rem 1rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+</style>

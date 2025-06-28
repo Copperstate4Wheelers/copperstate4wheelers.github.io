@@ -31,7 +31,7 @@ export const getStaticPaths = (async () => {
  * Per-Event page render.
  **/
 
-import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentPageLayout from "@layouts/ContentPageLayout.astro";
 import EventTime from "@components/event/Time.astro";
 import EventLocation from "@components/event/Location.astro";
 import EventInvite from "@components/event/Invite.astro";
@@ -48,29 +48,27 @@ const { Content } = await render(event);
 const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
-<BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
-  <div class="container">
-    <h2>{event.data.title}</h2>
+<ContentPageLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
+  <h2>{event.data.title}</h2>
 
-    <div class="detail-group">
-      <IconText icon="mdi:calendar" class="date-time-detail">
-        {event.dateTime.toLocaleString(DateTime.DATE_HUGE)}
-      </IconText>
+  <div class="detail-group">
+    <IconText icon="mdi:calendar" class="date-time-detail">
+      {event.dateTime.toLocaleString(DateTime.DATE_HUGE)}
+    </IconText>
 
-      <EventTime event={event} class="date-time-detail" />
-    </div>
-
-    <EventLocation event={event} class="event-detail" />
-
-    <EventInvite event={event} class="invite-detail" />
-
-    <hr />
-
-    <section class="page">
-      <Content />
-    </section>
+    <EventTime event={event} class="date-time-detail" />
   </div>
-</BaseLayout>
+
+  <EventLocation event={event} class="event-detail" />
+
+  <EventInvite event={event} class="invite-detail" />
+
+  <hr />
+
+  <section class="page">
+    <Content />
+  </section>
+</ContentPageLayout>
 
 <style>
   h2 {
@@ -81,13 +79,6 @@ const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
   hr {
     margin: 1rem 0;
     margin-bottom: 2rem;
-  }
-
-  .container {
-    max-width: 80ch;
-    padding: 0rem 1rem;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
   }
 
   .event-detail {
