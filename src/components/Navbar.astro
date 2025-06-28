@@ -275,8 +275,28 @@ function classForLink(name: string) {
       }
 
       a {
+        position: relative;
         opacity: 100%;
         font-weight: 600;
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: calc(100% + 0.25rem);
+          background-color: var(--accent);
+          height: 0.25rem;
+          border-radius: 0.25rem;
+          width: 100%;
+          transform: scale(0, 1);
+          transition: transform ease-in-out 250ms;
+        }
+
+        &:hover,
+        &:focus-visible {
+          &::before {
+            transform: scale(1);
+          }
+        }
       }
     }
   }
