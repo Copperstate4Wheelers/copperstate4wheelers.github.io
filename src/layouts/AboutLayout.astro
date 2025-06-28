@@ -11,9 +11,11 @@ interface Props {
  **/
 function topic(href: string): any {
   const { url } = Astro;
+  const pathname = url.pathname.replace(/\/$/, ""); // trim trailing slash
+
   let className = "topic-link";
 
-  if (url.pathname == href) {
+  if (pathname.endsWith(href)) {
     className += " active-topic";
   }
   return { href, class: className };
@@ -28,11 +30,7 @@ const { title } = Astro.props;
     <ul class="topic-list">
       <li><a {...topic("/about")}>Club Info</a></li>
       <li><a {...topic("/about/faq")}>FAQ</a></li>
-      <li>
-        <a {...topic("/about/standard-requirements")}>
-          Standard Requirements
-        </a>
-      </li>
+      <li><a {...topic("/about/required-gear")}>Required Gear</a></li>
       <li><a {...topic("/about/bulldog-canyon")}>Bulldog Canyon</a></li>
       <li><a {...topic("/about/how-to-join")}>How To Join</a></li>
       <li><a {...topic("/about/submit-a-run")}>Submit A Run</a></li>
@@ -58,6 +56,7 @@ const { title } = Astro.props;
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-content: center;
 
     li {
       margin: 0;

@@ -8,52 +8,53 @@ import logo from "@assets/site/copperstate_logo.png";
 <AboutLayout title="CS4W: About Us">
   <h3>Club Info</h3>
 
-  <div class="column-layout">
-    <p>
-      Copperstate4Wheelers was formed and incorporated March 31, 1972 by a group
-      of families to promote safe enjoyable family style 4 wheeling. We operate
-      as a non-profit dues paying club with elected officers and democratic
-      participation by all members families. Our club meets to carry out the
-      routine club business, plan activities, and develop or discuss new ideas.
-      This club is dedicated to the premise that our environment and our outdoor
-      heritage must be protected, therefore the willful destruction of private
-      or public property or the needless disfigurement of our land will not be
-      tolerated. Guests as well as members are expected to be conscientious in
-      this respect, leaving nothing on a trip but a few tire tracks.
-    </p>
+  <p>
+    Copperstate4Wheelers was formed and incorporated March 31, 1972 by a group
+    of families to promote safe enjoyable family style 4 wheeling. We operate as
+    a non-profit dues paying club with elected officers and democratic
+    participation by all members families. Our club meets monthly to carry out
+    routine club business, plan activities, and socialize. This club is
+    dedicated to the premise that our environment and our outdoor heritage must
+    be protected. Guests and members alike are expected to be conscientious in
+    this respect, leaving nothing on a trip but a few tire tracks.
+  </p>
 
-    <div>
-      <Image
-        src={logo}
-        alt="Copperstate4Wheelers Club Logo"
-        width="512"
-        class="logo-image"
-      />
-      <h4>Club Officers</h4>
-      <ul>
-        <li><span class="officer-role">President: </span>Jim Nossett</li>
-        <li><span class="officer-role">Vice President: </span>Kenny Blum</li>
-        <li><span class="officer-role">Treasurer: </span>Chris DePoorter</li>
-        <li><span class="officer-role">Secretary: </span>Elisabeth Swanson</li>
-        <li><span class="officer-role">Board Member: </span>Roland Silva</li>
-        <li><span class="officer-role">Board Member: </span>Ron Block</li>
-        <li><span class="officer-role">Board Member: </span>Paul Yakaitis</li>
-      </ul>
-    </div>
-  </div>
+  <Image
+    src={logo}
+    alt="Copperstate4Wheelers Club Logo"
+    width="512"
+    class="logo-image"
+  />
+
+  <h3>Officers</h3>
+  <ul>
+    <li><span class="officer-role">President: </span>Jim Nossett</li>
+    <li><span class="officer-role">Vice President: </span>Kenny Blum</li>
+    <li><span class="officer-role">Treasurer: </span>Chris DePoorter</li>
+    <li><span class="officer-role">Secretary: </span>Elisabeth Swanson</li>
+    <li><span class="officer-role">Board Member: </span>Roland Silva</li>
+    <li><span class="officer-role">Board Member: </span>Ron Block</li>
+    <li><span class="officer-role">Board Member: </span>Paul Yakaitis</li>
+  </ul>
 
   <h3>Bylaws</h3>
 
   <p>
     The club's official bylaws are available
-    <a href="/copperstate4wheelers_bylaws.pdf" target="_blank">here</a>.
+    <a href="/copperstate4wheelers_bylaws.pdf" target="_blank">here</a>, or by
+    request to the club president or club secretary.
   </p>
 </AboutLayout>
 
 <style>
   .logo-image {
     display: block;
-    border: 0.1rem solid var(--primary);
+    float: right;
+    max-width: 50%;
+  }
+
+  li {
+    font-size: 1.25rem;
   }
 
   .column-layout {
@@ -73,5 +74,11 @@ import logo from "@assets/site/copperstate_logo.png";
 
   .officer-role {
     font-weight: 500;
+  }
+
+  @media screen and (width < 768px) {
+    .logo-image {
+      float: initial;
+    }
   }
 </style>
