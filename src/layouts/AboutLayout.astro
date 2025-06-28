@@ -23,25 +23,25 @@ const { title } = Astro.props;
 ---
 
 <ContentPageLayout title={title}>
-  <section class="about-us-navigation" transition:animate="none">
+  <nav class="about-us-navigation" transition:animate="none">
     <h2>About Us</h2>
     <ul class="topic-list">
       <li><a {...topic("/about")}>Club Info</a></li>
       <li><a {...topic("/about/faq")}>FAQ</a></li>
-      <li><a {...topic("/about/bulldog-canyon")}>Bulldog Canyon</a></li>
       <li>
         <a {...topic("/about/standard-requirements")}>
           Standard Requirements
         </a>
       </li>
+      <li><a {...topic("/about/bulldog-canyon")}>Bulldog Canyon</a></li>
       <li><a {...topic("/about/how-to-join")}>How To Join</a></li>
       <li><a {...topic("/about/submit-a-run")}>Submit A Run</a></li>
     </ul>
-  </section>
+  </nav>
 
-  <section class="about-content">
+  <article class="about-content">
     <slot />
-  </section>
+  </article>
 </ContentPageLayout>
 
 <style>
@@ -89,3 +89,5 @@ const { title } = Astro.props;
     background-color: var(--accent);
   }
 </style>
+
+<style is:global></style>

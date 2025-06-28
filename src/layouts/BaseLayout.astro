@@ -81,7 +81,6 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
-  /** global styles **/
   :root {
     /**
      * Primary and secondary have good contrast. Either primary is 'color' and
@@ -128,6 +127,16 @@ const { title } = Astro.props;
     min-height: 120vh;
   }
 
+  main {
+    background-color: var(--secondary);
+  }
+
+  /* typeography */
+  p {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
   h1,
   h2,
   h3,
@@ -142,17 +151,23 @@ const { title } = Astro.props;
 
   h2 {
     font-size: 4rem;
+    margin-block: 4rem;
   }
   h3 {
     font-size: 3rem;
+    margin-block: 1.5rem;
   }
   h4 {
     font-size: 2rem;
+    margin-block: 1.5rem;
   }
   h5,
   h6 {
     font-size: 1.5rem;
+    margin-block: 1rem;
   }
+
+  /* standard layout */
 
   .autogrid {
     display: grid;
@@ -170,10 +185,6 @@ const { title } = Astro.props;
       /* Smaller gap on smaller screens. */
       grid-gap: 0.5rem;
     }
-  }
-
-  main {
-    background-color: var(--secondary);
   }
 
   .container {
