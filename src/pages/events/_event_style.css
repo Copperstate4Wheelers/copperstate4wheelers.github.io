@@ -13,14 +13,4 @@
     margin: 0.5em 0;
     margin-top: 1.5em;
   }
-
-  iframe {
-    display: block;
-    max-width: 100%;
-    width: 85%;
-    margin: auto;
-    height: auto;
-    aspect-ratio: calc(4 / 3);
-    border: 0.2rem solid var(--primary) !important;
-  }
 }

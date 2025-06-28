@@ -201,4 +201,14 @@ const { title } = Astro.props;
     max-width: min(100%, var(--max-width));
     margin: 0 auto;
   }
+
+  iframe {
+    display: block;
+    max-width: 100%;
+    width: 85%;
+    margin: auto;
+    height: auto;
+    aspect-ratio: calc(4 / 3);
+    border: 0.2rem solid var(--primary) !important;
+  }
 </style>
