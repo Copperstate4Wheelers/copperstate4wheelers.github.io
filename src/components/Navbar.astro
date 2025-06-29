@@ -21,31 +21,33 @@ function classForLink(name: string) {
 ---
 
 <header transition:animate="none">
-  <h1 class="logo">
-    <a href="#">
-      <span class="full-logo">Copperstate 4 Wheelers</span>
-      <span class="small-logo">CS4W</span>
-    </a>
-  </h1>
+  <div class="container">
+    <h1 class="logo">
+      <a href="#">
+        <span class="full-logo">Copperstate 4 Wheelers</span>
+        <span class="small-logo">CS4W</span>
+      </a>
+    </h1>
 
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-  <nav>
-    <ul>
-      <li><a href="/" class={classForLink("")}>Home</a></li>
-      <li><a href="/about" class={classForLink("about")}>About</a></li>
-      <li><a href="/members" class={classForLink("members")}>Members</a></li>
-      <li>
-        <a
-          href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
-          class={classForLink("events")}>Events</a
-        >
-      </li>
-    </ul>
-  </nav>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <nav>
+      <ul>
+        <li><a href="/" class={classForLink("")}>Home</a></li>
+        <li><a href="/about" class={classForLink("about")}>About</a></li>
+        <li><a href="/members" class={classForLink("members")}>Members</a></li>
+        <li>
+          <a
+            href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
+            class={classForLink("events")}>Events</a
+          >
+        </li>
+      </ul>
+    </nav>
 
-  <label for="nav-toggle" class="nav-toggle-label">
-    <span></span>
-  </label>
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+  </div>
 </header>
 
 <style>
@@ -89,9 +91,8 @@ function classForLink(name: string) {
   .logo {
     margin: 0;
     padding: 0.1em var(--hamburger-width);
-    padding-left: calc(var(--hamburger-width) * 3);
     color: var(--accent);
-    text-align: right;
+    text-align: left;
 
     a {
       color: var(--accent);
@@ -119,11 +120,11 @@ function classForLink(name: string) {
     width: auto; /* because flex makes this act like block */
     height: 100%; /* click anywhere in the header to activate */
     top: 0;
-    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-left: calc(var(--hamburger-width) * 0.5);
+    margin-right: calc(var(--hamburger-width) * 1);
     border-radius: 0.2em;
 
     /* create the hamburger via span pseudo elements */
@@ -195,6 +196,7 @@ function classForLink(name: string) {
     background-color: var(--navbar-background);
     width: 100%;
     top: 100%; /* place the top of the nav at the bottom of the parent */
+    text-align: right;
 
     .active-nav {
       color: var(--accent);
@@ -202,7 +204,7 @@ function classForLink(name: string) {
 
     /* align the link list with the hamburger */
     ul {
-      margin-left: calc(var(--hamburger-width) * 0.5);
+      margin-right: calc(var(--hamburger-width) * 1);
       list-style: none;
       padding: 0;
     }
@@ -226,7 +228,8 @@ function classForLink(name: string) {
       transition: opacity 250ms ease-in-out 250ms;
     }
   }
-
+</style>
+<!--
   /* desktop style */
   @media screen and (width > 1080px) {
     /* remove the toggles entirely */
@@ -236,18 +239,18 @@ function classForLink(name: string) {
     }
 
     /* make the header into a flex display */
-    header {
+    header .container {
       --logo-size: clamp(2rem, 5vw, 3rem);
 
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      display: flex;
+      justify-content: space-between;
       padding: 0 calc(var(--hamburger-width) * 1.5);
+      max-width: 100rem;
     }
 
     .logo {
       text-align: left;
       padding-inline: 0;
-      grid-column: 1;
 
       .full-logo {
         display: inline;
@@ -261,9 +264,7 @@ function classForLink(name: string) {
       /* remove all mobile-specific styling */
       all: unset;
       font-size: calc(var(--logo-size) * 0.6);
-      grid-column: 3;
-
-      display: flex;
+      place-self: center;
 
       ul {
         display: flex;
@@ -303,3 +304,4 @@ function classForLink(name: string) {
     }
   }
 </style>
+-->
