@@ -5,6 +5,8 @@ import favicons from "astro-favicons";
 import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   redirects: {
@@ -37,5 +39,7 @@ export default defineConfig({
         favicons: ["src/assets/site/copperstate_logo.png"],
       },
     }),
+    mdx(),
   ],
 });
+

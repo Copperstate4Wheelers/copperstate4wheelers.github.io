@@ -3,7 +3,7 @@ import { glob } from "astro/loaders";
 
 const event = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
+    pattern: "**/*.{md, mdx}",
     base: "src/events",
   }),
 
