@@ -1,9 +1,62 @@
 ---
 import AboutLayout from "@layouts/AboutLayout.astro";
+import { Image } from "astro:assets";
+
+import workday from "@assets/pages/about/bulldog-canyon/workday.jpg";
+import logo from "@assets/pages/about/bulldog-canyon/bulldog-canyon-logo.jpg";
+import canyonMap from "@assets/pages/about/bulldog-canyon/bulldog-canyon-map.jpg";
 ---
 
 <AboutLayout title="CS4W: Bulldog Canyon">
   <h3>Bulldog Canyon</h3>
+
+  <Image src={workday} alt="Copperstate4Wheelers working on Bulldog Canyon" />
+
+  <div class="bulldog-info">
+    <Image
+      src={logo}
+      alt="CS4W Bulldog Canyon TRAL logo"
+      class="bulldog-logo"
+    />
+    <p>
+      Our club is very proud to announce we have adopted the Bulldog Canyon OHV
+      area. We periodically visit the area through the year, often working with
+      TRAL or the Tonto National Forest.
+    </p>
+  </div>
+
+  <a
+    href="https://www.fs.usda.gov/r03/tonto/recreation/groups/bulldog-canyon-ohv-permit-zone"
+    target="_blank"
+  >
+    <Image
+      src={canyonMap}
+      alt="Bulldog Canyon OHV area map."
+      class="bulldog-map"
+    />
+  </a>
 </AboutLayout>
 
-<style></style>
+<style>
+  .bulldog-info {
+    margin-block: 1rem;
+
+    img {
+      float: right;
+      margin-left: 1rem;
+    }
+
+    p {
+    }
+  }
+
+  .bulldog-logo {
+    max-width: 15ch;
+    float: right;
+  }
+
+  .bulldog-map {
+    margin-block: 1rem;
+    border: 0.2rem solid var(--primary);
+  }
+</style>
