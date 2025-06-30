@@ -1,9 +1,52 @@
 ---
 import MembersLayout from "@layouts/MembersLayout.astro";
+import MemorialCard from "@components/members/MemorialCard.astro";
 ---
 
 <MembersLayout title="CS4W: In Memory Of">
   <h3>In Memory Of</h3>
+
+  <section class="in-memory">
+    <MemorialCard
+      imagePath="bill-barrier-1.jpg"
+      cardPath="bill-barrier-2.jpg"
+      caption="Bill B."
+    />
+
+    <MemorialCard imagePath="moe-1.jpg" cardPath="moe-2.jpg" caption="Moe" />
+
+    <MemorialCard
+      imagePath="pamela-1.jpg"
+      cardPath="pamela-2.jpg"
+      caption="Pamela O."
+    />
+
+    <MemorialCard
+      imagePath="roger-williams-1.jpg"
+      cardPath="roger-williams-2.jpg"
+      caption="Roger W."
+    />
+  </section>
 </MembersLayout>
 
-<style></style>
+<style>
+  .in-memory {
+    --min-card-size: 40ch;
+
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min-card-size), 100%), 1fr)
+    );
+    place-items: center;
+    margin: 0 auto;
+  }
+
+  @media screen and (width < 768px) {
+    .in-memory {
+      /* Smaller gap on smaller screens. */
+      grid-gap: 0.5rem;
+    }
+  }
+</style>

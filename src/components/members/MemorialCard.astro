@@ -4,9 +4,15 @@ import { Image } from "astro:assets";
 
 interface Props {
   /**
-   * The image path, relative to the src/assets/pages/member directory.
+   * The image path, relative to the src/assets/pages/members directory.
    **/
   imagePath: string;
+
+  /**
+   * The memorial card path, relative to the
+   * src/assets/pages/members/in-memory-of directory.
+   **/
+  cardPath: string;
 
   /**
    * The caption to display beneath the image.
@@ -19,9 +25,9 @@ interface Props {
   alt?: string;
 }
 
-function loadMemberImages(): Record<string, ImageMetadata> {
+function loadMemorialImages(): Record<string, ImageMetadata> {
   const members = import.meta.glob<{ default: ImageMetadata }>(
-    "../../assets/pages/members/*",
+    "../../assets/pages/members/in-memory-of/*",
     { eager: true },
   );
   const filenames: Record<string, ImageMetadata> = {};
@@ -31,46 +37,59 @@ function loadMemberImages(): Record<string, ImageMetadata> {
   return filenames;
 }
 
-const { imagePath, caption, alt = caption } = Astro.props;
-const memberImages = loadMemberImages();
+const { imagePath, cardPath, caption, alt = caption } = Astro.props;
+const memberImages = loadMemorialImages();
 
 if (!memberImages[imagePath]) {
   console.log(
     `Could not find ${imagePath} in \n${JSON.stringify(memberImages, null, 2)}`,
   );
 }
+if (!memberImages[cardPath]) {
+  console.log(
+    `Could not find ${cardPath} in \n${JSON.stringify(memberImages, null, 2)}`,
+  );
+}
 
 const image = memberImages[imagePath]!;
+const card = memberImages[cardPath];
 ---
 
-<div class="member-card">
-  <Image src={image} alt={alt} />
+<div class="memorial-card">
+  <div class="images">
+    <Image src={image} alt={alt} />
+    <Image src={card} alt={alt} />
+  </div>
   <p>{caption}</p>
 </div>
 
 <style>
-  .member-card {
+  .memorial-card {
     display: inline-block;
     max-width: 100%;
 
     background-color: var(--secondary-300);
     border-radius: 1rem;
+    overflow: hidden;
     box-shadow: 0.05rem 0.05rem 0.3rem rgba(0, 0, 0, 0.4);
-    transform: scale(1);
-    transition: transform 200ms ease-in-out;
+
+    .images {
+      display: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border-bottom: 0.2rem solid var(--primary);
+    }
 
     &:hover,
     &:focus-visible {
       box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.45);
-      transform: scale(1.1);
     }
 
     img {
       display: block;
-      border-top-left-radius: inherit;
-      border-top-right-radius: inherit;
-      border-bottom: 0.2rem solid var(--primary);
       object-fit: cover;
+      max-width: 100%;
     }
 
     p {
