@@ -7,8 +7,7 @@ location: Staging area on the Crown King road on the Bumblebee exit on I17
 
 ### Requirements
 
-* Lunch
-* GMRS Radio
+* [Normal required gear](/about/required-gear)
 
 ### Meeting Location
 

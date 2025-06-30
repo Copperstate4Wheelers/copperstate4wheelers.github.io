@@ -14,9 +14,7 @@ See the [AZGFD Outdoor EXPO](https://www.azgfd.com/about-arizona-game-fish/annua
 ### Requirements
 
 * _insurance info and pass required_ **(contact Roland for details)**
-* 4x4
-* recovery gear
-* bottled water
+* [Normal required gear](/about/required-gear)
 
 ### Location
 

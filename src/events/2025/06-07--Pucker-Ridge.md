@@ -5,11 +5,12 @@ invite: Guests Welcome
 location: Chevron Station on 60 and Goldfield
 ---
 
+We haven't done this one before, check out the video below for reference on the
+drive. This one will be hot, so remember to bring water!
+
 ### Requirements
 
-* 4x4
-* GMRS radio
-* lunch, lots of water, it'll be hot
+* [Normal required gear](/about/required-gear)
 
 ### Meeting Location
 
