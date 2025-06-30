@@ -1,6 +1,6 @@
 ---
 title: Flagstaff Campout/Run
-time: TBA
+time: 10:00am
 invite: Members Only
 location: "campsite gps: 35.10093, -111.82313"
 ---
