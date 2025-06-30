@@ -7,22 +7,30 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 interface Props {
   title: string;
+  wide?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, wide = false } = Astro.props;
 ---
 
 <BaseLayout title={title}>
-  <div class="container narrow">
+  <div class={`container ${wide ? "wide" : "narrow"}`}>
     <slot />
   </div>
 </BaseLayout>
 
 <style>
-  .narrow {
-    max-width: 80ch;
+  .narrow, .wide {
     padding: 0rem 1rem;
     margin-top: 2rem;
     margin-bottom: 4rem;
+  }
+
+  .narrow {
+    max-width: 80ch;
+  }
+
+  .wide {
+    max-width: 120ch;
   }
 </style>

@@ -1,42 +1,27 @@
 ---
 import ContentPageLayout from "./ContentPageLayout.astro";
+import Subnav from "@components/Subnav.astro";
 
 interface Props {
   title: string;
-}
-
-/**
- * Automatically generate the href and class for topic links. This makes it
- * easy to apply additional styling to the active topic link.
- **/
-function topic(href: string): any {
-  const { url } = Astro;
-  const pathname = url.pathname.replace(/\/$/, ""); // trim trailing slash
-
-  let className = "topic-link";
-
-  if (pathname.endsWith(href)) {
-    className += " active-topic";
-  }
-  return { href, class: className };
 }
 
 const { title } = Astro.props;
 ---
 
 <ContentPageLayout title={title}>
-  <nav class="about-us-navigation" transition:animate="none">
-    <h2>About Us</h2>
-    <ul class="topic-list">
-      <li><a {...topic("/about")}>Club Info</a></li>
-      <li><a {...topic("/about/contact")}>Contact Us</a></li>
-      <li><a {...topic("/about/faq")}>FAQ</a></li>
-      <li><a {...topic("/about/required-gear")}>Required Gear</a></li>
-      <li><a {...topic("/about/bulldog-canyon")}>Bulldog Canyon</a></li>
-      <li><a {...topic("/about/how-to-join")}>How To Join</a></li>
-      <li><a {...topic("/about/submit-a-run")}>Submit A Run</a></li>
-    </ul>
-  </nav>
+  <Subnav
+    title="About Us"
+    links={[
+      ["/about", "Club Info"],
+      ["/about/contact", "Contact Us"],
+      ["/about/faq", "FAQ"],
+      ["/about/required-gear", "Required Gear"],
+      ["/about/bulldog-canyon", "Bulldog Canyon"],
+      ["/about/how-to-join", "How To Join"],
+      ["/about/submit-a-run", "Submit A Run"],
+    ]}
+  />
 
   <article class="about-content">
     <slot />
@@ -44,50 +29,7 @@ const { title } = Astro.props;
 </ContentPageLayout>
 
 <style>
-  .about-us-navigation {
-    h2 {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .topic-list {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 0.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-
-    li {
-      margin: 0;
-      padding: 0;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  .topic-link {
-    display: inline-block;
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding: 0.75rem;
-    color: var(--secondary);
-    background-color: var(--primary);
-
-    &:hover,
-    &:focus-visible {
-      box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
-    }
-    border: solid 0.2rem var(--primary);
-  }
-
-  .active-topic {
-    color: var(--primary-700);
-    background-color: var(--accent);
+  h2 {
+    margin-bottom: 1rem;
   }
 </style>
-
-<style is:global></style>

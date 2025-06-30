@@ -1,0 +1,66 @@
+---
+import MembersLayout from "@layouts/MembersLayout.astro";
+import Card from "@components/members/Card.astro";
+
+const members = [
+  ["jim-and-kathy.jpg", "Jim and Kathy N."],
+  ["kenny-b.jpg", "Kenny B."],
+  ["chris-d.jpg", "Chris D."],
+  ["elisabeth-s.jpg", "Elisabeth S."],
+  ["chad-c.jpg", "Chad C."],
+  ["paul-y.jpg", "Paul Y."],
+  ["roland-s.jpg", "Roland S."],
+  ["bruce-m.jpg", "Bruce M."],
+  ["jennifer-b.jpg", "Jennifer B."],
+  ["mike-k.jpg", "Mike K."],
+  ["craig-and-lynda-g.jpg", "Craig & Lynda G."],
+  ["leo-m.jpg", "Leo M."],
+  ["kit-and-michelle.jpg", "Kit & Michelle"],
+  ["mike-r.jpg", "Mike R."],
+  ["brad-and-nicole-s.jpg", "Brad & Nicole S."],
+  ["kathy-l.jpg", "Kath L."],
+  ["larry-b.jpg", "Larry B."],
+  ["donna-s.jpg", "Donna S."],
+  ["ron-b.jpg", "Ron B."],
+];
+
+// shuffle the list of members each time the page is generated
+for (let i = 0; i < members.length; i++) {
+  const j = Math.floor(members.length * Math.random());
+  [members[i], members[j]] = [members[j], members[i]];
+}
+---
+
+<MembersLayout title="CS4W: Members">
+  <h3>Current Members</h3>
+
+  <section class="members">
+    {
+      members.map(([imagePath, caption]) => (
+        <Card imagePath={imagePath} caption={caption} />
+      ))
+    }
+  </section>
+</MembersLayout>
+
+<style>
+  .members {
+    --min-card-size: 30ch;
+
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min-card-size), 100%), 1fr)
+    );
+    place-items: center;
+    margin: 0 auto;
+  }
+
+  @media screen and (width < 768px) {
+    .members {
+      /* Smaller gap on smaller screens. */
+      grid-gap: 0.5rem;
+    }
+  }
+</style>

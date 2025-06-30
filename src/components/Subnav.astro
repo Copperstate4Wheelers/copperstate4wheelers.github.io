@@ -1,0 +1,97 @@
+---
+/**
+ * A subnavigation menu for a region of the website with multiple subpages.
+ **/
+interface Props {
+  /**
+   * Title for the subnav section. This is expected to be the title of the
+   * page and is an h2.
+   **/
+  title: string;
+
+  /**
+   * Links should be provided in the form ["/link/to/page", "link text"].
+   **/
+  links: [string, string][];
+  class?: string;
+}
+
+/**
+ * Automatically generate the href and class for topic links. This makes it
+ * easy to apply additional styling to the active topic link.
+ **/
+function navLink(href: string): any {
+  const { url } = Astro;
+  const pathname = url.pathname.replace(/\/$/, ""); // trim trailing slash
+
+  let className = "subnav-link";
+
+  if (pathname.endsWith(href)) {
+    className += " active-subnav-link";
+  }
+  return { href, class: className };
+}
+
+const { title, links, class: className = "", ...rest } = Astro.props;
+---
+
+<nav class={`${className}`} transition:animate="none" {...rest}>
+  <h2>{title}</h2>
+
+  <ul class="subpage-nav">
+    {
+      links.map(([href, content]) => {
+        return (
+          <li>
+            <a {...navLink(href)}>{content}</a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .subpage-nav {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .subnav-link {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    color: var(--secondary);
+    background-color: var(--primary);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+    }
+    border: solid 0.2rem var(--primary);
+  }
+
+  .active-subnav-link {
+    color: var(--primary-700);
+    background-color: var(--accent);
+  }
+</style>

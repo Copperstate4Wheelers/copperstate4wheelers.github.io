@@ -8,6 +8,7 @@
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],
+      "@members/*": ["assets/pages/members/*"],
       "@lib/*": ["lib/*"]
     }
   }

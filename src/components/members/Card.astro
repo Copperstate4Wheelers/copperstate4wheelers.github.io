@@ -1,0 +1,82 @@
+---
+import path from "node:path";
+import { Image } from "astro:assets";
+
+interface Props {
+  /**
+   * The image path, relative to the src/assets/pages/member directory.
+   **/
+  imagePath: string;
+
+  /**
+   * The caption to display beneath the image.
+   **/
+  caption: string;
+
+  /**
+   * The card image alt text. Defaults to the caption if unspecified.
+   **/
+  alt?: string;
+}
+
+function loadMemberImages(): Record<string, ImageMetadata> {
+  const members = import.meta.glob<{ default: ImageMetadata }>(
+    "../../assets/pages/members/**/*",
+    { eager: true },
+  );
+  const filenames: Record<string, ImageMetadata> = {};
+  for (const [imagePath, image] of Object.entries(members)) {
+    filenames[path.basename(imagePath)] = image.default;
+  }
+  return filenames;
+}
+
+const { imagePath, caption, alt = caption } = Astro.props;
+const memberImages = loadMemberImages();
+
+if (!memberImages[imagePath]) {
+  console.log(
+    `Could not find ${imagePath} in \n${JSON.stringify(memberImages, null, 2)}`,
+  );
+}
+
+const image = memberImages[imagePath]!;
+---
+
+<div class="member-card">
+  <Image src={image} alt={alt} />
+  <p>{caption}</p>
+</div>
+
+<style>
+  .member-card {
+    display: inline-block;
+    max-width: 100%;
+
+    background-color: var(--secondary-300);
+    border-radius: 1rem;
+    box-shadow: 0.05rem 0.05rem 0.3rem rgba(0, 0, 0, 0.4);
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.45);
+      transform: scale(1.1);
+    }
+
+    img {
+      display: block;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      border-bottom: 0.2rem solid var(--primary);
+      object-fit: cover;
+    }
+
+    p {
+      display: block;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+</style>
