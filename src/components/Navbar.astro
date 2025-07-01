@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { DateTime } from "luxon";
+import logo from "@assets/site/copperstate_logo.png";
 
 /**
  * Navbar philosophy: mobile first and progressively enhance on wider screens.
@@ -22,12 +24,13 @@ function classForLink(name: string) {
 
 <header transition:animate="none">
   <div class="container">
-    <h1 class="logo">
-      <a href="#">
-        <span class="full-logo">Copperstate 4 Wheelers</span>
-        <span class="small-logo">CS4W</span>
-      </a>
-    </h1>
+    <h1 class="page-title">Copperstate4Wheelers</h1>
+    <Image
+      class="logo"
+      src={logo}
+      alt="Copperstate4Wheelers.com Logo"
+      width="256"
+    />
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
     <nav>
@@ -61,13 +64,10 @@ function classForLink(name: string) {
     /* hamburger width controls the button + the padding around the logo */
     --hamburger-width: 2rem;
 
-    font-size: var(--logo-size);
-    line-height: 1.2;
     position: relative;
+    display: block;
     z-index: 999;
-    grid-template-columns: var(--hamburger-width) 1fr var(--hamburger-width);
 
-    place-items: center;
     color: var(--navbar-text);
     background-color: var(--navbar-background);
 
@@ -83,29 +83,27 @@ function classForLink(name: string) {
       top: -9999px !important;
       left: -9999px !important;
     }
+
+    .container {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      align-content: center;
+      justify-content: space-between;
+      height: 100%;
+    }
   }
 
-  /**
-   * The logo doubles as the page's h1.
-   **/
+  .page-title {
+    position: fixed;
+    bottom: -9999px;
+  }
+
   .logo {
-    margin: 0;
-    padding: 0.1em var(--hamburger-width);
-    color: var(--accent);
-    text-align: left;
-
-    a {
-      color: var(--accent);
-    }
-
-    .full-logo {
-      display: inline;
-    }
-
-    .small-logo {
-      display: none;
-      line-height: 1.25;
-    }
+    display: block;
+    object-fit: cover;
+    width: auto;
+    height: max(5rem, min(15vh, 15vw));
   }
 
   /**
@@ -115,16 +113,12 @@ function classForLink(name: string) {
   .nav-toggle-label {
     --hamburger-thickness: 0.3em;
 
-    position: absolute; /* remove from flow, arrange relative to the header */
-
     width: auto; /* because flex makes this act like block */
     height: 100%; /* click anywhere in the header to activate */
-    top: 0;
-    right: 0;
+
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-right: calc(var(--hamburger-width) * 1);
     border-radius: 0.2em;
 
     /* create the hamburger via span pseudo elements */
@@ -194,7 +188,8 @@ function classForLink(name: string) {
     transform-origin: top;
     transition: transform ease-in 400ms;
     background-color: var(--navbar-background);
-    width: 100%;
+    left: 0;
+    right: 0;
     top: 100%; /* place the top of the nav at the bottom of the parent */
     text-align: right;
 
@@ -230,7 +225,7 @@ function classForLink(name: string) {
   }
 
   /* desktop style */
-  @media screen and (width > 1080px) {
+  @media screen and (width > 50em) {
     /* remove the toggles entirely */
     .nav-toggle-label,
     .nav-toggle {
@@ -241,22 +236,7 @@ function classForLink(name: string) {
     header .container {
       --logo-size: clamp(2rem, 5vw, 3rem);
 
-      display: flex;
-      justify-content: space-between;
-      padding: 0 calc(var(--hamburger-width) * 1.5);
       max-width: 100rem;
-    }
-
-    .logo {
-      text-align: left;
-      padding-inline: 0;
-
-      .full-logo {
-        display: inline;
-      }
-      .small-logo {
-        display: none;
-      }
     }
 
     nav {
