@@ -4,6 +4,104 @@ import AboutLayout from "@layouts/AboutLayout.astro";
 
 <AboutLayout title="CS4W: How To Join">
   <h3>How To Join</h3>
-</AboutLayout>
 
-<style></style>
+  <div class="typography">
+    <p class="ff-normal fs-600 fw-700">font size: (fs-500) fw-500</p>
+    <p class="ff-normal fs-500 fw-500">font size: (fs-500) fw-500</p>
+    <p class="ff-normal fs-400 fw-500">font size: (fs-400) fw-500</p>
+    <p class="ff-normal fs-400 fw-400">font size: (fs-400) fw-400</p>
+    <p class="ff-normal fs-300 fw-400">font size: (fs-300) fw-400</p>
+  </div>
+
+  <style>
+    .typography {
+      --ff-normal: "Montserrat", sans-serif;
+      --ff-title: "Road Rage", sans-serif;
+
+      --mult: 1.618;
+      --inv: 0.618;
+      --fs-400: 1rem;
+      --fs-300: calc(var(--fs-400) * var(--inv));
+      --fs-500: calc(var(--fs-400) * var(--mult));
+      --fs-600: calc(var(--fs-500) * var(--mult));
+      --fs-700: calc(var(--fs-600) * var(--mult));
+      --fs-800: calc(var(--fs-700) * var(--mult));
+      --fs-visual: clamp(var(--fs-500), 5vw, calc(var(--fs-700) * var(--mult)));
+    }
+
+    .fw-400 {
+      font-weight: 400;
+    }
+
+    .fw-500 {
+      font-weight: 500;
+    }
+
+    .fw-600 {
+      font-weight: 600;
+    }
+
+    .fw-700 {
+      font-weight: 700;
+    }
+
+    .fw-800 {
+      font-weight: 800;
+    }
+
+    .ff-normal {
+      font-family: var(--ff-normal);
+      line-height: 1em;
+    }
+
+    .ff-title {
+      font-family: var(--ff-title);
+      line-height: 1em;
+    }
+
+    .fs-visual {
+      font-size: var(--fs-visual);
+      line-height: 1em;
+    }
+
+    .fs-800 {
+      font-size: var(--fs-800);
+      line-height: 1em;
+    }
+
+    .fs-700 {
+      font-size: var(--fs-700);
+      line-height: 1em;
+    }
+
+    .fs-600 {
+      font-size: var(--fs-600);
+      line-height: 1em;
+    }
+
+    .fs-500 {
+      font-size: var(--fs-500);
+      line-height: 1em;
+    }
+
+    .fs-400 {
+      font-size: var(--fs-400);
+      line-height: 1em;
+    }
+
+    .fs-300 {
+      font-size: var(--fs-300);
+      line-height: 1em;
+    }
+
+    .space {
+      --h: var(--fs-400);
+      background-color: var(--accent);
+      border: solid 1px black;
+      margin-block: var(--fs-400);
+      margin-inline: auto;
+      width: 50%;
+      height: var(--h);
+    }
+  </style>
+</AboutLayout>
