@@ -1,5 +1,6 @@
 ---
 import "modern-normalize/modern-normalize.css";
+import "../styles/global.css";
 
 import "@fontsource/montserrat";
 import "@fontsource/montserrat/500";
@@ -15,7 +16,6 @@ import GoogleAnalytics from "@components/GoogleAnalytics.astro";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
 
-import { ClientRouter } from "astro:transitions";
 import { SEO } from "astro-seo";
 
 import SocialLogo from "@assets/site/copperstate_logo_social.png";
@@ -66,13 +66,11 @@ const { title } = Astro.props;
     />
 
     <title>{title}</title>
-
-    <!--<ClientRouter fallback="none" />-->
   </head>
   <body>
     <Navbar />
 
-    <main transition:animate="slide">
+    <main transition:animate="slide" class="content-grid">
       <slot />
     </main>
 
@@ -80,43 +78,8 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style is:global>
-  :root {
-    /**
-     * Primary and secondary have good contrast. Either primary is 'color' and
-     * secondary is 'background' for many elements.
-     **/
-    --primary: #02343f; /* midnight green */
-    --primary-700: #012128; /* gunmetal */
-    --secondary-300: #f5f3e0; /* beige */
-    --secondary: #f0edcc; /* beige */
-
-    /**
-     * Accent pairs well with both primary and secondary. It may not be ideal
-     * for simple text, but a highlight or chunky bar could help.
-     **/
-    --accent: #ef8354; /* coral */
-    --accent-700: #e05215; /* flame */
-
-    --text-font: "Montserrat", sans-serif;
-    --title-font: "Road Rage", sans-serif;
-
-    --min-column-size: 30ch;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
+<style>
   body {
-    font-family: var(--text-font);
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: var(--primary);
-    background-color: var(--secondary);
-
     /**
      * Force at least one full screen of content.
      * The footer is always at the bottom and the header is always
@@ -124,90 +87,6 @@ const { title } = Astro.props;
      **/
     display: grid;
     grid-template-rows: auto 1fr auto;
-    min-height: 120vh;
-  }
-
-  main {
-    background-color: var(--secondary);
-  }
-
-  /* typeography */
-  p {
-    font-size: 1.25rem;
-    line-height: 1.25;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--primary-700);
-    font-family: var(--title-font);
-    font-optical-sizing: auto;
-    font-weight: 400;
-  }
-
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--text-font);
-    font-weight: 700;
-  }
-
-  h2 {
-    font-size: 4rem;
-    margin-block: 4rem;
-  }
-  h3 {
-    font-size: 2rem;
-    margin-block: 1.5rem;
-  }
-  h4 {
-    font-size: 1.5rem;
-    margin-block: 1.5rem;
-  }
-  h5,
-  h6 {
-    font-size: 1.5rem;
-    margin-block: 1rem;
-  }
-
-  /* standard layout */
-
-  .autogrid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--min-column-size), 100%), 1fr)
-    );
-    place-items: center;
-  }
-
-  .container {
-    --max-width: calc(var(--min-column-size) * 3);
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding-inline: 1rem;
-  }
-
-  iframe {
-    display: block;
-    max-width: 100%;
-    width: 85%;
-    margin: auto;
-    height: auto;
-    aspect-ratio: calc(4 / 3);
-    border: 0.2rem solid var(--primary) !important;
-    margin-block: 1rem;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
+    min-height: 100vh;
   }
 </style>

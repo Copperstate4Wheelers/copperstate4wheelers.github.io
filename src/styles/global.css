@@ -1,0 +1,211 @@
+:root {
+  /*************************************************************************
+   * Colors
+   *************************************************************************/
+
+  /* gunmetal shades */
+  --primary: #012027;
+  --primary-300: #02313c;
+  --primary-500: #011014;
+
+  /* beige */
+  --secondary: #f0edcc;
+  --secondary-300: #faf9ef;
+  --secondary-500: #e8e3b0;
+
+  /* orange */
+  --accent: #ef8354;
+  --accent-300: #f1926a;
+  --accent-500: #ec6a32;
+
+  /*************************************************************************
+   * Typography
+   *************************************************************************/
+
+  --ff-normal: "Montserrat", sans-serif;
+  --ff-title: "Road Rage", sans-serif;
+
+  --mult: 1.618;
+  --inv: 0.618;
+  --fs-400: 1rem;
+  --fs-300: calc(var(--fs-400) * var(--inv));
+  --fs-500: calc(var(--fs-400) * var(--mult));
+  --fs-600: calc(var(--fs-500) * var(--mult));
+  --fs-700: calc(var(--fs-600) * var(--mult));
+  --fs-800: calc(var(--fs-700) * var(--mult));
+  --fs-visual: clamp(var(--fs-500), 5vw, var(--fs-700));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*************************************************************************
+ * Typography
+ *************************************************************************/
+
+.ff-normal {
+  font-family: var(--ff-normal);
+  line-height: 1em;
+}
+
+.ff-title {
+  font-family: var(--ff-title);
+  line-height: 1em;
+}
+
+.fs-visual {
+  font-size: var(--fs-visual);
+  line-height: 1em;
+}
+
+.fs-800 {
+  font-size: var(--fs-800);
+  line-height: 1em;
+}
+
+.fs-700 {
+  font-size: var(--fs-700);
+  line-height: 1em;
+}
+
+.fs-600 {
+  font-size: var(--fs-600);
+  line-height: 1em;
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+  line-height: 1em;
+}
+
+.fs-400 {
+  font-size: var(--fs-400);
+  line-height: 1em;
+}
+
+.fs-300 {
+  font-size: var(--fs-300);
+  line-height: 1em;
+}
+
+body {
+  font-family: var(--ff-normal);
+  font-size: var(--fs-400);
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  color: var(--primary);
+  background-color: var(--secondary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-700);
+  font-family: var(--ff-title);
+  font-optical-sizing: auto;
+  font-weight: 700;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ff-normal);
+  font-weight: 700;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  height: auto;
+  aspect-ratio: calc(4 / 3);
+  border: 0.2rem solid var(--primary) !important;
+  margin-block: 1rem;
+}
+
+img {
+  display: block;
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/**
+ * The content grid centers the main column and provides space for breakout
+ * sections.
+ *
+ **/
+.content-grid,
+.fullwidth {
+  /* configurable */
+  --gap: clamp(0.5rem, 3vw, 3rem);
+  --content: 60ch;
+  --wide: 80ch;
+  --ultrawide: 120ch;
+
+  /* computed */
+  --wide-size: calc((var(--wide) - var(--content)) / 2);
+  --ultrawide-size: calc(
+    ((var(--ultrawide) - var(--content)) / 2) - var(--wide-size)
+  );
+
+  display: grid;
+  grid-template-columns:
+    [fullwidth-start] minmax(var(--gap), 1fr)
+    [ultrawide-start] minmax(0, var(--ultrawide-size))
+    [wide-start] minmax(0, var(--wide-size))
+    [content-start]
+    min(var(--content), 100% - var(--gap) * 2)
+    [content-end]
+    minmax(0, var(--wide-size)) [wide-end]
+    minmax(0, var(--ultrawide-size)) [ultrawide-end]
+    minmax(var(--gap), 1fr) [fullwidth-end];
+
+  & > * {
+    grid-column: content;
+  }
+
+  & > .fullwidth {
+    grid-column: fullwidth;
+  }
+
+  & > .wide {
+    grid-column: wide;
+  }
+
+  & > .ultrawide {
+    grid-column: ultrawide;
+  }
+}

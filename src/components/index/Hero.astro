@@ -8,17 +8,17 @@ import { Image } from "astro:assets";
 import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
 ---
 
-<div class="hero">
+<div class="fullwidth hero bg-primary">
   <Image
     src={MontanaMountain}
     alt="Copperstate4Wheelers on Montana Mountain."
     decoding="async"
     loading="lazy"
     width="1920"
-    class="background"
+    class="background fullwidth"
   />
-  <div class="overlay"></div>
-  <div class="content">
+  <div class="overlay fullwidth"></div>
+  <div class="content ultrawide fs-visual">
     <p>Family friendly offroading since 1972</p>
   </div>
 </div>
@@ -28,25 +28,20 @@ import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
     --max-height: 70vh;
 
     display: grid;
-    grid-template-areas: "stack";
-
-    place-items: center;
+    grid-template-rows: var(--max-height);
     overflow: hidden;
-    background-color: var(--primary);
-
-    width: 100%;
-    height: var(--max-height);
     max-height: var(--max-height);
 
-    * {
-      grid-area: stack;
+    & > * {
+      place-self: center;
+      grid-row: 1 / 2;
     }
   }
 
   .background {
     display: block;
     width: 100%;
-    height: 100%;
+    height: var(--max-height);
     max-height: var(--max-height);
     object-fit: cover;
 
@@ -55,12 +50,11 @@ import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
 
   .overlay {
     width: 100%;
-    height: 100%;
+    height: var(--max-height);
     background-color: rgba(0, 0, 0, 0.35);
   }
 
   .content p {
-    font-size: clamp(2rem, 5vw, 4rem);
     text-align: center;
     color: white;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
