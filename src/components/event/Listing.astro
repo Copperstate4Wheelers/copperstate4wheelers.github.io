@@ -105,4 +105,33 @@ function isPast(): string {
       font-size: 1.25rem;
     }
   }
+
+  @media screen and (width < 480px) {
+    .event-listing {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .date {
+      flex-flow: row nowrap;
+      padding: 1rem;
+      gap: 1rem;
+
+      .weekday {
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+
+      .day {
+        font-weight: 700;
+        font-size: 1.25rem;
+        order: 1;
+      }
+
+      .month {
+        font-weight: 600;
+        font-size: 1.25rem;
+      }
+    }
+  }
 </style>
