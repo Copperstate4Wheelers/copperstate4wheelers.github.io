@@ -87,8 +87,6 @@ const { title } = Astro.props;
      **/
     font-size: 16px;
 
-    overflow-x: hidden;
-
     /**
      * Primary and secondary have good contrast. Either primary is 'color' and
      * secondary is 'background' for many elements.
@@ -186,25 +184,14 @@ const { title } = Astro.props;
 
   .autogrid {
     display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--min-column-size), 100%), 1fr)
-    );
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(25ch, 100%), 1fr));
     place-items: center;
-    margin: 0 auto;
-  }
-
-  @media screen and (max-width: 768px) {
-    .autogrid {
-      /* Smaller gap on smaller screens. */
-      grid-gap: 0.5rem;
-    }
   }
 
   .container {
     --max-width: calc(var(--min-column-size) * 3);
-    max-width: min(100%, var(--max-width));
+    max-width: var(--max-width);
     margin: 0 auto;
   }
 

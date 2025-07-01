@@ -65,6 +65,7 @@ const upcomingEvents = await getUpcomingEvents(4);
           welcome, but always confirm details on our event listing!
         </p>
       </article>
+
       <article class="card">
         <Image
           src={Overland}
@@ -129,8 +130,9 @@ const upcomingEvents = await getUpcomingEvents(4);
     <LinkButton
       class="all-events"
       href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
-      >See All Events</LinkButton
     >
+      See All Events
+    </LinkButton>
   </section>
 </BaseLayout>
 
@@ -168,6 +170,9 @@ const upcomingEvents = await getUpcomingEvents(4);
   }
 
   .card {
+    /* min-width so the grid items allow themselves to be shrunk */
+    min-width: 0;
+
     background-color: var(--secondary-300);
     padding: 2rem;
     border-radius: 1rem;
