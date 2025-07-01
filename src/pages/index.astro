@@ -119,7 +119,7 @@ const upcomingEvents = await getUpcomingEvents(4);
 
   <section>
     <h2>- Upcoming Events -</h2>
-    <div class="container">
+    <div class="container upcoming">
       {
         upcomingEvents.map((event) => {
           return <EventListing event={event} class="upcoming-event" />;
@@ -215,6 +215,11 @@ const upcomingEvents = await getUpcomingEvents(4);
     .card {
       /* smaller padding on cards for smaller screens. */
       padding: 1rem;
+    }
+
+    .upcoming-event {
+      margin: 0rem;
+      margin-block: 1rem;
     }
   }
 </style>
