@@ -2,7 +2,7 @@
 title: Game and Fish, Rock Pile
 time: 10:00am
 invite: Guests Welcome
-location: AZ Game and Fish Expo Ben Avery complex, Highway 74 "second" Entrance. (33.804756,-112.165000)
+location: AZ Game and Fish Expo Ben Avery complex, Highway 74 "second" Entrance. (33.804756, -112.165000)
 ---
 
 AZ Game and Fish outdoor expo will include a rock pile again this year! Roland

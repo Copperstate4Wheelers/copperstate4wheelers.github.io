@@ -20,8 +20,9 @@ const { title, wide = false } = Astro.props;
 </BaseLayout>
 
 <style>
-  .narrow, .wide {
-    padding: 0rem 1rem;
+  .narrow,
+  .wide {
+    margin: 0 1rem;
     margin-top: 2rem;
     margin-bottom: 4rem;
   }
@@ -31,6 +32,6 @@ const { title, wide = false } = Astro.props;
   }
 
   .wide {
-    max-width: 120ch;
+    max-width: min(100%, 120ch);
   }
 </style>
