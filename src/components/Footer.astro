@@ -3,7 +3,9 @@ const now = new Date();
 ---
 
 <footer>
-  <p>Copyright &copy; Copperstate4Wheelers {now.getFullYear()}</p>
+  <div class="container">
+    <span>Copyright {now.getFullYear()} &copy; Copperstate4Wheelers</span>
+  </div>
 </footer>
 
 <style>
@@ -14,7 +16,7 @@ const now = new Date();
     min-height: 10em;
     place-items: center;
 
-    p {
+    span {
       word-wrap: break-word;
     }
   }

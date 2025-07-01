@@ -55,7 +55,13 @@ function classForLink(name: string) {
 
 <style>
   header {
-    --navbar-background: var(--primary-700);
+    --navbar-background: linear-gradient(
+      -164deg,
+      var(--primary-700) 0%,
+      var(--primary) 50%,
+      var(--primary-700) 100%
+    );
+    --navbar-menu-background: var(--primary-700);
     --navbar-text: var(--secondary);
 
     /* Logo size scales based on the viewport, clamping at a max size. */
@@ -69,7 +75,7 @@ function classForLink(name: string) {
     z-index: 999;
 
     color: var(--navbar-text);
-    background-color: var(--navbar-background);
+    background: var(--navbar-background);
 
     /* normalize all links inside the navbar */
     a {
@@ -162,7 +168,7 @@ function classForLink(name: string) {
   /* change the nav-toggle-label when the checkbox is checked */
   .nav-toggle:checked ~ .nav-toggle-label {
     span {
-      background-color: var(--navbar-background);
+      background-color: rgba(0, 0, 0, 0);
     }
 
     span::before {
@@ -187,7 +193,7 @@ function classForLink(name: string) {
     transform: scale(1, 0);
     transform-origin: top;
     transition: transform ease-in 400ms;
-    background-color: var(--navbar-background);
+    background: var(--navbar-menu-background);
     left: 0;
     right: 0;
     top: 100%; /* place the top of the nav at the bottom of the parent */
@@ -209,8 +215,12 @@ function classForLink(name: string) {
     }
 
     a {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 500;
       opacity: 0%;
       transition: opacity ease-in-out 250ms;
+      margin-block: 1rem;
     }
   }
 

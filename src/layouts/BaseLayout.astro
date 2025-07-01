@@ -67,7 +67,7 @@ const { title } = Astro.props;
 
     <title>{title}</title>
 
-    <ClientRouter fallback="none" />
+    <!--<ClientRouter fallback="none" />-->
   </head>
   <body>
     <Navbar />
@@ -106,7 +106,7 @@ const { title } = Astro.props;
     --text-font: "Montserrat", sans-serif;
     --title-font: "Road Rage", sans-serif;
 
-    --min-column-size: 45ch;
+    --min-column-size: 30ch;
   }
 
   *,
@@ -185,7 +185,10 @@ const { title } = Astro.props;
   .autogrid {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(25ch, 100%), 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--min-column-size), 100%), 1fr)
+    );
     place-items: center;
   }
 
@@ -193,6 +196,7 @@ const { title } = Astro.props;
     --max-width: calc(var(--min-column-size) * 3);
     max-width: var(--max-width);
     margin: 0 auto;
+    padding-inline: 1rem;
   }
 
   iframe {
