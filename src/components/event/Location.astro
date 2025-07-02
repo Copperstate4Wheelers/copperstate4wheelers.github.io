@@ -17,11 +17,3 @@ const { event, class: className = "", ...rest } = Astro.props;
 <IconText icon="map:map-pin" class={`location ${className}`} {...rest}>
   {event.data.location}
 </IconText>
-
-<style>
-  .location {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0.5rem 0;
-  }
-</style>

@@ -17,11 +17,3 @@ const { event, class: className = "", ...rest } = Astro.props;
 <IconText icon="mdi:clock-outline" class={`time ${className}`} {...rest}>
   {event.data.time}
 </IconText>
-
-<style>
-  .time {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0.5rem 0;
-  }
-</style>

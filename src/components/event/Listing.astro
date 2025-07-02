@@ -4,8 +4,9 @@
  * typically for placing on other non-event pages.
  */
 
-import type { ParsedEvent } from "@lib/events";
 import { DateTime } from "luxon";
+import type { ParsedEvent } from "@lib/events";
+
 import EventTime from "@components/event/Time.astro";
 import EventLocation from "@components/event/Location.astro";
 import EventInvite from "@components/event/Invite.astro";
@@ -38,7 +39,7 @@ function isPast(): string {
   </div>
 
   <div class="event-details">
-    <p class="title">{event.data.title}</p>
+    <span class="title">{event.data.title}</span>
     <EventTime event={event} />
     <EventLocation event={event} />
     <EventInvite event={event} />
@@ -51,12 +52,12 @@ function isPast(): string {
   }
 
   .event-listing {
-    display: grid;
-    grid-template-columns: 6rem 1fr;
-    text-decoration: none;
+    display: flex;
+    flex-flow: row nowrap;
     background-color: var(--secondary-300);
     box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
-    align-items: center;
+
+    text-decoration: none;
 
     &:hover,
     &:focus-visible {
@@ -64,73 +65,69 @@ function isPast(): string {
     }
   }
 
-  .event-details {
-    color: var(--primary);
-    padding: 1rem;
-
-    .title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.1;
-      padding: 0;
-      margin: 0;
-      color: var(--primary-700);
-      width: fit-content;
-    }
-  }
-
   .date {
-    min-height: 100%;
+    flex: 0 0 auto;
+
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
+    min-width: calc(var(--fs-700) * 2);
 
     background-color: var(--accent);
-    color: var(--primary-700);
+    color: var(--primary-500);
+
+    font-size: var(--fs-400);
+    font-weight: 500;
 
     .weekday {
-      font-weight: 600;
-      font-size: 1.25rem;
     }
 
     .day {
-      font-weight: 700;
-      font-size: 1.5rem;
+      font-size: var(--fs-500);
+      font-weight: 600;
     }
 
     .month {
-      font-weight: 600;
-      font-size: 1.25rem;
     }
   }
 
-  @media screen and (width < 480px) {
+  .event-details {
+    font-size: var(--fs-400);
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    color: var(--primary);
+    padding: var(--fs-400);
+    gap: 0.25em;
+
+    .title {
+      font-size: var(--fs-400);
+      font-weight: 700;
+    }
+  }
+
+  @media screen and (width < 25rem) {
     .event-listing {
-      display: grid;
-      grid-template-columns: 1fr;
+      flex-flow: column nowrap;
     }
 
     .date {
       flex-flow: row nowrap;
-      padding: 1rem;
-      gap: 1rem;
+      gap: 1ch;
+      padding-block: 1em;
 
       .weekday {
-        font-weight: 600;
-        font-size: 1.25rem;
       }
 
       .day {
-        font-weight: 700;
-        font-size: 1.25rem;
-        order: 1;
+        order: 1; /* force date to the end */
+        font-size: inherit;
+        font-weight: inherit;
       }
 
       .month {
-        font-weight: 600;
-        font-size: 1.25rem;
       }
     }
   }

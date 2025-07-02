@@ -20,25 +20,20 @@ const { icon, class: className = "", ...rest } = Astro.props;
 
 <style>
   .icon-text {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    width: fit-content;
-    min-width: min-content;
 
     span {
       padding: 0;
       margin: 0;
-      max-width: 100%;
-      min-width: min-content;
-      width: auto;
     }
 
     svg {
-      height: 1.2em;
-      width: 1.2em;
-      min-width: 1.2em;
-      min-height: 1.2em;
+      height: 1em;
+      width: 1em;
+      min-width: 1em;
+      min-height: 1em;
     }
   }
 </style>
