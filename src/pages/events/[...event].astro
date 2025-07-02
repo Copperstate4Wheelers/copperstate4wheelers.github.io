@@ -31,7 +31,7 @@ export const getStaticPaths = (async () => {
  * Per-Event page render.
  **/
 
-import ContentPageLayout from "@layouts/ContentPageLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import EventTime from "@components/event/Time.astro";
 import EventLocation from "@components/event/Location.astro";
 import EventInvite from "@components/event/Invite.astro";
@@ -48,7 +48,7 @@ const { Content } = await render(event);
 const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
-<ContentPageLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
+<BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
   <h2>{event.data.title}</h2>
 
   <div class="detail-group">
@@ -68,7 +68,7 @@ const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
   <section class="page">
     <Content />
   </section>
-</ContentPageLayout>
+</BaseLayout>
 
 <style>
   h2 {

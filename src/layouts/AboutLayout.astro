@@ -1,5 +1,5 @@
 ---
-import ContentPageLayout from "./ContentPageLayout.astro";
+import BaseLayout from "./BaseLayout.astro";
 import Subnav from "@components/Subnav.astro";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<ContentPageLayout title={title}>
+<BaseLayout title={title}>
   <Subnav
     title="About Us"
     links={[
@@ -25,10 +25,4 @@ const { title } = Astro.props;
   <article class="about-content">
     <slot />
   </article>
-</ContentPageLayout>
-
-<style>
-  h2 {
-    margin-bottom: 1rem;
-  }
-</style>
+</BaseLayout>

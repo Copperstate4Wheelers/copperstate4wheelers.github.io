@@ -7,7 +7,7 @@ interface Props {
   prev?: string;
 }
 
-import ContentPageLayout from "@layouts/ContentPageLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import EventListing from "@components/event/Listing.astro";
 
 /* Calculate years based on the available event listings. */
@@ -35,7 +35,7 @@ const { next, prev } = Astro.props;
 const eventsForYear = await events.getEventsForYear(year! as number);
 ---
 
-<ContentPageLayout title={`CS4W: Events ${year}`}>
+<BaseLayout title={`CS4W: Events ${year}`}>
   <div class="events-page-header">
     <h2>Club Events: {year}</h2>
     <nav>
@@ -58,7 +58,7 @@ const eventsForYear = await events.getEventsForYear(year! as number);
       );
     })
   }
-</ContentPageLayout>
+</BaseLayout>
 
 <style>
   h2 {

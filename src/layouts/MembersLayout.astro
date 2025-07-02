@@ -1,6 +1,6 @@
 ---
 import Subnav from "@components/Subnav.astro";
-import ContentPageLayout from "@layouts/ContentPageLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 interface Props {
   title: string;
@@ -9,7 +9,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<ContentPageLayout title={title} wide>
+<BaseLayout title={title}>
   <Subnav
     title="Members"
     links={[
@@ -19,6 +19,4 @@ const { title } = Astro.props;
   />
 
   <slot />
-</ContentPageLayout>
-
-<style></style>
+</BaseLayout>
