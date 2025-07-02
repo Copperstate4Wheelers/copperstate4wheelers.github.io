@@ -13,28 +13,24 @@ interface Props {
 const { href, class: className = "", ...rest } = Astro.props;
 ---
 
-<a href={href} class={`button ${className}`} {...rest}>
+<a href={href} class={`button primary bg-accent fs-400 ${className}`} {...rest}>
   <slot />
 </a>
 
 <style>
   .button {
-    color: var(--primary);
-    background-color: var(--accent);
-
     text-decoration: none;
     padding: 0.5em 1em;
     border-radius: 0.4em;
-    font-weight: bold;
+    font-weight: 600;
 
-    display: grid;
-    width: fit-content;
+    display: inline-grid;
     place-items: center;
     place-content: center;
   }
 
   .button:hover,
   .button:focus-visible {
-    background-color: hsl(from var(--accent) h s calc(l * 0.9));
+    background: var(--accent-300);
   }
 </style>
