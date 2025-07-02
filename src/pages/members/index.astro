@@ -32,35 +32,21 @@ for (let i = 0; i < members.length; i++) {
 ---
 
 <MembersLayout title="CS4W: Members">
-  <h3>Current Members</h3>
+  <section class="ultrawide">
+    <h3>Current Members</h3>
 
-  <section class="members">
-    {
-      members.map(([imagePath, caption]) => (
-        <Card imagePath={imagePath} caption={caption} />
-      ))
-    }
+    <div class="autocolumn">
+      {
+        members.map(([imagePath, caption]) => (
+          <Card imagePath={imagePath} caption={caption} />
+        ))
+      }
+    </div>
   </section>
 </MembersLayout>
 
 <style>
-  .members {
-    --min-card-size: 30ch;
-
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--min-card-size), 100%), 1fr)
-    );
-    place-items: center;
-    margin: 0 auto;
-  }
-
-  @media screen and (width < 768px) {
-    .members {
-      /* Smaller gap on smaller screens. */
-      grid-gap: 0.5rem;
-    }
+  .autocolumn {
+    --column-width: 15rem;
   }
 </style>

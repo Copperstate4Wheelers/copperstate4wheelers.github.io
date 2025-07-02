@@ -38,7 +38,7 @@ const { title, links, class: className = "", ...rest } = Astro.props;
 <nav class={`${className}`} transition:animate="none" {...rest}>
   <h2>{title}</h2>
 
-  <ul class="subpage-nav">
+  <ul class="subpage-nav fs-400 autocolumn auto-fill">
     {
       links.map(([href, content]) => {
         return (
@@ -53,17 +53,23 @@ const { title, links, class: className = "", ...rest } = Astro.props;
 
 <style>
   h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.25em;
+  }
+
+  nav {
+    margin-bottom: var(--fs-400);
   }
 
   .subpage-nav {
+    --column-width: 10rem;
+    /*
     display: flex;
     flex-flow: row wrap;
-    gap: 0.5rem;
+  */
     list-style: none;
     margin: 0;
     padding: 0;
-    justify-content: center;
+    justify-content: flex-start;
 
     li {
       margin: 0;
@@ -77,21 +83,30 @@ const { title, links, class: className = "", ...rest } = Astro.props;
 
   .subnav-link {
     display: inline-block;
-    font-size: 1.25rem;
+    font-size: var(--fs-400);
     font-weight: 600;
-    padding: 0.75rem;
-    color: var(--secondary);
-    background-color: var(--primary);
+    padding: 0.75em;
+    color: var(--primary);
 
     &:hover,
     &:focus-visible {
-      box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
+      background: var(--secondary-500);
     }
-    border: solid 0.2rem var(--primary);
   }
 
   .active-subnav-link {
-    color: var(--primary-700);
-    background-color: var(--accent);
+    position: relative;
+
+    &:after {
+      position: absolute;
+      display: inline-block;
+      content: "";
+      width: 100%;
+      height: 0.25em;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--accent);
+    }
   }
 </style>
