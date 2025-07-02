@@ -2,22 +2,43 @@
 const now = new Date();
 ---
 
-<footer>
-  <div class="container">
-    <span>Copyright {now.getFullYear()} &copy; Copperstate4Wheelers</span>
+<footer class="content-grid bg-primary secondary">
+  <div class="ultrawide info fs-300">
+    <p class="copyright">
+      Copyright &copy; Copperstate4Wheelers {now.getFullYear()}
+    </p>
+
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>
+        <a href="mailto:copperstate4wheelers@yahoo.com" class="secondary">
+          copperstate4wheelers@yahoo.com
+        </a>
+      </p>
+      <p>Club meeting 2nd Thursday every month</p>
+      <address>
+        Mesa Fire & Medical Department - Station 201<br />
+        360 E 1st St<br />
+        Mesa, AZ 85201
+      </address>
+    </div>
   </div>
 </footer>
 
 <style>
   footer {
-    display: grid;
-    background-color: var(--primary-700);
-    color: var(--secondary);
-    min-height: 10em;
-    place-items: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
 
-    span {
-      word-wrap: break-word;
-    }
+  .info {
+    display: flex;
+    gap: var(--fs-500);
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-block: var(--fs-500);
   }
 </style>
