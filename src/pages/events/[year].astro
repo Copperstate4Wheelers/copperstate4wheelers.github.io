@@ -36,7 +36,7 @@ const eventsForYear = await events.getEventsForYear(year! as number);
 ---
 
 <BaseLayout title={`CS4W: Events ${year}`}>
-  <div class="events-page-header">
+  <div class="page-header wide">
     <h2>Club Events: {year}</h2>
     <nav>
       {prev && <a href={prev}>&lt Previous Year</a>}
@@ -49,11 +49,13 @@ const eventsForYear = await events.getEventsForYear(year! as number);
     eventsForYear.map((month) => {
       const monthName = month[0].dateTime.monthLong;
       return (
-        <section class="month" aria-labelledby={monthName}>
+        <section class="month wide" aria-labelledby={monthName}>
           <h3 class="month-name">{monthName}</h3>
-          {month.map((event) => (
-            <EventListing event={event} class="month-event-card" />
-          ))}
+          <div class="">
+            {month.map((event) => (
+              <EventListing event={event} class="month-event-card" />
+            ))}
+          </div>
         </section>
       );
     })
@@ -61,49 +63,38 @@ const eventsForYear = await events.getEventsForYear(year! as number);
 </BaseLayout>
 
 <style>
-  h2 {
-    font-size: 4rem;
-    padding: 0;
-    margin: 0;
-  }
+  .page-header {
+    display: flex;
+    gap: var(--fs-400);
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
 
-  .month-event-card {
-    margin: 1rem 0;
-  }
-
-  .events-page-header {
-    a {
-      font-size: 1.25rem;
+    nav {
+      font-size: var(--fs-400);
     }
   }
 
-  @media screen and (width > 1024px) {
+  .month {
+    .month-event-card {
+      margin-block: var(--fs-400);
+    }
+  }
+
+  @media screen and (width > 50rem) {
     .month {
+      font-size: var(--fs-400);
       display: grid;
       grid-template-columns: 10rem 1fr;
-      gap: 0 1rem;
-    }
+      gap: 1em;
 
-    .month-name {
-      grid-column: 1;
-      margin: 0;
-      margin-top: 1rem;
-      text-align: right;
-      align-self: start;
-      justify-self: right;
-      position: sticky;
-      top: 1rem;
-    }
-
-    .month-event-card {
-      grid-column: 2;
-    }
-
-    .events-page-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 2rem;
+      .month-name {
+        align-self: start;
+        justify-self: end;
+        position: sticky;
+        top: 1em;
+        text-align: right;
+      }
     }
   }
 </style>

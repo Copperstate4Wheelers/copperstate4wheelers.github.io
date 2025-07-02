@@ -2,6 +2,7 @@
 title: New River Trail
 time: 8am
 invite: Guests Welcome
+location: somewhere
 ---
 
 State Trust Land permit is required.
