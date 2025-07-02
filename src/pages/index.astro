@@ -1,19 +1,19 @@
 ---
 import { Image } from "astro:assets";
+import { DateTime } from "luxon";
+import { getUpcomingEvents } from "@lib/events";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-import LinkButton from "@components/LinkButton.astro";
 import IndexClubHero from "@components/index/Hero.astro";
+import EventListing from "@components/event/Listing.astro";
+import LinkButton from "@components/LinkButton.astro";
 
 import WalnutCanyon from "@assets/pages/index/2025_04__Walnut_Canyon.jpg";
 import DayTrip from "@assets/pages/index/2025_06__Pucker_Ridge.jpg";
 import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
-import { getUpcomingEvents } from "@lib/events";
-import EventListing from "@components/event/Listing.astro";
-import { DateTime } from "luxon";
 
 const upcomingEvents = await getUpcomingEvents(4);
 ---
@@ -21,9 +21,9 @@ const upcomingEvents = await getUpcomingEvents(4);
 <BaseLayout title="Copperstate4Wheelers">
   <IndexClubHero />
 
-  <section class="container">
+  <section class="wide">
     <h2>- About Us -</h2>
-    <div class="autogrid">
+    <div class="autocolumn">
       <article>
         <h3>Mission</h3>
         <p>
@@ -46,9 +46,9 @@ const upcomingEvents = await getUpcomingEvents(4);
     </div>
   </section>
 
-  <section class="container">
+  <section class="ultrawide">
     <h2>- What We Do -</h2>
-    <div class="autogrid baseline">
+    <div class="autocolumn">
       <article class="card">
         <Image
           src={DayTrip}
@@ -117,9 +117,9 @@ const upcomingEvents = await getUpcomingEvents(4);
     </div>
   </section>
 
-  <section>
+  <section class="content">
     <h2>- Upcoming Events -</h2>
-    <div class="container upcoming">
+    <div class="upcoming-events">
       {
         upcomingEvents.map((event) => {
           return <EventListing event={event} class="upcoming-event" />;
@@ -138,88 +138,32 @@ const upcomingEvents = await getUpcomingEvents(4);
 
 <style>
   section {
-    --title-size: 5rem;
-    --subtitle-size: 2rem;
-
-    padding: 0 var(--subtitle-size);
-
-    &:last-of-type {
-      margin-bottom: calc(var(--title-size) * 2);
-    }
-
     h2 {
-      font-size: var(--title-size);
-      padding: 0em;
-      margin: 1em 0em;
       text-align: center;
+      font-size: var(--fs-700);
     }
+
     h3 {
-      font-size: var(--subtitle-size);
-      padding: 0;
-      margin: 1rem 0rem;
-    }
-    article {
-      font-size: 1.5rem;
-      text-align: left;
-    }
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .card {
-    /* min-width so the grid items allow themselves to be shrunk */
-    min-width: 0;
-
-    background-color: var(--secondary-300);
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
-
-    img {
-      border-radius: inherit;
-      border: 2px solid var(--primary);
+      font-size: var(--fs-500);
+      font-weight: 600;
     }
 
-    &:hover,
-    &:focus-visible {
-      box-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.4);
+    p {
+      font-size: var(--fs-400);
+      line-height: 1.2em;
     }
   }
 
-  .baseline {
-    align-items: stretch;
-  }
-
-  .bg-white {
-    background-color: white;
-  }
-
-  .upcoming-event {
-    margin: 1rem;
-  }
-
-  .all-events {
-    font-size: 1.5rem;
-    margin: auto;
-  }
-
-  @media screen and (width < 768px) {
-    section {
-      --title-size: 4rem;
-      padding: 0 1rem;
+  .autocolumn {
+    --column-width: 15rem;
+    & > * {
+      align-self: stretch;
     }
+  }
 
-    .card {
-      /* smaller padding on cards for smaller screens. */
-      padding: 1rem;
-    }
-
+  .upcoming-events {
     .upcoming-event {
-      margin: 0rem;
-      margin-block: 1rem;
+      margin-block: var(--fs-400);
     }
   }
 </style>

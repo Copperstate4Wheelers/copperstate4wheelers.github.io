@@ -36,6 +36,14 @@
   --fs-visual: clamp(var(--fs-500), 5vw, var(--fs-700));
 }
 
+/* Breakpoint matches the content grid minimum column size. */
+@media screen and (width < 50rem) {
+  :root {
+    /* reduce variance in font sizes for mobile screens */
+    --mult: 1.309;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -110,7 +118,11 @@ h6 {
   color: var(--primary-700);
   font-family: var(--ff-title);
   font-optical-sizing: auto;
-  font-weight: 700;
+}
+
+h1,
+h2 {
+  font-weight: 400;
 }
 
 h3,
@@ -208,4 +220,19 @@ img {
   & > .ultrawide {
     grid-column: ultrawide;
   }
+}
+
+/**
+ * Automatically split a space into columns.
+ **/
+.autocolumn {
+  --gap: 1rem;
+  --column-width: 24rem;
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--column-width), 100%), 1fr)
+  );
+  gap: var(--gap);
 }
