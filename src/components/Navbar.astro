@@ -15,277 +15,217 @@ function classForLink(name: string) {
 
   let path = Astro.url.pathname.split("/");
   if (path.length >= 2 && name == path[1]) {
-    return "active-nav";
+    return `active-nav`;
   } else {
-    return "inactive-nav";
+    return `inactive-nav`;
   }
 }
 ---
 
-<header transition:animate="none">
-  <div class="container">
-    <h1 class="page-title">Copperstate4Wheelers</h1>
-    <Image
-      class="logo"
-      src={logo}
-      alt="Copperstate4Wheelers.com Logo"
-      width="256"
-    />
+<header transition:animate="none" class="bg-primary accent fs-600">
+  <h1 class="site-title">Copperstate4Wheelers</h1>
 
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-    <nav>
-      <ul>
+  <nav class="site-nav content-grid">
+    <div class="ultrawide nav-container">
+      <Image
+        class="nav-logo"
+        src={logo}
+        alt="Copperstate4Wheelers.com Logo"
+        width="256"
+      />
+
+      <label class="fs-600 nav-toggle-label" for="nav-toggle">
+        <span></span>
+      </label>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <ul class="nav-links">
         <li><a href="/" class={classForLink("")}>Home</a></li>
         <li><a href="/about" class={classForLink("about")}>About</a></li>
         <li><a href="/members" class={classForLink("members")}>Members</a></li>
         <li>
           <a
             href={`/events/${DateTime.local({ zone: "America/Phoenix" }).year}`}
-            class={classForLink("events")}>Events</a
+            class={classForLink("events")}
           >
+            Events
+          </a>
         </li>
       </ul>
-    </nav>
-
-    <label for="nav-toggle" class="nav-toggle-label">
-      <span></span>
-    </label>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <style>
   header {
-    --navbar-background: linear-gradient(
-      -164deg,
-      var(--primary-700) 0%,
-      var(--primary) 50%,
-      var(--primary-700) 100%
-    );
-    --navbar-menu-background: var(--primary-700);
-    --navbar-text: var(--secondary);
-
-    /* Logo size scales based on the viewport, clamping at a max size. */
-    --logo-size: clamp(1.2rem, 3vw, 2rem);
-
-    /* hamburger width controls the button + the padding around the logo */
-    --hamburger-width: 2rem;
-
-    position: relative;
-    display: block;
     z-index: 999;
 
-    color: var(--navbar-text);
-    background: var(--navbar-background);
-
-    /* normalize all links inside the navbar */
-    a {
-      color: var(--navbar-text);
-      text-decoration: none;
-    }
-
-    /* remove the nav-toggle from the flow and hide it offscreen */
+    /* remove the toggle from the document, but still support tab-focus */
     .nav-toggle {
       position: fixed;
-      top: -9999px !important;
-      left: -9999px !important;
+      right: -9999px !important;
+      bottom: -9999px !important;
     }
 
-    .container {
-      display: flex;
-      gap: 1rem;
-      padding: 1.5rem;
-      align-content: center;
-      justify-content: space-between;
-      height: 100%;
+    .site-title {
+      position: fixed;
+      right: -9999px;
+      bottom: -9999px;
     }
   }
 
-  .page-title {
-    position: fixed;
-    bottom: -9999px;
+  .site-nav {
+    position: relative;
+    grid-column: -1 / 1;
   }
 
-  .logo {
-    display: block;
-    object-fit: cover;
-    width: auto;
-    height: max(5rem, min(15vh, 15vw));
-  }
-
-  /**
-   * The nav-toggle-label is a <label> for an <input> checkbox that makes the
-   * menu appear and disappear. This is the "checkbox hack" for css-only menus.
-   **/
-  .nav-toggle-label {
-    --hamburger-thickness: 0.3em;
-
-    width: auto; /* because flex makes this act like block */
-    height: 100%; /* click anywhere in the header to activate */
-
+  .nav-container {
     display: flex;
+    flex-flow: row nowrap;
     align-items: center;
-    cursor: pointer;
-    border-radius: 0.2em;
+    justify-content: space-between;
+  }
 
-    /* create the hamburger via span pseudo elements */
-    span,
+  .nav-logo {
+    width: auto;
+    height: 2.5em;
+    margin-block: 0.25em;
+  }
+
+  .nav-toggle-label {
+    --height: 1em;
+    --width: 1em;
+
+    --step: calc(var(--height) / 5);
+
+    display: block;
+    width: var(--width);
+    height: var(--height);
+    flex-shrink: 0;
+
+    span {
+      position: relative;
+      display: block;
+      height: 20%;
+      border-radius: 0.5em;
+      background: var(--accent);
+    }
+
     span::before,
     span::after {
+      position: absolute;
+      content: "";
       display: block;
-      background-color: var(--navbar-text);
-      width: var(--hamburger-width);
-      height: var(--hamburger-thickness);
-      border-radius: calc(var(--hamburger-thickness) * 0.5);
-    }
-
-    span {
-      /* place the span relative to it's normal flow */
-      position: relative;
-
-      /* before and after positioned via absolute offsets from the <span> */
-      &::before {
-        content: "";
-        position: absolute;
-        bottom: calc(var(--hamburger-thickness) * 1.5);
-        transform: rotate(0deg);
-        transition:
-          transform ease-in-out 400ms,
-          bottom ease-in-out 400ms;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: calc(var(--hamburger-thickness) * 1.5);
-        transform: rotate(0deg);
-        transition:
-          transform ease-in-out 400ms,
-          top ease-in-out 400ms;
-      }
-    }
-  }
-
-  /* change the nav-toggle-label when the checkbox is checked */
-  .nav-toggle:checked ~ .nav-toggle-label {
-    span {
-      background-color: rgba(0, 0, 0, 0);
+      height: var(--step);
+      width: 100%;
+      background: var(--accent);
+      border-radius: 0.5em;
     }
 
     span::before {
-      transform: rotate(45deg);
-      bottom: 0;
+      top: calc(var(--step) * 2);
     }
 
     span::after {
-      transform: rotate(-45deg);
-      top: 0;
+      top: calc(var(--step) * 4);
     }
   }
 
-  /* highlight the label when the user has selected the checkbox for input */
-  .nav-toggle:focus ~ .nav-toggle-label {
-    border: 1px solid var(--accent);
-  }
-
-  /* style the nav list */
-  nav {
+  .nav-links {
+    order: 1; /* always the last flex item */
+    width: 100%;
     position: absolute;
-    transform: scale(1, 0);
-    transform-origin: top;
-    transition: transform ease-in 400ms;
-    background: var(--navbar-menu-background);
+    background: var(--primary);
+    grid-column: fullwidth;
+
+    top: 100%;
     left: 0;
     right: 0;
-    top: 100%; /* place the top of the nav at the bottom of the parent */
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 0;
+
+    list-style: none;
     text-align: right;
 
-    .active-nav {
-      color: var(--accent);
-    }
-
-    /* align the link list with the hamburger */
-    ul {
-      margin-right: calc(var(--hamburger-width) * 1);
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin-block: 0.75em;
-    }
+    display: block;
+    transform: scale(1, 0);
+    transition: transform ease-in-out 400ms;
+    transform-origin: top;
 
     a {
-      display: inline-block;
-      font-size: 2rem;
-      font-weight: 500;
-      opacity: 0%;
-      transition: opacity ease-in-out 250ms;
-      margin-block: 1rem;
+      position: relative;
+      display: block;
+      font-size: var(--fs-500);
+      font-weight: 600;
+
+      margin-block: 1em;
+      text-decoration: none;
+      color: var(--secondary);
+      text-align: center;
+      opacity: 0;
+      transition: opacity ease 250ms;
+
+      &.active-nav {
+        color: var(--accent);
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent);
+      }
     }
   }
 
-  /* when the toggle is checked, make the menu appear */
-  .nav-toggle:checked ~ nav {
+  .nav-toggle:checked ~ .nav-links {
     transform: scale(1, 1);
 
     a {
-      opacity: 100%;
-      transition: opacity 250ms ease-in-out 250ms;
+      opacity: 1;
+      transition: opacity 250ms ease 250ms;
     }
   }
 
-  /* desktop style */
-  @media screen and (width > 50em) {
-    /* remove the toggles entirely */
-    .nav-toggle-label,
-    .nav-toggle {
+  /* desktop stop  */
+  @media screen and (width > 50rem) {
+    .nav-toggle-label {
       display: none;
     }
 
-    /* make the header into a flex display */
-    header .container {
-      --logo-size: clamp(2rem, 5vw, 3rem);
-
-      max-width: 100rem;
-    }
-
-    nav {
-      /* remove all mobile-specific styling */
+    .nav-links {
       all: unset;
-      font-size: calc(var(--logo-size) * 0.6);
-      place-self: center;
 
-      ul {
-        display: flex;
-        gap: 1em;
-        margin: 0;
-      }
-
-      li {
-        padding: 0;
-        margin: 0;
-      }
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 1em;
+      position: static;
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
       a {
-        position: relative;
-        opacity: 100%;
-        font-weight: 600;
+        opacity: 1;
 
-        &::before {
-          content: "";
+        &:before {
           position: absolute;
-          bottom: calc(100% + 0.25rem);
-          background-color: var(--accent);
-          height: 0.25rem;
-          border-radius: 0.25rem;
+          display: inline-block;
+          content: "";
           width: 100%;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 0.125em;
+          background: var(--accent);
+          border-radius: 0.125em;
           transform: scale(0, 1);
-          transition: transform ease-in-out 250ms;
+          transition: transform ease 200ms;
         }
 
         &:hover,
         &:focus-visible {
-          &::before {
+          &:before {
             transform: scale(1);
           }
         }

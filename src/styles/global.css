@@ -171,9 +171,9 @@ img {
 .fullwidth {
   /* configurable */
   --gap: clamp(0.5rem, 3vw, 3rem);
-  --content: 60ch;
-  --wide: 80ch;
-  --ultrawide: 120ch;
+  --content: 50rem;
+  --wide: 60rem;
+  --ultrawide: 100rem;
 
   /* computed */
   --wide-size: calc((var(--wide) - var(--content)) / 2);
