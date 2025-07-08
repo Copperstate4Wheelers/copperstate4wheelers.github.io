@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
+import serviceWorker from "astrojs-service-worker";
 import favicons from "astro-favicons";
 import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
@@ -13,6 +14,7 @@ export default defineConfig({
     // Automatically redirect the top-level '/events' to the current event year
     "/events": `/events/${new Date().getFullYear()}`,
   },
+
   vite: {
     css: {
       transformer: "lightningcss",
@@ -24,14 +26,14 @@ export default defineConfig({
       cssMinify: "lightningcss",
     },
   },
+
   image: {
-    experimentalLayout: "constrained",
-  },
-  experimental: {
-    responsiveImages: true,
+    responsiveStyles: true,
+    layout: "constrained",
   },
 
   integrations: [
+    serviceWorker(),
     favicons({
       name: "Copperstate4Wheelers",
       short_name: "CS4W",
@@ -42,4 +44,3 @@ export default defineConfig({
     mdx(),
   ],
 });
-

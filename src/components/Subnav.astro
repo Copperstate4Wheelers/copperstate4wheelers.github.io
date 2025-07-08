@@ -4,12 +4,6 @@
  **/
 interface Props {
   /**
-   * Title for the subnav section. This is expected to be the title of the
-   * page and is an h2.
-   **/
-  title: string;
-
-  /**
    * Links should be provided in the form ["/link/to/page", "link text"].
    **/
   links: [string, string][];
@@ -29,16 +23,14 @@ function navLink(href: string): any {
   if (pathname.endsWith(href)) {
     className += " active-subnav-link";
   }
-  return { href, class: className };
+  return { href: `${href}#article`, class: className };
 }
 
-const { title, links, class: className = "", ...rest } = Astro.props;
+const { links, class: className = "", ...rest } = Astro.props;
 ---
 
-<nav class={`${className}`} transition:animate="none" {...rest}>
-  <h2>{title}</h2>
-
-  <ul class="subpage-nav fs-400 autocolumn auto-fill">
+<nav class={`fullwidth ${className}`} transition:animate="none" {...rest}>
+  <ul class="subpage-nav fs-400">
     {
       links.map(([href, content]) => {
         return (
@@ -49,11 +41,13 @@ const { title, links, class: className = "", ...rest } = Astro.props;
       })
     }
   </ul>
+  <a id="article"></a>
 </nav>
 
 <style>
-  h2 {
-    margin-bottom: 0.25em;
+  .overline {
+    text-transform: uppercase;
+    font-size: var(--fs-300);
   }
 
   nav {
@@ -62,14 +56,12 @@ const { title, links, class: className = "", ...rest } = Astro.props;
 
   .subpage-nav {
     --column-width: 10rem;
-    /*
-    display: flex;
-    flex-flow: row wrap;
-  */
     list-style: none;
     margin: 0;
     padding: 0;
-    justify-content: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 
     li {
       margin: 0;
@@ -84,29 +76,21 @@ const { title, links, class: className = "", ...rest } = Astro.props;
   .subnav-link {
     display: inline-block;
     font-size: var(--fs-400);
-    font-weight: 600;
-    padding: 0.75em;
+    font-weight: 500;
+    padding: 0.5rem;
     color: var(--primary);
+    text-align: center;
+
+    border: 0.2rem solid var(--primary);
 
     &:hover,
     &:focus-visible {
-      background: var(--secondary-500);
+      background: var(--accent-300);
     }
   }
 
   .active-subnav-link {
     position: relative;
-
-    &:after {
-      position: absolute;
-      display: inline-block;
-      content: "";
-      width: 100%;
-      height: 0.25em;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--accent);
-    }
+    background: var(--accent);
   }
 </style>

@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
 import Subnav from "@components/Subnav.astro";
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
   title: string;
@@ -9,20 +9,22 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<BaseLayout title={title}>
+<BaseLayout title={`CS4W: ${title}`}>
   <Subnav
-    title="About Us"
     links={[
       ["/about", "Club Info"],
-      ["/about/contact", "Contact Us"],
-      ["/about/required-gear", "Required Gear"],
       ["/about/bulldog-canyon", "Bulldog Canyon"],
+      ["/about/contact", "Contact"],
       ["/about/how-to-join", "How To Join"],
+      ["/about/required-gear", "Required Gear"],
       ["/about/submit-a-run", "Submit A Run"],
     ]}
   />
 
-  <article class="about-content">
+  <section class="about-content">
+    <h2>{title}</h2>
     <slot />
-  </article>
+  </section>
 </BaseLayout>
+
+<style></style>

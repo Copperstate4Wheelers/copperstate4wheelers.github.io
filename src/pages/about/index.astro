@@ -5,9 +5,7 @@ import { Image } from "astro:assets";
 import logo from "@assets/site/copperstate_logo.png";
 ---
 
-<AboutLayout title="CS4W: About Us">
-  <h3>Club Info</h3>
-
+<AboutLayout title="Club Info">
   <p>
     Copperstate 4 Wheelers was formed and incorporated March 31, 1972 by a group
     of families to promote safe enjoyable family style 4 wheeling. We operate as
@@ -50,35 +48,11 @@ import logo from "@assets/site/copperstate_logo.png";
   .logo-image {
     display: block;
     float: right;
-    max-width: 50%;
-  }
-
-  li {
-    font-size: 1.25rem;
-  }
-
-  .column-layout {
-    width: 100%;
-    max-width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(30ch, 100%), 1fr));
-
-    align-items: top;
-    gap: 1rem;
-
-    p {
-      margin: 0;
-    }
+    width: 15rem;
+    max-width: 85%;
   }
 
   .officer-role {
     font-weight: 500;
-  }
-
-  @media screen and (width < 768px) {
-    .logo-image {
-      float: initial;
-    }
   }
 </style>

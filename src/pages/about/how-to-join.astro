@@ -2,106 +2,77 @@
 import AboutLayout from "@layouts/AboutLayout.astro";
 ---
 
-<AboutLayout title="CS4W: How To Join">
-  <h3>How To Join</h3>
+<AboutLayout title="How To Join">
+  <section class="bylaw-details">
+    <h3>GENERAL REQUIREMENTS:</h3>
 
-  <div class="typography">
-    <p class="ff-normal fs-600 fw-700">font size: (fs-500) fw-500</p>
-    <p class="ff-normal fs-500 fw-500">font size: (fs-500) fw-500</p>
-    <p class="ff-normal fs-400 fw-500">font size: (fs-400) fw-500</p>
-    <p class="ff-normal fs-400 fw-400">font size: (fs-400) fw-400</p>
-    <p class="ff-normal fs-300 fw-400">font size: (fs-300) fw-400</p>
-  </div>
+    <ol>
+      <li>
+        ONLY THOSE PERSONS LEGALLY RESPONSIBLE FOR MAINTAINING A CURRENTLY
+        REGISTERED AND INSURED FOUR WHEEL DRIVE VEHICLE WITH A MANUFACTURER’S
+        DRY CURB WEIGHT OF AT LEAST TWO THOUSAND (2000) POUNDS OR GREATER ARE
+        ELIGIBLE FOR MEMBERSHIP IN THE COPPERSTATE 4-WHEEL DRIVE CLUB.
+        <ol>
+          <li>
+            MEMBERS NO LONGER RESPONSIBLE FOR A FOUR WHEEL DRIVE VEHICLE SHALL
+            REPLACE IT WITHIN 12 MONTHS IN ORDER TO "MAINTAIN THEIR MEMBERSHIP."
+          </li>
+          <li>
+            "LEGALLY RESPONSIBLE," INCLUDES MAINTAINING CURRENT REGISTRATION,
+            INSURANCE, AND MAINTENANCE OF THAT VEHICLE.
+          </li>
+        </ol>
+      </li>
 
-  <style>
-    .typography {
-      --ff-normal: "Montserrat", sans-serif;
-      --ff-title: "Road Rage", sans-serif;
+      <li>EACH MEMBERSHIP INCLUDES THE IMMEDIATE FAMILY.</li>
 
-      --mult: 1.618;
-      --inv: 0.618;
-      --fs-400: 1rem;
-      --fs-300: calc(var(--fs-400) * var(--inv));
-      --fs-500: calc(var(--fs-400) * var(--mult));
-      --fs-600: calc(var(--fs-500) * var(--mult));
-      --fs-700: calc(var(--fs-600) * var(--mult));
-      --fs-800: calc(var(--fs-700) * var(--mult));
-      --fs-visual: clamp(var(--fs-500), 5vw, calc(var(--fs-700) * var(--mult)));
-    }
+      <li>
+        ALL MEMBERS MUST CONDUCT THEMSELVES IN A RESPONSIBLE, RESPECTABLE, AND
+        ORDERLY FASHION WHEN ASSOCIATED WITH CLUB ACTIVITIES.
+      </li>
 
-    .fw-400 {
-      font-weight: 400;
-    }
+      <li>
+        ALL MEMBERS SHALL BE 18 YEARS OF AGE OR OLDER, HAVE A VALID, CURRENT
+        DRIVER’S LICENSE.
+      </li>
 
-    .fw-500 {
-      font-weight: 500;
-    }
+      <li>
+        REVIEW AND SIGN THE APPLICATION CONFIRMING THAT THEY HAVE READ,
+        UNDERSTAND, AND WILL ABIDE BY THE CLUB BYLAWS.
+      </li>
+    </ol>
 
-    .fw-600 {
-      font-weight: 600;
-    }
+    <h3>OBTAINING MEMBERSHIP:</h3>
+    <ol>
+      <li>
+        AN APPLICANT FOR MEMBERSHIP CAN OBTAIN AN APPLICATION FROM THE CLUB
+        SECRETARY AS WELL AS A COPY OF THE CLUB BYLAWS.
+      </li>
 
-    .fw-700 {
-      font-weight: 700;
-    }
+      <li>
+        APPLICANTS FOR MEMBERSHIP MUST:
+        <ol>
+          <li>
+            MEET MEMBERSHIP REQUIREMENTS RELATED TO AGE, LICENSE, REGISTRATION
+            AND INSURANCE
+          </li>
+          <li>
+            ATTEND TWO GENERAL MEMBERSHIP MEETING AND DRIVE TWO MONTHLY RUN.
+          </li>
+        </ol>
+        THIS REQUIREMENT MUST BE COMPLETED WITHIN A PERIOD NOT TO EXCEED THREE (6)
+        CALENDAR MONTHS. EXCEPTION TO THIS REQUIREMENT MAY BE MADE BY A DECISION
+        OF THE BOARD OF DIRECTORS.
+      </li>
+    </ol>
 
-    .fw-800 {
-      font-weight: 800;
-    }
-
-    .ff-normal {
-      font-family: var(--ff-normal);
-      line-height: 1em;
-    }
-
-    .ff-title {
-      font-family: var(--ff-title);
-      line-height: 1em;
-    }
-
-    .fs-visual {
-      font-size: var(--fs-visual);
-      line-height: 1em;
-    }
-
-    .fs-800 {
-      font-size: var(--fs-800);
-      line-height: 1em;
-    }
-
-    .fs-700 {
-      font-size: var(--fs-700);
-      line-height: 1em;
-    }
-
-    .fs-600 {
-      font-size: var(--fs-600);
-      line-height: 1em;
-    }
-
-    .fs-500 {
-      font-size: var(--fs-500);
-      line-height: 1em;
-    }
-
-    .fs-400 {
-      font-size: var(--fs-400);
-      line-height: 1em;
-    }
-
-    .fs-300 {
-      font-size: var(--fs-300);
-      line-height: 1em;
-    }
-
-    .space {
-      --h: var(--fs-400);
-      background-color: var(--accent);
-      border: solid 1px black;
-      margin-block: var(--fs-400);
-      margin-inline: auto;
-      width: 50%;
-      height: var(--h);
-    }
-  </style>
+    <p>DUES: $50 per year.</p>
+  </section>
 </AboutLayout>
+
+<style>
+  .bylaw-details {
+    font-size: var(--fs-400);
+    line-height: 1.5;
+  }
+</style>

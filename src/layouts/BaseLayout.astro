@@ -18,6 +18,7 @@ import { SEO } from "astro-seo";
 import SocialLogo from "@assets/site/copperstate_logo_social.png";
 import montserratUrl from "@fontsource/montserrat?url";
 import roadRageUrl from "@fontsource/road-rage?url";
+import { ClientRouter } from "astro:transitions";
 
 /**
  * The root page layout. This defines the HTML document structure, meta tags,
@@ -65,6 +66,8 @@ const { title } = Astro.props;
     />
 
     <title>{title}</title>
+
+    <ClientRouter />
   </head>
   <body>
     <Navbar />
