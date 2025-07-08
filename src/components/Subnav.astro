@@ -29,7 +29,7 @@ function navLink(href: string): any {
 const { links, class: className = "", ...rest } = Astro.props;
 ---
 
-<nav class={`${className}`} transition:animate="none" {...rest}>
+<nav class={`${className}`} transition:animate="fade" {...rest}>
   <ul class="subpage-nav fs-400">
     {
       links.map(([href, content]) => {
