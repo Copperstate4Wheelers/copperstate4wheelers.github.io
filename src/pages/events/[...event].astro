@@ -50,12 +50,17 @@ const backgroundUrl = `url(${background.src})`;
 const { event } = Astro.props;
 const { Content } = await render(event);
 
+const year = `${event.dateTime.year}`;
 const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
 <BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
   <div class="background fullwidth">
     <div class="content">
+      <a class="event-backlink" href={`/events/${year}/`}>
+        /events/{year}
+      </a>
+
       <h2>{event.data.title}</h2>
 
       <div class="event-header fs-400">
@@ -113,5 +118,10 @@ const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 
   .invite-detail {
     max-width: fit-content;
+  }
+
+  .event-backlink {
+    text-align: right;
+    float: right;
   }
 </style>

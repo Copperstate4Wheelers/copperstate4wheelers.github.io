@@ -32,7 +32,7 @@ const { title } = Astro.props;
           ["/about/contact", "Contact"],
           ["/about/how-to-join", "How To Join"],
           ["/about/required-gear", "Required Gear"],
-          ["/about/submit-a-run", "Submit A Run"],
+          ["/about/request-a-run", "Request A Run"],
         ]}
       />
       <section class="about-content">
@@ -45,6 +45,7 @@ const { title } = Astro.props;
 
 <style define:vars={{ backgroundUrl }}>
   .background {
+    height: 100%;
     background-image: var(--backgroundUrl);
     background-size: cover;
 

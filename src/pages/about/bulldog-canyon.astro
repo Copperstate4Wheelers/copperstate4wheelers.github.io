@@ -8,24 +8,25 @@ import canyonMap from "@assets/pages/about/bulldog-canyon/bulldog-canyon-map.jpg
 ---
 
 <AboutLayout title="Bulldog Canyon">
-  <Image src={workday} alt="Copperstate4Wheelers working on Bulldog Canyon" />
+  <Image src={logo} alt="CS4W Bulldog Canyon TRAL logo" class="bulldog-logo" />
 
-  <div class="bulldog-info">
-    <Image
-      src={logo}
-      alt="CS4W Bulldog Canyon TRAL logo"
-      class="bulldog-logo"
-    />
-    <p>
-      Our club is very proud to announce we have adopted the Bulldog Canyon OHV
-      area. We periodically visit the area through the year, often working with
-      TRAL or the Tonto National Forest.
-    </p>
-  </div>
+  <p>
+    Our club is very proud to announce we have adopted the Bulldog Canyon OHV
+    area. We periodically visit the area through the year, often working with
+    TRAL or the Tonto National Forest.
+  </p>
+
+  <p>
+    The Bulldog Canyon OHV area is part of the Tonto National Forest (map below)
+    and can be accessed upon purchasing a pass from the <a
+      href="https://www.fs.usda.gov/r03/tonto/recreation/groups/bulldog-canyon-ohv-permit-zone"
+    >
+      Tonto website.
+    </a>
+  </p>
 
   <a
     href="https://www.fs.usda.gov/r03/tonto/recreation/groups/bulldog-canyon-ohv-permit-zone"
-    target="_blank"
   >
     <Image
       src={canyonMap}
@@ -36,21 +37,13 @@ import canyonMap from "@assets/pages/about/bulldog-canyon/bulldog-canyon-map.jpg
 </AboutLayout>
 
 <style>
-  .bulldog-info {
-    margin-block: 1rem;
-
-    img {
-      float: right;
-      margin-left: 1rem;
-    }
-
-    p {
-    }
-  }
-
   .bulldog-logo {
-    max-width: 15ch;
+    width: 15ch;
+    max-width: 40%;
     float: right;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1rem;
   }
 
   .bulldog-map {
