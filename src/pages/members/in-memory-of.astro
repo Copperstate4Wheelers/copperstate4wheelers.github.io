@@ -1,52 +1,59 @@
 ---
 import MembersLayout from "@layouts/MembersLayout.astro";
 import MemorialCard from "@components/members/MemorialCard.astro";
+
+import path from "node:path";
+import { Image } from "astro:assets";
+
+function loadMemorialImages(): Record<string, ImageMetadata> {
+  const members = import.meta.glob<{ default: ImageMetadata }>(
+    "../../assets/pages/members/in-memory-of/*",
+    { eager: true },
+  );
+  const filenames: Record<string, ImageMetadata> = {};
+  for (const [imagePath, image] of Object.entries(members)) {
+    filenames[path.basename(imagePath)] = image.default;
+  }
+  return filenames;
+}
+
+const memberImages = loadMemorialImages();
 ---
 
 <MembersLayout title="CS4W: In Memory Of">
-  <h3>In Memory Of</h3>
-
-  <section class="in-memory">
-    <MemorialCard
-      imagePath="bill-barrier-1.jpg"
-      cardPath="bill-barrier-2.jpg"
-      caption="Bill B."
-    />
-
-    <MemorialCard imagePath="moe-1.jpg" cardPath="moe-2.jpg" caption="Moe" />
-
-    <MemorialCard
-      imagePath="pamela-1.jpg"
-      cardPath="pamela-2.jpg"
-      caption="Pamela O."
-    />
-
-    <MemorialCard
-      imagePath="roger-williams-1.jpg"
-      cardPath="roger-williams-2.jpg"
-      caption="Roger W."
-    />
+  <section class="content">
+    {
+      [
+        ["bill-barrier-1.jpg", "bill-barrier-2.jpg"],
+        ["moe-1.jpg", "moe-2.jpg"],
+        ["pamela-1.jpg", "pamela-2.jpg"],
+        ["roger-williams-1.jpg", "roger-williams-2.jpg"],
+      ].map(([profile, card]) => (
+        <div class="card">
+          <Image src={memberImages[profile]} alt="Memorial Picture" />
+          <Image src={memberImages[card]} alt="Memorial Picture" />
+        </div>
+      ))
+    }
   </section>
 </MembersLayout>
 
 <style>
-  .in-memory {
-    --min-card-size: 40ch;
-
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--min-card-size), 100%), 1fr)
-    );
-    place-items: center;
-    margin: 0 auto;
+  section {
+    background: white;
   }
 
-  @media screen and (width < 768px) {
-    .in-memory {
-      /* Smaller gap on smaller screens. */
-      grid-gap: 0.5rem;
+  .card {
+    display: flex;
+    flex-flow: row wrap;
+    background: white;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-block: var(--fs-500);
+
+    img {
+      width: 50%;
+      min-width: 10rem;
     }
   }
 </style>

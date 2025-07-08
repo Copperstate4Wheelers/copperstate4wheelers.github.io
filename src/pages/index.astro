@@ -5,13 +5,14 @@ import { getUpcomingEvents } from "@lib/events";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-import IndexClubHero from "@components/index/Hero.astro";
+import Hero from "@components/util/Hero.astro";
 import EventListing from "@components/event/Listing.astro";
 import LinkButton from "@components/LinkButton.astro";
 
-import WalnutCanyon from "@assets/pages/index/2025_04__Walnut_Canyon.jpg";
+import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
+import WhoWeAre from "@assets/pages/index/2025_07__EdgeOfTheWorld_Group.jpg";
 import DayTrip from "@assets/pages/index/2025_06__Pucker_Ridge.jpg";
-import Overland from "@assets/pages/index/2025_05__Monument_Valley.jpg";
+import Overland from "@assets/pages/index/2025_07__Flagstaff_Campout.jpg";
 import NightRun from "@assets/pages/index/2024_06__Hieroglyphic_Night_Run.jpg";
 import Community from "@assets/pages/index/2024_12__Parade_Of_Lights.jpg";
 
@@ -19,7 +20,12 @@ const upcomingEvents = await getUpcomingEvents(4);
 ---
 
 <BaseLayout title="Copperstate4Wheelers">
-  <IndexClubHero />
+  <Hero
+    backgroundImage={MontanaMountain}
+    backgroundImageAlt="Copperstate4Wheelers on Montana Mountain, May 2024."
+    title="Copperstate 4 Wheelers"
+    subtitle="Family friendly offroading since 1972"
+  />
 
   <section class="wide">
     <h2>- Who We Are -</h2>
@@ -36,9 +42,9 @@ const upcomingEvents = await getUpcomingEvents(4);
       </article>
 
       <Image
-        src={WalnutCanyon}
-        alt="The day we went to Walnut Canyon in April 2025."
-        title="Walnut Canyon, April 2025"
+        src={WhoWeAre}
+        alt="Copperstate 4 Wheelers on the Edge Of The World near Flagstaff, AZ"
+        title="Edge Of The World, July 2025"
         width="1080"
         class="about-us-img"
         sizes="40vw"

@@ -1,26 +1,42 @@
 ---
 /**
- * The home page hero section.
+ * A reusable hero section with a big visual title and a background image.
  **/
 
 import { Image } from "astro:assets";
 
-import MontanaMountain from "@assets/pages/index/2024_05__montana_mountain.jpg";
+interface Props {
+  backgroundImage: ImageMetadata;
+  backgroundImageAlt: string;
+  class?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+import type { ImageMetadata } from "astro";
+
+const {
+  backgroundImage,
+  backgroundImageAlt,
+  class: className = "",
+  title = "",
+  subtitle = "",
+} = Astro.props;
 ---
 
-<div class="fullwidth hero bg-primary">
+<div class={`fullwidth hero bg-primary ${className}`} transition:animate="none">
   <Image
-    src={MontanaMountain}
-    alt="Copperstate4Wheelers on Montana Mountain."
-    decoding="async"
-    loading="lazy"
+    src={backgroundImage}
+    alt={backgroundImageAlt}
+    decoding="sync"
+    loading="eager"
     width="1920"
     class="background fullwidth"
   />
   <div class="overlay fullwidth"></div>
   <div class="content ultrawide">
-    <p class="hero-title ff-title fs-800">Copperstate 4 Wheelers</p>
-    <p class="hero-subtitle fs-500">Family friendly offroading since 1972</p>
+    <p class="hero-title ff-title fs-800">{title}</p>
+    <p class="hero-subtitle fs-500">{subtitle}</p>
   </div>
 </div>
 

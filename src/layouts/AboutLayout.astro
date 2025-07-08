@@ -1,30 +1,56 @@
 ---
 import Subnav from "@components/Subnav.astro";
 import BaseLayout from "./BaseLayout.astro";
+import Hero from "@components/util/Hero.astro";
+
+import background from "@assets/site/background.svg";
+
+const backgroundUrl = `url(${background.src})`;
 
 interface Props {
   title: string;
 }
 
+import HeroImage from "@assets/pages/about/2025_06__Pucker_Ridge.jpg";
 const { title } = Astro.props;
 ---
 
 <BaseLayout title={`CS4W: ${title}`}>
-  <Subnav
-    links={[
-      ["/about", "Club Info"],
-      ["/about/bulldog-canyon", "Bulldog Canyon"],
-      ["/about/contact", "Contact"],
-      ["/about/how-to-join", "How To Join"],
-      ["/about/required-gear", "Required Gear"],
-      ["/about/submit-a-run", "Submit A Run"],
-    ]}
+  <Hero
+    backgroundImage={HeroImage}
+    backgroundImageAlt="aoeu"
+    title="About Us"
   />
 
-  <section class="about-content">
-    <h2>{title}</h2>
-    <slot />
-  </section>
+  <div class="background fullwidth">
+    <div class="content">
+      <Subnav
+        links={[
+          ["/about", "Club Info"],
+          ["/about/bulldog-canyon", "Bulldog Canyon"],
+          ["/about/contact", "Contact"],
+          ["/about/how-to-join", "How To Join"],
+          ["/about/required-gear", "Required Gear"],
+          ["/about/submit-a-run", "Submit A Run"],
+        ]}
+      />
+      <section class="about-content">
+        <h2>{title}</h2>
+        <slot />
+      </section>
+    </div>
+  </div>
 </BaseLayout>
 
-<style></style>
+<style define:vars={{ backgroundUrl }}>
+  .background {
+    background-image: var(--backgroundUrl);
+    background-size: cover;
+
+    .content {
+      background-color: var(--secondary);
+      box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);
+      padding-inline: var(--fs-300);
+    }
+  }
+</style>

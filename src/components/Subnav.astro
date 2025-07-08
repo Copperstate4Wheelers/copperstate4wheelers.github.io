@@ -29,7 +29,7 @@ function navLink(href: string): any {
 const { links, class: className = "", ...rest } = Astro.props;
 ---
 
-<nav class={`fullwidth ${className}`} transition:animate="none" {...rest}>
+<nav class={`${className}`} transition:animate="none" {...rest}>
   <ul class="subpage-nav fs-400">
     {
       links.map(([href, content]) => {
@@ -41,7 +41,7 @@ const { links, class: className = "", ...rest } = Astro.props;
       })
     }
   </ul>
-  <a id="article"></a>
+  <a class="article-anchor" id="article"></a>
 </nav>
 
 <style>
@@ -51,17 +51,17 @@ const { links, class: className = "", ...rest } = Astro.props;
   }
 
   nav {
-    margin-bottom: var(--fs-400);
+    margin-block: var(--fs-400);
   }
 
   .subpage-nav {
-    --column-width: 10rem;
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    gap: var(--fs-300);
 
     li {
       margin: 0;
@@ -92,5 +92,10 @@ const { links, class: className = "", ...rest } = Astro.props;
   .active-subnav-link {
     position: relative;
     background: var(--accent);
+  }
+
+  .article-anchor {
+    position: relative;
+    top: -3.25rem;
   }
 </style>

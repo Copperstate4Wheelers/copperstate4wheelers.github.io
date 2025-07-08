@@ -20,6 +20,9 @@ import montserratUrl from "@fontsource/montserrat?url";
 import roadRageUrl from "@fontsource/road-rage?url";
 import { ClientRouter } from "astro:transitions";
 
+import background from "@assets/site/background.svg";
+const backgroundUrl = `url(${background.src})`;
+
 /**
  * The root page layout. This defines the HTML document structure, meta tags,
  * and all root CSS rules.
@@ -80,7 +83,7 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style>
+<style define:vars={{ backgroundUrl }}>
   body {
     /**
      * Force at least one full screen of content.

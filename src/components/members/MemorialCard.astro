@@ -60,7 +60,6 @@ const card = memberImages[cardPath];
     <Image src={image} alt={alt} />
     <Image src={card} alt={alt} />
   </div>
-  <p>{caption}</p>
 </div>
 
 <style>
@@ -78,7 +77,6 @@ const card = memberImages[cardPath];
       align-items: center;
       justify-content: center;
       background-color: white;
-      border-bottom: 0.2rem solid var(--primary);
     }
 
     &:hover,
@@ -89,13 +87,8 @@ const card = memberImages[cardPath];
     img {
       display: block;
       object-fit: cover;
+      width: 100%;
       max-width: 100%;
-    }
-
-    p {
-      display: block;
-      font-weight: 500;
-      text-align: center;
     }
   }
 </style>
