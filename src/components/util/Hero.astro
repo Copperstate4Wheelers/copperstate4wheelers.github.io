@@ -11,6 +11,7 @@ interface Props {
   class?: string;
   title?: string;
   subtitle?: string;
+  maxHeight?: string;
 }
 
 import type { ImageMetadata } from "astro";
@@ -21,6 +22,7 @@ const {
   class: className = "",
   title = "",
   subtitle = "",
+  maxHeight = "70vh",
 } = Astro.props;
 ---
 
@@ -40,10 +42,8 @@ const {
   </div>
 </div>
 
-<style>
+<style define:vars={{ "max-height": maxHeight }}>
   .hero {
-    --max-height: 70vh;
-
     display: grid;
     grid-template-rows: var(--max-height);
     overflow: hidden;
