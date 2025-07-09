@@ -2,6 +2,7 @@
 title: Four Peaks Cleanup Afternoon Run
 time: 2:00 pm
 invite: Guests Welcome
+location: Four Peaks Wilderness Area
 ---
 
 Let's do a run after the [15th annual Four Peaks Cleanup & Restoration Event.](https://www.eventbrite.com/e/15th-annual-four-peaks-cleanup-restoration-event-tickets-1039234096157)

@@ -2,6 +2,7 @@
 title: Summer Campout
 time: 9:30am
 invite: Members Only
+location: (N 35.10093, W -111.82313)
 ---
 
 The club has an annual tradition to to camp for a long weekend in the summer.

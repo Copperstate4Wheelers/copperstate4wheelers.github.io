@@ -2,6 +2,7 @@
 title: Chandler Tumbleweed Parade Of Lights
 time: 3:00pm
 invite: Members Only
+location: TBD
 ---
 
 We've participated in the Chandler Parade Of Lights in past years and it's

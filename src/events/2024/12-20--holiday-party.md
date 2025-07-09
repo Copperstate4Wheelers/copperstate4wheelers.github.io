@@ -2,6 +2,7 @@
 title: Christmas Party
 time: 6pm
 invite: Members Only
+location: Lucille's Smokehouse Bar-B-Que
 ---
 
 The annual club holiday party!

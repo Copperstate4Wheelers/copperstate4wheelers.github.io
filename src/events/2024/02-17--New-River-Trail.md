@@ -2,6 +2,7 @@
 title: New River Trail
 time: 8:30am
 invite: Guests Welcome
+location: New River Shell station
 ---
 
 State Trust Land permit is required.

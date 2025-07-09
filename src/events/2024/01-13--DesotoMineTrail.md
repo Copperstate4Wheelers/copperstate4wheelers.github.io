@@ -2,6 +2,7 @@
 title: Desoto Mine Trail
 time: 8:30 am
 invite: Guests Welcome
+location: Staging area on the Crown King road on the Bumblebee exit on I17
 ---
 
 No permits required.

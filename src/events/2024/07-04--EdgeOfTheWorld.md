@@ -2,6 +2,7 @@
 title: Campout - Edge Of The World
 time: TBA
 invite: Guests Welcome
+location: (N 35.10093, W -111.82313) contact Jim for details
 ---
 
 This is a campout from July 4th through July 7th. We'll setup camp and do a few

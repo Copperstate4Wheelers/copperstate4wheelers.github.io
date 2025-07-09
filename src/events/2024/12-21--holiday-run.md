@@ -2,6 +2,7 @@
 title: Christmas Run - Trail 42
 time: 8am
 invite: Guests Welcome
+location: St. Claire staging area near Bartlett Lake (33°51'54.9"N 111°37'38.8"W)
 ---
 
 Rated a 7/10 due to intimidation factor, the club has
