@@ -4,13 +4,7 @@ import AboutLayout from "@layouts/AboutLayout.astro";
 
 <AboutLayout title="How To Join">
   <section>
-    <h3>Overview</h3>
-
-    <p>
-      The club bylaws specify the complete requirements for joining and should
-      always be referenced in case of confusion. But the process can be
-      summarized like this:
-    </p>
+    <p>In short:</p>
 
     <ul>
       <li>Own a 4x4 vehicle that you are licensed to drive</li>
@@ -22,6 +16,11 @@ import AboutLayout from "@layouts/AboutLayout.astro";
         </a> at the next club meeting
       </li>
     </ul>
+
+    <p>
+      The club bylaws (see below) specify the complete requirements for joining
+      and should always be referenced in case of confusion!
+    </p>
 
     <h3>Dues</h3>
 
@@ -111,5 +110,9 @@ import AboutLayout from "@layouts/AboutLayout.astro";
   .bylaw-details {
     font-size: var(--fs-400);
     line-height: 1.5;
+  }
+
+  ol ol {
+    list-style-type: lower-alpha;
   }
 </style>
