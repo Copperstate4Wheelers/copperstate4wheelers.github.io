@@ -43,9 +43,6 @@ import EventInvite from "@components/event/Invite.astro";
 import IconText from "@components/util/IconText.astro";
 
 import "pages/events/_event_style.css";
-import background from "@assets/site/background.svg";
-
-const backgroundUrl = `url(${background.src})`;
 
 const { event } = Astro.props;
 const { Content } = await render(event);
@@ -54,42 +51,35 @@ const year = `${event.dateTime.year}`;
 const month_day = `${event.dateTime.monthShort} ${event.dateTime.day}`;
 ---
 
-<BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`}>
-  <div class="background fullwidth">
-    <div class="content">
-      <a class="event-backlink" href={`/events/${year}/`}>
-        /events/{year}
-      </a>
+<BaseLayout title={`CS4W: ${event.data.title} - ${month_day}`} hasBackground>
+  <div class="content">
+    <a class="event-backlink" href={`/events/${year}/`}>
+      /events/{year}
+    </a>
 
-      <h2>{event.data.title}</h2>
+    <h2>{event.data.title}</h2>
 
-      <div class="event-header fs-400">
-        <IconText icon="mdi:calendar">
-          {event.dateTime.toLocaleString(DateTime.DATE_HUGE)}
-        </IconText>
+    <div class="event-header fs-400">
+      <IconText icon="mdi:calendar">
+        {event.dateTime.toLocaleString(DateTime.DATE_HUGE)}
+      </IconText>
 
-        <EventTime event={event} />
-        <EventLocation event={event} />
-        <EventInvite event={event} class="invite-detail" />
-      </div>
-
-      <section class="page">
-        <Content />
-      </section>
+      <EventTime event={event} />
+      <EventLocation event={event} />
+      <EventInvite event={event} class="invite-detail" />
     </div>
+
+    <section class="page">
+      <Content />
+    </section>
   </div>
 </BaseLayout>
 
-<style define:vars={{ backgroundUrl }}>
-  .background {
-    background-image: var(--backgroundUrl);
-    background-size: cover;
-
-    .content {
-      background-color: var(--secondary);
-      box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);
-      padding-inline: var(--fs-300);
-    }
+<style>
+  .content {
+    background-color: var(--secondary);
+    box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);
+    padding-inline: var(--fs-300);
   }
 
   h2 {

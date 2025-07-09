@@ -15,7 +15,7 @@ import HeroImage from "@assets/pages/about/2025_06__Pucker_Ridge.jpg";
 const { title } = Astro.props;
 ---
 
-<BaseLayout title={`CS4W: ${title}`}>
+<BaseLayout title={`CS4W: ${title}`} hasBackground>
   <Hero
     backgroundImage={HeroImage}
     backgroundImageAlt="aoeu"
@@ -23,36 +23,28 @@ const { title } = Astro.props;
     maxHeight="35vh"
   />
 
-  <div class="background fullwidth">
-    <div class="content">
-      <Subnav
-        links={[
-          ["/about", "Club Info"],
-          ["/about/bulldog-canyon", "Bulldog Canyon"],
-          ["/about/contact", "Contact"],
-          ["/about/how-to-join", "How To Join"],
-          ["/about/required-gear", "Required Gear"],
-          ["/about/request-a-run", "Request A Run"],
-        ]}
-      />
-      <section class="about-content">
-        <h2>{title}</h2>
-        <slot />
-      </section>
-    </div>
+  <div class="content">
+    <Subnav
+      links={[
+        ["/about", "Club Info"],
+        ["/about/bulldog-canyon", "Bulldog Canyon"],
+        ["/about/contact", "Contact"],
+        ["/about/how-to-join", "How To Join"],
+        ["/about/required-gear", "Required Gear"],
+        ["/about/request-a-run", "Request A Run"],
+      ]}
+    />
+    <section class="about-content">
+      <h2>{title}</h2>
+      <slot />
+    </section>
   </div>
 </BaseLayout>
 
 <style define:vars={{ backgroundUrl }}>
-  .background {
-    height: 100%;
-    background-image: var(--backgroundUrl);
-    background-size: cover;
-
-    .content {
-      background-color: var(--secondary);
-      box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);
-      padding-inline: var(--fs-300);
-    }
+  .content {
+    background-color: var(--secondary);
+    box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);
+    padding-inline: var(--fs-300);
   }
 </style>
