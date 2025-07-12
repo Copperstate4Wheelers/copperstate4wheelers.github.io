@@ -1,5 +1,9 @@
 ---
 import AboutLayout from "@layouts/AboutLayout.astro";
+import logo from "@assets/site/copperstate_logo.png";
+import { getImage } from "astro:assets";
+
+const logo_src = (await getImage({ src: logo, format: "png" })).src;
 ---
 
 <AboutLayout title="Request A Run">
@@ -33,6 +37,103 @@ import AboutLayout from "@layouts/AboutLayout.astro";
     request a run! Just let us know, and we'll find someone to help lead the
     trip.
   </p>
+
+  <h3>Trail Submission Form</h3>
+
+  <form id="print-form" data-logo={logo_src}>
+    <label for="trail-name">Trail Name:</label>
+    <input type="text" id="trail-name" required />
+
+    <label for="date-of-run">Date Of Run:</label>
+    <input type="date" id="date-of-run" required />
+
+    <button type="submit"> Print / Save </button>
+  </form>
+
+  <script>
+    import jsPDF from "jspdf";
+    import { DateTime } from "luxon";
+
+    const margin = 1;
+    const left = margin;
+    const right = 8.5 - margin;
+    const underline_offset = 0.05;
+    const font = "times";
+
+    const print_form = document.getElementById("print-form")!;
+    print_form.addEventListener("submit", () => {
+      const trail_name = (
+        document.getElementById("trail-name")! as HTMLInputElement
+      ).value!;
+
+      const date_of_run = (() => {
+        const date_string = (
+          document.getElementById("date-of-run")! as HTMLInputElement
+        ).value!;
+        const date = DateTime.fromFormat(date_string, "yyyy-MM-dd", {
+          zone: "America/Phoenix",
+        });
+        return date.toLocaleString(DateTime.DATE_HUGE);
+      })();
+
+      let doc = new jsPDF("p", "in", "letter");
+
+      // Writes left-aligned text + a full-width underline
+      const text_line = (text: string, y: number) => {
+        doc.text(text, left, y);
+        doc.line(left, y + underline_offset, right, y + underline_offset);
+      };
+
+      doc.setFont(font, "normal");
+      doc.setFontSize(14);
+      doc.setLineWidth(0.0125);
+
+      doc.addImage(print_form.dataset.logo!, "PNG", 0.5, 0.5, 1.5, 1.5);
+
+      doc.text(
+        ["Copperstate 4 Wheelers, Inc", "www.copperstate4wheelers.com"],
+        8,
+        0.75,
+        { align: "right" },
+      );
+
+      doc.setFont(font, "bold");
+      doc.setFontSize(22);
+      doc.text("Club Trail Submission Form:", 3.25, 2);
+
+      text_line("Trail Name:", 3);
+      text_line("Date Of Run:", 3.5);
+      text_line("Meeting Time:", 4);
+      text_line("Meeting Location:", 4.5);
+      text_line("Permits Required:", 5);
+      doc.text("Vehicular Requirements:", left, 5.5);
+
+      doc.text("Members Only:", left, 7.5);
+      doc.text("Open:", 4, 7.5);
+      doc.text("Invite:", 6, 7.5);
+
+      text_line("President", 8.5);
+      text_line("Vice President:", 9);
+      text_line("Treasurer:", 9.5);
+      text_line("Secretary:", 10.0);
+
+      // form data
+      doc.setFontSize(14);
+      doc.setFont(font, "normal");
+      doc.text(trail_name, 3, 3);
+      doc.text(date_of_run, 3, 3.5);
+
+      // Add subsequent pages, always blank to be filled in on the day-of
+      doc
+        .addPage("letter", "p")
+        .addImage("/trail_submission_page_2.png", "PNG", 0, 0, 8.5, 11)
+        .addPage("letter", "p")
+        .addImage("/trail_submission_page_3.png", "PNG", 0, 0, 8.5, 11);
+
+      // save/print the document
+      doc.save("trail-submission.pdf");
+    });
+  </script>
 </AboutLayout>
 
 <style></style>
