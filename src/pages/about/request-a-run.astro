@@ -47,6 +47,32 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
     <label for="date-of-run">Date Of Run:</label>
     <input type="date" id="date-of-run" required />
 
+    <label for="meeting-time">Meeting Time:</label>
+    <input type="time" id="meeting-time" required />
+
+    <label for="meeting-location">Meeting Location:</label>
+    <input type="text" id="meeting-location" required />
+
+    <label for="permits-required">Permits Required:</label>
+    <input type="text" id="permits-required" required />
+
+    <label for="vehicular-requirements">Vehicular Requirements:</label>
+    <textarea
+      id="vehicular-requirements"
+      autocomplete="true"
+      spellcheck="true"
+      required
+      placeholder='4x4, 33" tires, rear locker, etc... '
+    >
+    </textarea>
+
+    <label for="invite">Invite:</label>
+    <select name="invite" id="invite">
+      <option value="open">Guests Welcome</option>
+      <option value="members-only">Members Only</option>
+      <option value="invite-only">Invite Only</option>
+    </select>
+
     <button type="submit"> Print / Save </button>
   </form>
 
@@ -75,6 +101,33 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
         });
         return date.toLocaleString(DateTime.DATE_HUGE);
       })();
+
+      const time_of_run = (() => {
+        const time_string = (
+          document.getElementById("meeting-time")! as HTMLInputElement
+        ).value!;
+        const time = DateTime.fromFormat(time_string, "HH:mm", {
+          zone: "America/Phoenix",
+        });
+        return time.toLocaleString(DateTime.TIME_SIMPLE);
+      })();
+
+      const meeting_location = (
+        document.getElementById("meeting-location")! as HTMLInputElement
+      ).value!;
+
+      const permits_required = (
+        document.getElementById("permits-required")! as HTMLInputElement
+      ).value!;
+
+      const vehicular_requirements = (
+        document.getElementById(
+          "vehicular-requirements",
+        )! as HTMLTextAreaElement
+      ).value!;
+
+      const invite = (document.getElementById("invite")! as HTMLSelectElement)
+        .value!;
 
       let doc = new jsPDF("p", "in", "letter");
 
@@ -109,8 +162,11 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
       doc.text("Vehicular Requirements:", left, 5.5);
 
       doc.text("Members Only:", left, 7.5);
+      doc.circle(3.5, 7.35, 0.25);
       doc.text("Open:", 4, 7.5);
+      doc.circle(5.35, 7.35, 0.25);
       doc.text("Invite:", 6, 7.5);
+      doc.circle(7.5, 7.35, 0.25);
 
       text_line("President", 8.5);
       text_line("Vice President:", 9);
@@ -122,6 +178,22 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
       doc.setFont(font, "normal");
       doc.text(trail_name, 3, 3);
       doc.text(date_of_run, 3, 3.5);
+      doc.text(time_of_run, 3.5, 4);
+      doc.text(meeting_location, 3.5, 4.5);
+      doc.text(permits_required, 3.5, 5);
+      doc.text(
+        doc.splitTextToSize(vehicular_requirements, 8.5 - margin * 2),
+        margin,
+        5.8,
+      );
+
+      if (invite == "members-only") {
+        doc.text("X", 3.5, 7.5);
+      } else if (invite == "open") {
+        doc.text("X", 5.35, 7.5);
+      } else if (invite == "invite-only") {
+        doc.text("X", 7.35, 7.5);
+      }
 
       // Add subsequent pages, always blank to be filled in on the day-of
       doc
