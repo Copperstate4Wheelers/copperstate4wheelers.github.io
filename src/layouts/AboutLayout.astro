@@ -3,10 +3,6 @@ import Subnav from "@components/Subnav.astro";
 import BaseLayout from "./BaseLayout.astro";
 import Hero from "@components/util/Hero.astro";
 
-import background from "@assets/site/background.svg";
-
-const backgroundUrl = `url(${background.src})`;
-
 interface Props {
   title: string;
 }
@@ -41,7 +37,7 @@ const { title } = Astro.props;
   </div>
 </BaseLayout>
 
-<style define:vars={{ backgroundUrl }}>
+<style>
   .content {
     background-color: var(--secondary);
     box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.5);

@@ -41,37 +41,60 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
   <h3>Trail Submission Form</h3>
 
   <form id="print-form" data-logo={logo_src}>
-    <label for="trail-name">Trail Name:</label>
-    <input type="text" id="trail-name" required />
+    <div class="form-group">
+      <label for="trail-name">Trail Name:</label>
+      <input type="text" id="trail-name" placeholder="Trail Name" required />
+    </div>
 
-    <label for="date-of-run">Date Of Run:</label>
-    <input type="date" id="date-of-run" required />
+    <div class="form-group">
+      <label for="date-of-run">Date Of Run:</label>
+      <input type="date" id="date-of-run" required />
+    </div>
 
-    <label for="meeting-time">Meeting Time:</label>
-    <input type="time" id="meeting-time" required />
+    <div class="form-group">
+      <label for="meeting-time">Meeting Time:</label>
+      <input type="time" id="meeting-time" value="08:00" step="600" required />
+    </div>
 
-    <label for="meeting-location">Meeting Location:</label>
-    <input type="text" id="meeting-location" required />
+    <div class="form-group">
+      <label for="meeting-location">Meeting Location:</label>
+      <input
+        type="text"
+        id="meeting-location"
+        placeholder="Meeting location"
+        required
+      />
+    </div>
 
-    <label for="permits-required">Permits Required:</label>
-    <input type="text" id="permits-required" required />
+    <div class="form-group">
+      <label for="permits-required">Permits Required:</label>
+      <input
+        type="text"
+        id="permits-required"
+        placeholder="Permits Required (N/A if none)"
+        required
+      />
+    </div>
 
-    <label for="vehicular-requirements">Vehicular Requirements:</label>
-    <textarea
-      id="vehicular-requirements"
-      autocomplete="true"
-      spellcheck="true"
-      required
-      placeholder='4x4, 33" tires, rear locker, etc... '
-    >
-    </textarea>
+    <div class="form-group">
+      <label for="vehicular-requirements">Vehicular Requirements:</label>
+      <textarea
+        id="vehicular-requirements"
+        autocomplete="true"
+        spellcheck="true"
+        rows="3"
+        required
+        placeholder='4x4, 33" tires, rear locker, etc... '></textarea>
+    </div>
 
-    <label for="invite">Invite:</label>
-    <select name="invite" id="invite">
-      <option value="open">Guests Welcome</option>
-      <option value="members-only">Members Only</option>
-      <option value="invite-only">Invite Only</option>
-    </select>
+    <div class="form-group">
+      <label for="invite">Invite:</label>
+      <select name="invite" id="invite" required>
+        <option value="open" selected>Guests Welcome</option>
+        <option value="members-only">Members Only</option>
+        <option value="invite-only">Invite Only</option>
+      </select>
+    </div>
 
     <button type="submit"> Print / Save </button>
   </form>
@@ -208,4 +231,41 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
   </script>
 </AboutLayout>
 
-<style></style>
+<style>
+  input,
+  textarea {
+    min-width: 0;
+  }
+
+  form {
+    font: inherit;
+    display: grid;
+
+    gap: var(--fs-400);
+
+    .form-group {
+      display: grid;
+    }
+
+    label {
+      text-transform: uppercase;
+      font-size: var(--fs-300);
+    }
+
+    select {
+      width: fit-content;
+    }
+
+    button[type="submit"] {
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      border: 0px;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+      width: fit-content;
+    }
+  }
+</style>
