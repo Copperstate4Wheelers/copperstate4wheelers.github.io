@@ -110,7 +110,9 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
     const font = "times";
 
     const print_form = document.getElementById("print-form")!;
-    print_form.addEventListener("submit", () => {
+    print_form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
       const trail_name = (
         document.getElementById("trail-name")! as HTMLInputElement
       ).value!;
