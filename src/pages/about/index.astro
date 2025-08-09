@@ -17,23 +17,27 @@ import logo from "@assets/site/copperstate_logo.png";
     this respect, leaving nothing on a trip but a few tire tracks.
   </p>
 
-  <Image
-    src={logo}
-    alt="Copperstate4Wheelers Club Logo"
-    width="512"
-    class="logo-image"
-  />
+  <div class="autocolumn officer-panel">
+    <div>
+      <h3>Officers</h3>
+      <ul>
+        <li><span class="officer-role">President: </span>Jim Nossett</li>
+        <li><span class="officer-role">Vice President: </span>Kenny Blum</li>
+        <li><span class="officer-role">Treasurer: </span>Chris DePoorter</li>
+        <li><span class="officer-role">Secretary: </span>Elisabeth Swanson</li>
+        <li><span class="officer-role">Board Member: </span>Roland Silva</li>
+        <li><span class="officer-role">Board Member: </span>Ron Block</li>
+        <li><span class="officer-role">Board Member: </span>Paul Yakaitis</li>
+      </ul>
+    </div>
 
-  <h3>Officers</h3>
-  <ul>
-    <li><span class="officer-role">President: </span>Jim Nossett</li>
-    <li><span class="officer-role">Vice President: </span>Kenny Blum</li>
-    <li><span class="officer-role">Treasurer: </span>Chris DePoorter</li>
-    <li><span class="officer-role">Secretary: </span>Elisabeth Swanson</li>
-    <li><span class="officer-role">Board Member: </span>Roland Silva</li>
-    <li><span class="officer-role">Board Member: </span>Ron Block</li>
-    <li><span class="officer-role">Board Member: </span>Paul Yakaitis</li>
-  </ul>
+    <Image
+      src={logo}
+      alt="Copperstate4Wheelers Club Logo"
+      width="512"
+      class="logo-image"
+    />
+  </div>
 
   <h3>Bylaws</h3>
 
@@ -47,12 +51,17 @@ import logo from "@assets/site/copperstate_logo.png";
 <style>
   .logo-image {
     display: block;
-    float: right;
     width: 15rem;
     max-width: 85%;
   }
 
   .officer-role {
     font-weight: 500;
+  }
+
+  .officer-panel.autocolumn {
+    --column-width: 15rem;
+    word-wrap: normal;
+    align-items: baseline;
   }
 </style>
