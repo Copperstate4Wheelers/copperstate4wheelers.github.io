@@ -13,6 +13,14 @@ export default defineConfig({
   redirects: {
     // Automatically redirect the top-level '/events' to the current event year
     "/events": `/events/${new Date().getFullYear()}`,
+
+    // redirects for old pages linked by stale google index
+    "/services.html": "/events",
+    "/members.html": "/members",
+    "/contact-us.html": "/about/contact",
+    "/how-to-join.html": "/about/how-to-join",
+    "/about-us.html": "/about",
+    "/in-memory-of.html": "/members/in-memory-of",
   },
 
   vite: {
