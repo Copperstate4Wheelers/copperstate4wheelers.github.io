@@ -15,11 +15,22 @@ export const getEventsCollection = async (): Promise<ParsedEvent[]> => {
   const parsed: ParsedEvent[] = [];
 
   events.forEach((event) => {
-    const { year, month, day } =
+    // Match a file in the events directory with the format
+    // /events/year/MM-dd--event-name.md
+    // Note that year is the top folder, months and days always have 2 digits
+    // (leading zeros when needed), and the event name comes after two hypens.
+    const match =
       /.*\/events\/(?<year>\d\d\d\d)\/(?<month>\d\d)-(?<day>\d\d)--.*/.exec(
         event.filePath!,
-      )!.groups!;
+      );
+    if (!match || !match.groups) {
+      throw new Error(
+        `Unable to parse date from event file path! ${event.filePath} \n` +
+          `Expected file in the form MM-dd--event-name.md`,
+      );
+    }
 
+    const { year, month, day } = match.groups!;
     parsed.push({
       ...event,
       dateTime: DateTime.local(parseInt(year), parseInt(month), parseInt(day), {
