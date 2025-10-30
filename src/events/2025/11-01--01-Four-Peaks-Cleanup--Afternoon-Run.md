@@ -1,6 +1,6 @@
 ---
 title: Four Peaks Cleanup - Afternoon Run
-time: 3:00pm
+time: 2:00pm
 invite: Guests Welcome
 location: Four Peaks Staging Area, east of SR87 on FS 143
 ---
