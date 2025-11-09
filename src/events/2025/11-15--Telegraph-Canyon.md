@@ -14,11 +14,10 @@ Expected to be a 3.5/10, a fairly easy run.
 * [**State Trust Permit**](https://land.az.gov/applications-permits)
 * [Normal required gear](/about/required-gear)
 * 33" tires
-* Bring drinks and a snack. Plan on eating lunch at a resteraunt in superior or bring your own lunch to eat.
-* We will enter in Cottonwood Canyon road, heading towards box canyon. Drive past Ajax, heading towards Superior. Exiting the trail in Superior.
+* Bring drinks and a snack. Plan on eating lunch on the trail.
+* We will enter off 79 in the Cottonwood Canyon staging area, heading towards box canyon. Drive past Ajax, heading towards Superior. Exiting the trail in Superior.
 * Expect this to be a 4-6 hour run.
-* More information available in the Arizona trails book, central region page 22.
-  * (just remember, we're running it backwards)
+* More information available in the Arizona trails book, central region page 222 - Telegraph Canyon Trail. (just remember, we're running it backward)
 
 
 ### Meeting Location
