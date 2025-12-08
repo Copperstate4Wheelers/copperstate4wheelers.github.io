@@ -1,9 +1,5 @@
 ---
 import AboutLayout from "@layouts/AboutLayout.astro";
-import logo from "@assets/site/copperstate_logo.png";
-import { getImage } from "astro:assets";
-
-const logo_src = (await getImage({ src: logo, format: "png" })).src;
 ---
 
 <AboutLayout title="Request A Run">
@@ -40,189 +36,142 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
 
   <h3>Trail Submission Form</h3>
 
-  <form id="print-form" data-logo={logo_src}>
+  <form id="event-details">
     <div class="form-group">
-      <label for="trail-name">Trail Name:</label>
-      <input type="text" id="trail-name" placeholder="Trail Name" />
+      <label for="trail_name">Trail Name:</label>
+      <input type="text" id="trail_name" placeholder="Trail Name" />
     </div>
 
     <div class="form-group">
-      <label for="date-of-run">Date Of Run:</label>
-      <input type="date" id="date-of-run" />
+      <label for="date_of_run">Date Of Run:</label>
+      <input type="date" id="date_of_run" />
     </div>
 
     <div class="form-group">
-      <label for="meeting-time">Meeting Time:</label>
-      <input type="time" id="meeting-time" value="08:00" step="600" />
+      <label for="meeting_time">Meeting Time:</label>
+      <input type="time" id="meeting_time" value="08:00" step="600" />
     </div>
 
     <div class="form-group">
-      <label for="meeting-location">Meeting Location:</label>
-      <input type="text" id="meeting-location" placeholder="Meeting location" />
+      <label for="meeting_location">Meeting Location:</label>
+      <input type="text" id="meeting_location" placeholder="Meeting location" />
     </div>
 
     <div class="form-group">
-      <label for="permits-required">Permits Required:</label>
+      <label for="permits_required">Permits Required:</label>
       <input
         type="text"
-        id="permits-required"
-        placeholder="Permits Required (N/A if none)"
+        id="permits_required"
+        placeholder="Permits Required (State Trust, Tonto, etc...)"
       />
     </div>
 
     <div class="form-group">
-      <label for="vehicular-requirements">Vehicular Requirements:</label>
+      <label for="vehicular_requirements">Vehicular Requirements:</label>
       <textarea
-        id="vehicular-requirements"
+        id="vehicular_requirements"
         autocomplete="true"
         spellcheck="true"
         rows="3"
-        placeholder='4x4, 33" tires, rear locker, etc... '
-        maxlength="250"></textarea>
+        placeholder='4x4, 33" tires, rear locker, etc... '></textarea>
     </div>
 
     <div class="form-group">
       <label for="invite">Invite:</label>
-      <select name="invite" id="invite" required>
+      <select name="invite" id="invite">
         <option value="open" selected>Guests Welcome</option>
         <option value="members-only">Members Only</option>
         <option value="invite-only">Invite Only</option>
       </select>
     </div>
 
-    <button type="submit"> Print / Save </button>
+    <button id="print-form-button">Print/Save</button>
   </form>
 
   <script>
-    import jsPDF from "jspdf";
+    import { BuildUpdatedForm } from "@lib/submission_form";
     import { DateTime } from "luxon";
+    import type { EventDetails } from "@lib/submission_form";
 
-    const margin = 1;
-    const left = margin;
-    const right = 8.5 - margin;
-    const underline_offset = 0.05;
-    const font = "times";
+    document.addEventListener("astro:page-load", () => {
+      const event_details_form = document.getElementById(
+        "event-details",
+      ) as HTMLFormElement | null;
+      const print_form_button = document.getElementById(
+        "print-form-button",
+      ) as HTMLButtonElement | null;
 
-    const print_form = document.getElementById("print-form")!;
-    print_form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const trail_name = (
-        document.getElementById("trail-name")! as HTMLInputElement
-      ).value!;
-
-      const date_of_run = (() => {
-        const date_string =
-          (document.getElementById("date-of-run")! as HTMLInputElement).value ||
-          DateTime.now().toFormat("yyyy-MM-dd");
-        const date = DateTime.fromFormat(date_string, "yyyy-MM-dd", {
-          zone: "America/Phoenix",
-        });
-        return date.toLocaleString(DateTime.DATE_HUGE);
-      })();
-
-      const time_of_run = (() => {
-        const time_string =
-          (document.getElementById("meeting-time")! as HTMLInputElement)
-            .value || DateTime.now().toFormat("HH:mm");
-        const time = DateTime.fromFormat(time_string, "HH:mm", {
-          zone: "America/Phoenix",
-        });
-        return time.toLocaleString(DateTime.TIME_SIMPLE);
-      })();
-
-      const meeting_location = (
-        document.getElementById("meeting-location")! as HTMLInputElement
-      ).value!;
-
-      const permits_required = (
-        document.getElementById("permits-required")! as HTMLInputElement
-      ).value!;
-
-      const vehicular_requirements = (
-        document.getElementById(
-          "vehicular-requirements",
-        )! as HTMLTextAreaElement
-      ).value!;
-
-      const invite = (document.getElementById("invite")! as HTMLSelectElement)
-        .value!;
-
-      let doc = new jsPDF("p", "in", "letter");
-
-      // Writes left-aligned text + a full-width underline
-      const text_line = (text: string, y: number) => {
-        doc.text(text, left, y);
-        doc.line(left, y + underline_offset, right, y + underline_offset);
-      };
-
-      doc.setFont(font, "normal");
-      doc.setFontSize(14);
-      doc.setLineWidth(0.0125);
-
-      doc.addImage(print_form.dataset.logo!, "PNG", 0.5, 0.5, 1.5, 1.5);
-
-      doc.text(
-        ["Copperstate 4 Wheelers, Inc", "www.copperstate4wheelers.com"],
-        8,
-        0.75,
-        { align: "right" },
-      );
-
-      doc.setFont(font, "bold");
-      doc.setFontSize(22);
-      doc.text("Club Trail Submission Form:", 3.25, 2);
-
-      text_line("Trail Name:", 3);
-      text_line("Date Of Run:", 3.5);
-      text_line("Meeting Time:", 4);
-      text_line("Meeting Location:", 4.5);
-      text_line("Permits Required:", 5);
-      doc.text("Vehicular Requirements:", left, 5.5);
-
-      doc.text("Members Only:", left, 7.5);
-      doc.circle(3.5, 7.35, 0.25);
-      doc.text("Open:", 4, 7.5);
-      doc.circle(5.35, 7.35, 0.25);
-      doc.text("Invite:", 6, 7.5);
-      doc.circle(7.5, 7.35, 0.25);
-
-      text_line("President", 8.5);
-      text_line("Vice President:", 9);
-      text_line("Treasurer:", 9.5);
-      text_line("Secretary:", 10.0);
-
-      // form data
-      doc.setFontSize(14);
-      doc.setFont(font, "normal");
-      doc.text(trail_name, 3, 3);
-      doc.text(date_of_run, 3, 3.5);
-      doc.text(time_of_run, 3.5, 4);
-      doc.text(meeting_location, 3.5, 4.5);
-      doc.text(permits_required, 3.5, 5);
-      doc.text(
-        doc.splitTextToSize(vehicular_requirements, 8.5 - margin * 2),
-        margin,
-        5.8,
-      );
-
-      if (invite == "members-only") {
-        doc.text("X", 3.5, 7.5);
-      } else if (invite == "open") {
-        doc.text("X", 5.35, 7.5);
-      } else if (invite == "invite-only") {
-        doc.text("X", 7.35, 7.5);
+      if (!print_form_button || !event_details_form) {
+        return;
       }
 
-      // Add subsequent pages, always blank to be filled in on the day-of
-      doc
-        .addPage("letter", "p")
-        .addImage("/trail_submission_page_2.png", "PNG", 0, 0, 8.5, 11)
-        .addPage("letter", "p")
-        .addImage("/trail_submission_page_3.png", "PNG", 0, 0, 8.5, 11);
+      function GetEventDetails(): EventDetails {
+        function GetFormValue(input_id: string): string | undefined {
+          let element = document.getElementById(
+            input_id,
+          ) as HTMLFormElement | null;
+          return element ? element.value : undefined;
+        }
 
-      // save/print the document
-      doc.save("trail-submission.pdf");
+        let date_of_run = undefined;
+        {
+          const date_of_run_input = document.getElementById(
+            "date_of_run",
+          )! as HTMLInputElement;
+          if (date_of_run_input.value) {
+            date_of_run = DateTime.fromFormat(
+              date_of_run_input.value,
+              "yyyy-MM-dd",
+              { zone: "America/Phoenix" },
+            );
+            if (!date_of_run.isValid) {
+              date_of_run = undefined;
+            }
+          }
+        }
+
+        let meeting_time = undefined;
+        {
+          const meeting_time_input = document.getElementById(
+            "meeting_time",
+          )! as HTMLInputElement;
+          if (meeting_time_input.value) {
+            meeting_time = DateTime.fromFormat(
+              meeting_time_input.value,
+              "HH:mm",
+              { zone: "America/Phoenix" },
+            );
+            if (!meeting_time.isValid) {
+              meeting_time = undefined;
+            }
+          }
+        }
+
+        return {
+          trail_name: GetFormValue("trail_name"),
+          date_of_run: date_of_run,
+          time_of_run: meeting_time,
+          meeting_location: GetFormValue("meeting_location"),
+          permits_required: GetFormValue("permits_required"),
+          vehicular_requirements: GetFormValue("vehicular_requirements"),
+
+          // safe so long as the select <option> values are correctly specified
+          invite: GetFormValue("invite") as
+            | "open"
+            | "members-only"
+            | "invite-only",
+        };
+      }
+
+      function RebuildPDF() {
+        if (!event_details_form) {
+          return;
+        }
+        console.log("rebuild pdf");
+        BuildUpdatedForm(GetEventDetails());
+      }
+
+      print_form_button.onclick = () => RebuildPDF();
     });
   </script>
 </AboutLayout>
@@ -252,7 +201,7 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
       width: fit-content;
     }
 
-    button[type="submit"] {
+    button {
       width: fit-content;
       padding: 0.5rem 1rem;
       background: var(--accent);
