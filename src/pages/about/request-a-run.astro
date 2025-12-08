@@ -43,27 +43,22 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
   <form id="print-form" data-logo={logo_src}>
     <div class="form-group">
       <label for="trail-name">Trail Name:</label>
-      <input type="text" id="trail-name" placeholder="Trail Name" required />
+      <input type="text" id="trail-name" placeholder="Trail Name" />
     </div>
 
     <div class="form-group">
       <label for="date-of-run">Date Of Run:</label>
-      <input type="date" id="date-of-run" required />
+      <input type="date" id="date-of-run" />
     </div>
 
     <div class="form-group">
       <label for="meeting-time">Meeting Time:</label>
-      <input type="time" id="meeting-time" value="08:00" step="600" required />
+      <input type="time" id="meeting-time" value="08:00" step="600" />
     </div>
 
     <div class="form-group">
       <label for="meeting-location">Meeting Location:</label>
-      <input
-        type="text"
-        id="meeting-location"
-        placeholder="Meeting location"
-        required
-      />
+      <input type="text" id="meeting-location" placeholder="Meeting location" />
     </div>
 
     <div class="form-group">
@@ -72,7 +67,6 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
         type="text"
         id="permits-required"
         placeholder="Permits Required (N/A if none)"
-        required
       />
     </div>
 
@@ -83,8 +77,8 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
         autocomplete="true"
         spellcheck="true"
         rows="3"
-        required
-        placeholder='4x4, 33" tires, rear locker, etc... '></textarea>
+        placeholder='4x4, 33" tires, rear locker, etc... '
+        maxlength="250"></textarea>
     </div>
 
     <div class="form-group">
@@ -118,9 +112,9 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
       ).value!;
 
       const date_of_run = (() => {
-        const date_string = (
-          document.getElementById("date-of-run")! as HTMLInputElement
-        ).value!;
+        const date_string =
+          (document.getElementById("date-of-run")! as HTMLInputElement).value ||
+          DateTime.now().toFormat("yyyy-MM-dd");
         const date = DateTime.fromFormat(date_string, "yyyy-MM-dd", {
           zone: "America/Phoenix",
         });
@@ -128,9 +122,9 @@ const logo_src = (await getImage({ src: logo, format: "png" })).src;
       })();
 
       const time_of_run = (() => {
-        const time_string = (
-          document.getElementById("meeting-time")! as HTMLInputElement
-        ).value!;
+        const time_string =
+          (document.getElementById("meeting-time")! as HTMLInputElement)
+            .value || DateTime.now().toFormat("HH:mm");
         const time = DateTime.fromFormat(time_string, "HH:mm", {
           zone: "America/Phoenix",
         });
