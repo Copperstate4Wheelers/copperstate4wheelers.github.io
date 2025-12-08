@@ -165,12 +165,16 @@ function BuildSignUpPage(doc: jsPDF) {
   );
 
   // header
-  const step = (8.5 - margin * 2) / 5;
-  doc.setFontSize(14).setFont(font, "bold");
-  doc.text("MEMBERS", left + step * 1, 6.9, { align: "center" });
-  doc.text("Vehicle", left + step * 2, 6.9, { align: "center" });
-  doc.text("Color", left + step * 3, 6.9, { align: "center" });
-  doc.text("License Plate", left + step * 4, 6.9, { align: "center" });
+  const step = (8.5 - margin * 2) / 6;
+  {
+    const height = 6.9;
+    doc.setFontSize(14).setFont(font, "bold");
+    doc.text("Member", left + step * 1, height, { align: "center" });
+    doc.text("Vehicle", left + step * 2, height, { align: "center" });
+    doc.text("Color", left + step * 3, height, { align: "center" });
+    doc.text("License Plate", left + step * 4, height, { align: "center" });
+    doc.text("Phone", left + step * 5, height, { align: "center" });
+  }
 
   doc.setFontSize(14).setFont(font, "normal");
   doc.setLineWidth(0.0125);
@@ -200,11 +204,24 @@ function BuildSignUpPage(doc: jsPDF) {
   }
 
   doc.setFontSize(16).setFont(font, "bold");
-  doc.text("Guests", 8.5 / 2, 3.1, { align: "center" });
-  doc.setFontSize(14).setFont(font, "normal");
+  doc.text("Guests & Passengers", 8.5 / 2, 3.1, {
+    align: "center",
+  });
 
+  // guest heading
   {
-    const line_start = 3.5;
+    const height = 3.5;
+    doc.setFontSize(14).setFont(font, "bold");
+    doc.text("Name", left + step * 1, height, { align: "center" });
+    doc.text("Vehicle", left + step * 2, height, { align: "center" });
+    doc.text("Color", left + step * 3, height, { align: "center" });
+    doc.text("License Plate", left + step * 4, height, { align: "center" });
+    doc.text("Phone", left + step * 5, height, { align: "center" });
+  }
+
+  doc.setFontSize(14).setFont(font, "normal");
+  {
+    const line_start = 3.8;
     const line_step = 0.3;
     for (let i = 0; i < 16; i++) {
       const line = line_start + line_step * i;
