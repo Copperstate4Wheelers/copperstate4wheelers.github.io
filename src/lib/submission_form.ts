@@ -118,12 +118,14 @@ function WriteFormDetails(doc: jsPDF, details: EventDetails) {
       5.8,
     );
   }
+
+  doc.setFontSize(24).setFont(font, "bold");
   if (details.invite == "members-only") {
-    doc.text("X", 3.5, 7.5);
+    doc.text("X", 3.4, 7.5);
   } else if (details.invite == "open") {
-    doc.text("X", 5.35, 7.5);
+    doc.text("X", 5.25, 7.5);
   } else if (details.invite == "invite-only") {
-    doc.text("X", 7.35, 7.5);
+    doc.text("X", 7.4, 7.5);
   }
 }
 
