@@ -15,9 +15,8 @@ import AboutLayout from "@layouts/AboutLayout.astro";
     </li>
     <li>
       Please fill out the
-      <a href="/copperstate4wheelers_club_trail_submission.pdf">
-        Club Trail Submission Form
-      </a> and email it to
+      <a href="/trail_submission_form.pdf"> Club Trail Submission Form </a> and email
+      it to
       <a href="mailto:copperstate4wheelers@yahoo.com">
         copperstate4wheelers@yahoo.com
       </a> or print it out and bring it to the next club meeting.
@@ -168,7 +167,7 @@ import AboutLayout from "@layouts/AboutLayout.astro";
           return;
         }
         console.log("rebuild pdf");
-        BuildUpdatedForm(GetEventDetails());
+        BuildUpdatedForm(GetEventDetails()).save("trail_submission_form.pdf");
       }
 
       print_form_button.onclick = () => RebuildPDF();

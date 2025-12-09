@@ -1,4 +1,4 @@
-import jsPDF from "jspdf";
+import { jsPDF } from "jspdf";
 import { DateTime } from "luxon";
 
 export interface EventDetails {
@@ -135,7 +135,7 @@ function BuildSignUpPage(doc: jsPDF) {
   const top = margin + 0.5;
 
   // top of page
-  doc.addImage("/asa_logo.jpg", "JPG", left, top, 1, 1);
+  doc.addImage("/asa_logo.png", "PNG", left, top, 1, 1);
   doc.addImage("/copperstate_logo_small.png", "PNG", right - 1, top, 1, 1);
   doc.rect(left + 1.25, margin + 0.25, 8.5 - 2 * (1.25 + margin), 1 + 0.25);
 
@@ -235,10 +235,9 @@ function BuildSignUpPage(doc: jsPDF) {
 }
 
 /**
- * Builds a complete trail submission form and prompts the user to save the
- * result.
- */
-export function BuildUpdatedForm(details: EventDetails) {
+ * Builds the complete updated sign-in form.
+ **/
+export function BuildUpdatedForm(details: EventDetails): jsPDF {
   const doc = new jsPDF("p", "in", "letter");
 
   BuildDetailsPage(doc);
@@ -247,5 +246,5 @@ export function BuildUpdatedForm(details: EventDetails) {
   doc.addPage("letter", "p");
   BuildSignUpPage(doc);
 
-  doc.save("trail_submission_form.pdf");
+  return doc;
 }
