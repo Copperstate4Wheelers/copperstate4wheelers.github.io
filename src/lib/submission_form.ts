@@ -167,24 +167,26 @@ function BuildSignUpPage(doc: jsPDF) {
   );
 
   // header
-  const step = (8.5 - margin * 2) / 6;
+  doc.setFontSize(16).setFont(font, "bold");
+  doc.text("Members", 8.5 / 2, 6.9, {
+    align: "center",
+  });
   {
-    const height = 6.9;
+    const height = 7.3;
     doc.setFontSize(14).setFont(font, "bold");
-    doc.text("Member", left + step * 1, height, { align: "center" });
-    doc.text("Vehicle", left + step * 2, height, { align: "center" });
-    doc.text("Color", left + step * 3, height, { align: "center" });
-    doc.text("License Plate", left + step * 4, height, { align: "center" });
-    doc.text("Phone", left + step * 5, height, { align: "center" });
+    doc.text("Name", left + 0.2, height);
+    doc.text("Phone Number", left + 1.5, height);
+    doc.text("License Plate", left + 3.2, height);
+    doc.text("Signature", left + 5, height);
   }
 
   doc.setFontSize(14).setFont(font, "normal");
   doc.setLineWidth(0.0125);
 
   {
-    const line_start = 7.2;
+    const line_start = 7.5;
     const line_step = 0.3;
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 10; i++) {
       const line = line_start + line_step * i;
       doc.text(`${i + 1}.`, left, line, { align: "right" });
       doc.line(left + 0.1, line + 0.02, right, line + 0.02);
@@ -198,32 +200,31 @@ function BuildSignUpPage(doc: jsPDF) {
   {
     const line_start = 1.5;
     const line_step = 0.3;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const line = line_start + line_step * i;
-      doc.text(`${i + 12}.`, left, line, { align: "right" });
+      doc.text(`${i + 11}.`, left, line, { align: "right" });
       doc.line(left + 0.1, line + 0.02, right, line + 0.02);
     }
   }
 
   doc.setFontSize(16).setFont(font, "bold");
-  doc.text("Guests & Passengers", 8.5 / 2, 3.1, {
+  doc.text("Guests & Passengers", 8.5 / 2, 3.7, {
     align: "center",
   });
 
   // guest heading
   {
-    const height = 3.5;
+    const height = 4.1;
     doc.setFontSize(14).setFont(font, "bold");
-    doc.text("Name", left + step * 1, height, { align: "center" });
-    doc.text("Vehicle", left + step * 2, height, { align: "center" });
-    doc.text("Color", left + step * 3, height, { align: "center" });
-    doc.text("License Plate", left + step * 4, height, { align: "center" });
-    doc.text("Phone", left + step * 5, height, { align: "center" });
+    doc.text("Name", left + 0.2, height);
+    doc.text("Phone Number", left + 1.5, height);
+    doc.text("License Plate", left + 3.2, height);
+    doc.text("Signature", left + 5, height);
   }
 
   doc.setFontSize(14).setFont(font, "normal");
   {
-    const line_start = 3.8;
+    const line_start = 4.4;
     const line_step = 0.3;
     for (let i = 0; i < 16; i++) {
       const line = line_start + line_step * i;
