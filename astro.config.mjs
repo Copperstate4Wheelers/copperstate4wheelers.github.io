@@ -41,7 +41,11 @@ export default defineConfig({
   },
 
   integrations: [
-    serviceWorker(),
+    serviceWorker({
+      workbox: {
+        globPatterns: ["**/*.png,jpg,svg,gif,webp,woff,woff2"],
+      },
+    }),
     favicons({
       name: "Copperstate4Wheelers",
       short_name: "CS4W",
