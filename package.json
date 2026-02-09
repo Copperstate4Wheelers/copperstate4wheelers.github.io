@@ -9,20 +9,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.3",
-    "@fontsource/arvo": "^5.2.6",
-    "@fontsource/montserrat": "^5.2.6",
-    "@fontsource/road-rage": "^5.2.6",
+    "@astrojs/mdx": "^4.3.13",
+    "@fontsource/arvo": "^5.2.7",
+    "@fontsource/montserrat": "^5.2.8",
+    "@fontsource/road-rage": "^5.2.8",
     "@types/luxon": "^3.7.1",
-    "astro": "^5.12.9",
+    "astro": "^5.17.1",
     "astro-favicons": "^3.1.5",
     "astro-iconify": "^1.2.0",
     "astro-seo": "^0.8.4",
     "astrojs-service-worker": "^2.0.0",
-    "autoprefixer": "^10.4.21",
-    "jspdf": "^3.0.1",
-    "lightningcss": "^1.30.1",
-    "luxon": "^3.7.1",
+    "autoprefixer": "^10.4.24",
+    "jspdf": "^3.0.4",
+    "lightningcss": "^1.31.1",
+    "luxon": "^3.7.2",
     "modern-normalize": "^3.0.1"
   }
 }
