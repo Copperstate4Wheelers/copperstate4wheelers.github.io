@@ -8,6 +8,8 @@ import browserslist from "browserslist";
 
 import mdx from "@astrojs/mdx";
 
+import icon from "astro-icon";
+
 // https://astro.build/config
 export default defineConfig({
   redirects: {
@@ -60,5 +62,7 @@ export default defineConfig({
       },
     }),
     mdx(),
+    icon(),
   ],
 });
+
