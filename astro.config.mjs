@@ -43,7 +43,13 @@ export default defineConfig({
   integrations: [
     serviceWorker({
       workbox: {
-        globPatterns: ["**/*.png,jpg,svg,gif,webp,woff,woff2"],
+        globPatterns: [
+          "**/*.webp",
+          "**/*.woff",
+          "**/*.woff2",
+          "**/*.svg",
+          "**/*.png",
+        ],
       },
     }),
     favicons({
