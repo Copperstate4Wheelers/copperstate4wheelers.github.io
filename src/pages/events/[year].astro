@@ -13,6 +13,7 @@ import EventListing from "@components/event/Listing.astro";
 /* Calculate years based on the available event listings. */
 import * as events from "@lib/events";
 import type { GetStaticPaths, GetStaticPathsResult } from "astro";
+import LinkButton from "@components/LinkButton.astro";
 
 export const getStaticPaths = (async () => {
   const results: GetStaticPathsResult = [];
@@ -60,6 +61,10 @@ const eventsForYear = await events.getEventsForYear(year! as number);
       );
     })
   }
+
+  <section class="wide request-a-run">
+    <LinkButton href="/about/request-a-run#article">Request A Run</LinkButton>
+  </section>
 </BaseLayout>
 
 <style>
@@ -79,6 +84,13 @@ const eventsForYear = await events.getEventsForYear(year! as number);
     .month-event-card {
       margin-block: var(--fs-400);
     }
+  }
+
+  .request-a-run {
+    margin-top: var(--fs-600);
+    display: flex;
+    flex: row nowrap;
+    justify-content: center;
   }
 
   @media screen and (width > 50rem) {
