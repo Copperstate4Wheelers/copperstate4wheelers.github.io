@@ -13,5 +13,6 @@ the 21st.
 
 ### Requirements
 
+- State Trust Land Permit
 - [Normal required gear](/about/required-gear)
 
