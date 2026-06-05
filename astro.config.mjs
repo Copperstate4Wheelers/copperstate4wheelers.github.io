@@ -23,6 +23,7 @@ export default defineConfig({
     "/how-to-join.html": "/about/how-to-join",
     "/about-us.html": "/about",
     "/in-memory-of.html": "/members/in-memory-of",
+    "/home.html": "/",
   },
 
   vite: {
