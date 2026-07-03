@@ -1,9 +1,23 @@
 ---
-title: Summer Campout
+title: "Cancelled: Summer Campout"
 time: 5:00PM
 invite: Guests Welcome
 location: Campsite in Flagstaff (35.10093, -111.82313)
 ---
+
+## Cancelled
+
+A Pocket Fire in the Coconino National Forest has caused significant portions
+of the forest to be closed.
+
+Due to this, the club has cancelled this camping trip for now. Stay safe and
+have a good 4th of July!
+
+[Forest Service: Coconino Alerts](https://www.fs.usda.gov/r03/coconino/alerts)
+
+---
+
+## Original Post:
 
 The club will camp near the Edge Of The World in the Coconino National Forest
 near Flagstaff. We've camped around here on the 4th of July the last few years
