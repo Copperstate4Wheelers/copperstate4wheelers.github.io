@@ -1,6 +1,6 @@
 ---
 title: Smiles For Moe on Smiley Rock
-time: TBD
+time: "9:00am"
 invite: Guests Welcome
 location: Mingus Mountain Summit Rest Area
 ---
