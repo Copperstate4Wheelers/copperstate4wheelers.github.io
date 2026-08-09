@@ -1,9 +1,24 @@
 ---
-title: "Night Run: Trail 42"
+title: "CANCELED: Night Run: Trail 42"
 time: 7:30pm
 invite: Guests Welcome
 location: Parking Lot, East Bartlett Dam Road
 ---
+
+### ALERT: CANCELED (6:00pm Aug 8th)
+
+Trail 42 is closed due to fire activity. Ron and Bradley found out only now,
+and are working to contact everyone who confirmed interest in this run.
+
+Apologies for the late notice, and maybe we can reschedule this one for a
+future date.
+
+Reference:
+https://www.fs.usda.gov/r03/tonto/recreation/groups/st-clair-ohv-permit-zone
+
+> Important Notice: Due to wildfire activity, the east side of the St. Clair OHV Permit Zone is closed to entry at this time, including from FR205, FR19, and FR 495. The following access points are also closed: Kentuck Staging, Coral Access, Indian Spring Staging, Sunrise Ridge Access, and the Telegraph Line Trail Entrance & exit.
+
+### Original Description
 
 Trail 42 is always interesting.
 The challenge on this trail comes almost entirely from the many off-camber and
