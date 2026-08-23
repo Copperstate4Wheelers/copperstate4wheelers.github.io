@@ -1,9 +1,17 @@
 ---
-title: Vehicle Inspection
-time: 8:00am
+title: "Postponed: Vehicle Inspection"
+time: N/A
 invite: Members Only
-location: Quality Vans & Specialty Vehicles
+location: N/A
 ---
+
+**Postponed!**
+
+Our location will not be available on Saturday. Ron and Leo will work with
+Moab participants to do a pre-run inspection some other time, but the club
+inspection will need to wait until we have a location again.
+
+### Original Details
 
 The club meets about once a year to do a group vehicle inspection where we
 split into groups and inspect the major systems on each vehicle. It's not
