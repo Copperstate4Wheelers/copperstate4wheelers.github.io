@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => {
   const years = await events.getAllYears();
   for (let year of years) {
     results.push({
-      params: { year },
+    params: { year: `${year}` },
       props: {
         next: years.has(year + 1) ? `/events/${year + 1}` : undefined,
         prev: years.has(year - 1) ? `/events/${year - 1}` : undefined,

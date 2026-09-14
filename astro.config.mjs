@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import serviceWorker from "astrojs-service-worker";
 import favicons from "astro-favicons";
 import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
@@ -44,17 +43,6 @@ export default defineConfig({
   },
 
   integrations: [
-    serviceWorker({
-      workbox: {
-        globPatterns: [
-          "**/*.webp",
-          "**/*.woff",
-          "**/*.woff2",
-          "**/*.svg",
-          "**/*.png",
-        ],
-      },
-    }),
     favicons({
       name: "Copperstate4Wheelers",
       short_name: "CS4W",
