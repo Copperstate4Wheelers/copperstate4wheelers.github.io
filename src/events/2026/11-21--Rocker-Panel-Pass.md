@@ -2,7 +2,7 @@
 title: Rocker Panel Pass
 time: 8:00am
 invite: Guests Welcome
-location: Sugarloaf/Upper Sycamore pull out (33.679275, -111.503789)
+location: Sugarloaf/Upper Sycamore pull out (33.6793175, -111.5037220)
 ---
 
 Paul is leading this run!
